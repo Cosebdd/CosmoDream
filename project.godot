@@ -8,14 +8,41 @@
 
 config_version=4
 
+_global_script_classes=[ {
+"base": "KinematicBody2D",
+"class": "KinematicObject",
+"language": "GDScript",
+"path": "res://kinematic-objects/object/KinematicObject.gd"
+} ]
+_global_script_class_icons={
+"KinematicObject": ""
+}
+
 [application]
 
 config/name="CosmoDream"
+run/main_scene="res://world/World.tscn"
 config/icon="res://icon.png"
+
+[display]
+
+window/size/width=320
+window/size/height=180
+window/size/test_width=1280
+window/size/test_height=720
+window/stretch/mode="2d"
+window/stretch/aspect="keep_height"
 
 [gui]
 
 common/drop_mouse_on_gui_input_disabled=true
+
+[layer_names]
+
+2d_physics/layer_1="world"
+2d_physics/layer_2="player"
+2d_physics/layer_3="hit_box"
+2d_physics/layer_4="hurt_box"
 
 [physics]
 
