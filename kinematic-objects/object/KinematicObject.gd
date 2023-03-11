@@ -1,14 +1,15 @@
 extends KinematicBody2D
 class_name KinematicObject
 
-export(int) var max_speed = 200
-export(int) var acceleration = 10
-export(int) var friction = 10
+export(int) var max_speed = 100
+export(int) var acceleration = 15
+export(int) var friction = 15
 export(int) var gravity = 10
 export(int) var max_gravity = 200
 export(int) var gravity_enhancement = 4
 export(int) var max_health = 1
 export(int) var jump_height = 200
+export(int) var min_jump_height = 30
 export(int) var jump_acceleration_point = 10
 
 var velocity := Vector2.ZERO
@@ -41,8 +42,6 @@ func handle_damage(damage: int) -> void:
 
 
 func process(input: Vector2) -> void:
-	apply_gravity()
-	
 	if input.x == 0:
 		apply_friction()
 	else:
