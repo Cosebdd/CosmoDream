@@ -23,11 +23,17 @@ _global_script_classes=[ {
 "class": "KinematicObject",
 "language": "GDScript",
 "path": "res://kinematic-objects/object/KinematicObject.gd"
+}, {
+"base": "Node2D",
+"class": "SimpleBar",
+"language": "GDScript",
+"path": "res://HUD/bars/SimpleBar.gd"
 } ]
 _global_script_class_icons={
 "Hitbox": "",
 "Hurtbox": "",
-"KinematicObject": ""
+"KinematicObject": "",
+"SimpleBar": ""
 }
 
 [application]
