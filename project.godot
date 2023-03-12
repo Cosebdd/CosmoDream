@@ -9,12 +9,24 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Area2D",
+"class": "Hitbox",
+"language": "GDScript",
+"path": "res://areas/hitbox/Hitbox.gd"
+}, {
+"base": "Area2D",
+"class": "Hurtbox",
+"language": "GDScript",
+"path": "res://areas/hurtbox/Hurtbox.gd"
+}, {
 "base": "KinematicBody2D",
 "class": "KinematicObject",
 "language": "GDScript",
 "path": "res://kinematic-objects/object/KinematicObject.gd"
 } ]
 _global_script_class_icons={
+"Hitbox": "",
+"Hurtbox": "",
 "KinematicObject": ""
 }
 

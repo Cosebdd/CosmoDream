@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://icon.png" type="Texture" id=1]
+[ext_resource path="res://areas/hurtbox/Hurtbox.tscn" type="PackedScene" id=2]
+[ext_resource path="res://kinematic-objects/enemy/Enemy.gd" type="Script" id=3]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 5.5, 6 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 6.5, 6.5 )
+
+[node name="Enemy" type="KinematicBody2D"]
+script = ExtResource( 3 )
+
+[node name="Sprite" type="Sprite" parent="."]
+modulate = Color( 1, 0, 0, 1 )
+position = Vector2( -6, -13 )
+scale = Vector2( 0.2, 0.2 )
+texture = ExtResource( 1 )
+centered = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0.5, -6 )
+shape = SubResource( 1 )
+
+[node name="Hurtbox" parent="." instance=ExtResource( 2 )]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+position = Vector2( 0.5, -6.5 )
+shape = SubResource( 2 )
+
+[connection signal="hit_taken" from="Hurtbox" to="." method="_on_Hurtbox_hit_taken"]
+
+[editable path="Hurtbox"]
