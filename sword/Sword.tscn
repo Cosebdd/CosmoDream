@@ -101,7 +101,6 @@ texture = ExtResource( 1 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite/Hitbox"]
 position = Vector2( -5.86877e-07, -8.2963 )
-scale = Vector2( 1, 1 )
 shape = SubResource( 1 )
 disabled = true
 
