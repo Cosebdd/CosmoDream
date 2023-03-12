@@ -9,6 +9,16 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Node",
+"class": "Ability",
+"language": "GDScript",
+"path": "res://abilities/Ability.gd"
+}, {
+"base": "Node2D",
+"class": "AbilitySystem",
+"language": "GDScript",
+"path": "res://abilities/ability-system/AbilitySystem.gd"
+}, {
 "base": "Area2D",
 "class": "Hitbox",
 "language": "GDScript",
@@ -28,12 +38,20 @@ _global_script_classes=[ {
 "class": "Sword",
 "language": "GDScript",
 "path": "res://sword/Sword.gd"
+}, {
+"base": "Ability",
+"class": "ShootingAbility",
+"language": "GDScript",
+"path": "res://abilities/list/shooting/Shooting.gd"
 } ]
 _global_script_class_icons={
+"Ability": "",
+"AbilitySystem": "",
 "Hitbox": "",
 "Hurtbox": "",
 "KinematicObject": "",
-"Sword": ""
+"Sword": "",
+"ShootingAbility": ""
 }
 
 [application]
