@@ -6,6 +6,7 @@ export(int) var max_level = 3
 export(int) var charge_limit = null # says how many shots we have
 export(int) var recharge_value = 1
 export(float) var recharge_time = null # says how long 1 shot is reloading
+export(bool) var recharge_after_fully_empty = false
 export(float) var fire_delay = null # set the delay between 2 fires when button is pressed
 
 var active := false
@@ -37,8 +38,9 @@ func _process(delta):
 
 
 func _execute() -> void:
-	if _recharge_timer and _charges < charge_limit and not _recharge_timer.is_processing():
-		_recharge_timer.start()
+	if _recharge_timer and not _recharge_timer.is_processing():
+		if (recharge_after_fully_empty and _charges == 0) or (not recharge_after_fully_empty and _charges < charge_limit):
+			_recharge_timer.start()
 
 	if _delay_timer and _charges != null and _charges > 0:
 		_delay_timer.start()

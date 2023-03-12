@@ -6,4 +6,5 @@
 script = ExtResource( 1 )
 charge_limit = 7
 recharge_time = 1.0
+recharge_after_fully_empty = true
 fire_delay = 1.0
