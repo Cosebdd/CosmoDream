@@ -1,4 +1,4 @@
-extends Node
+extends Node2D
 class_name Ability
 
 export(int) var level = 1
@@ -33,13 +33,11 @@ func _ready():
 
 func _process(delta):
 	if not active or _is_delay_between: return
-	print("Charges: ", _charges)
 	_execute()
 
 
 func _execute() -> void:
 	if _recharge_timer and _charges < charge_limit and not _recharge_timer.is_processing():
-		print("Recharge")
 		_recharge_timer.start()
 
 	if _delay_timer and _charges != null and _charges > 0:
@@ -63,7 +61,6 @@ func deactivate() -> void:
 func _handle_recharge_timeout() -> void:
 	_charges = clamp(_charges + recharge_value, 0, charge_limit)
 	if _charges < charge_limit: _recharge_timer.start()
-	print("Recharge: ", _charges)
 
 
 func _handle_delay_timeout() -> void:
