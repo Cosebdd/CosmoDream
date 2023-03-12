@@ -1,0 +1,44 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://assets/HUD/label_HP.png" type="Texture" id=1]
+[ext_resource path="res://assets/HUD/label_HP_bg.png" type="Texture" id=2]
+[ext_resource path="res://assets/HUD/lifebar_fill.png" type="Texture" id=3]
+[ext_resource path="res://assets/HUD/lifebar_bg.png" type="Texture" id=4]
+[ext_resource path="res://HUD/bars/hp_bar/HPBar.gd" type="Script" id=5]
+
+[node name="HPBar" type="Node2D"]
+scale = Vector2( 0.2, 0.2 )
+script = ExtResource( 5 )
+
+[node name="Margin" type="MarginContainer" parent="."]
+anchor_top = 0.5
+anchor_bottom = 0.5
+margin_top = -26.5
+margin_right = 500.0
+margin_bottom = 26.5
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Margin"]
+margin_right = 500.0
+margin_bottom = 53.0
+
+[node name="Background" type="NinePatchRect" parent="Margin/HBoxContainer"]
+margin_right = 100.0
+margin_bottom = 53.0
+rect_min_size = Vector2( 100, 50 )
+texture = ExtResource( 2 )
+
+[node name="Title" type="TextureRect" parent="Margin/HBoxContainer/Background"]
+margin_left = 25.0
+margin_top = 5.0
+margin_right = 65.0
+margin_bottom = 45.0
+texture = ExtResource( 1 )
+stretch_mode = 4
+
+[node name="Bar" type="TextureProgress" parent="Margin/HBoxContainer"]
+margin_left = 104.0
+margin_right = 500.0
+margin_bottom = 53.0
+value = 50.0
+texture_under = ExtResource( 4 )
+texture_progress = ExtResource( 3 )
