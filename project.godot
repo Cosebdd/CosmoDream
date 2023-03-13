@@ -39,15 +39,15 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://kinematic-objects/object/KinematicObject.gd"
 }, {
-"base": "Node2D",
-"class": "Sword",
-"language": "GDScript",
-"path": "res://sword/Sword.gd"
-}, {
 "base": "Ability",
 "class": "ShootingAbility",
 "language": "GDScript",
 "path": "res://abilities/list/shooting/Shooting.gd"
+}, {
+"base": "Node2D",
+"class": "Sword",
+"language": "GDScript",
+"path": "res://sword/Sword.gd"
 } ]
 _global_script_class_icons={
 "Ability": "",
@@ -56,8 +56,8 @@ _global_script_class_icons={
 "Hitbox": "",
 "Hurtbox": "",
 "KinematicObject": "",
-"Sword": "",
-"ShootingAbility": ""
+"ShootingAbility": "",
+"Sword": ""
 }
 
 [application]
