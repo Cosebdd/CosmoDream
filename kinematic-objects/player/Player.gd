@@ -28,4 +28,3 @@ func _physics_process(_delta):
 		animation_player.play("Idle")
 	else:
 		animation_player.play("Run")
-
