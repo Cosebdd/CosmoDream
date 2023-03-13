@@ -1,7 +1,7 @@
-extends MarginContainer
+extends Control
 
 
-onready var bar = $"./VBoxContainer/HPBar"
+onready var bar = $"./CanvasLayer/PanelContainer/VBoxContainer/TextureProgress"
 
 func _ready():
 	var max_health = get_node("../Enemy").max_health

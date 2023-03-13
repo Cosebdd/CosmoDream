@@ -24,3 +24,7 @@ func _physics_process(_delta):
 	
 	if input.x == 0 and velocity.x == 0:
 		animated_sprite.play("idle")
+
+
+func _on_Enemy_health_changed():
+	pass # Replace with function body.
