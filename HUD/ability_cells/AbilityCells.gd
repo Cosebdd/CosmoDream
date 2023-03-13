@@ -1,8 +1,8 @@
 extends Control
 
 
-onready var bar = $"./CanvasLayer/PanelContainer/VBoxContainer/TextureProgress"
-onready var panel = $"CanvasLayer/PanelContainer"
+onready var bar = $"./CanvasLayer/Ability1/VBoxContainer/HP"
+onready var panel = $"CanvasLayer/Ability1"
 
 func _ready():
 	var max_health = get_node("../Enemy").max_health
