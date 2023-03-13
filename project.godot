@@ -9,6 +9,21 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Node2D",
+"class": "Ability",
+"language": "GDScript",
+"path": "res://abilities/Ability.gd"
+}, {
+"base": "Node2D",
+"class": "AbilitySystem",
+"language": "GDScript",
+"path": "res://abilities/ability-system/AbilitySystem.gd"
+}, {
+"base": "KinematicBody2D",
+"class": "Bullet",
+"language": "GDScript",
+"path": "res://abilities/list/shooting/bullet/Bullet.gd"
+}, {
 "base": "Area2D",
 "class": "Hitbox",
 "language": "GDScript",
@@ -24,15 +39,24 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://kinematic-objects/object/KinematicObject.gd"
 }, {
+"base": "Ability",
+"class": "ShootingAbility",
+"language": "GDScript",
+"path": "res://abilities/list/shooting/Shooting.gd"
+}, {
 "base": "Node2D",
 "class": "Sword",
 "language": "GDScript",
 "path": "res://sword/Sword.gd"
 } ]
 _global_script_class_icons={
+"Ability": "",
+"AbilitySystem": "",
+"Bullet": "",
 "Hitbox": "",
 "Hurtbox": "",
 "KinematicObject": "",
+"ShootingAbility": "",
 "Sword": ""
 }
 
@@ -99,6 +123,26 @@ jump={
 base_attack={
 "deadzone": 0.5,
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":70,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+ ]
+}
+use_ability_1={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":81,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+ ]
+}
+use_ability_2={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":87,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+ ]
+}
+use_ability_3={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":69,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+ ]
+}
+use_ability_4={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":82,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
  ]
 }
 
