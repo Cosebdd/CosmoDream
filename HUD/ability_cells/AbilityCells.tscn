@@ -4,7 +4,7 @@
 [ext_resource path="res://assets/ui/SpecialBarRed.png" type="Texture" id=2]
 [ext_resource path="res://assets/ui/SpecialBarPink.png" type="Texture" id=3]
 [ext_resource path="res://HUD/ability_cells/AbilityCells.gd" type="Script" id=4]
-[ext_resource path="res://assets/ui/SpecialBarGold.png" type="Texture" id=5]
+[ext_resource path="res://assets/ui/SpecialBarBlue.png" type="Texture" id=5]
 [ext_resource path="res://assets/ui/SpecialBarBackground.png" type="Texture" id=6]
 [ext_resource path="res://assets/ui/HealthBar.png" type="Texture" id=7]
 [ext_resource path="res://assets/ui/HealthBarBackground.png" type="Texture" id=8]
@@ -18,27 +18,31 @@ script = ExtResource( 4 )
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="PanelContainer" type="PanelContainer" parent="CanvasLayer"]
-margin_left = 3.0
-margin_top = 157.0
-margin_right = 91.0
-margin_bottom = 259.0
-rect_scale = Vector2( 0.2, 0.2 )
+margin_left = 4.0
+margin_top = 149.0
+margin_right = 92.0
+margin_bottom = 217.0
+rect_scale = Vector2( 0.4, 0.4 )
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/PanelContainer"]
 margin_left = 7.0
 margin_top = 7.0
 margin_right = 81.0
-margin_bottom = 95.0
+margin_bottom = 61.0
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer/PanelContainer/VBoxContainer"]
-margin_right = 74.0
-margin_bottom = 64.0
+margin_right = 30.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 30, 30 )
+size_flags_horizontal = 0
+size_flags_vertical = 0
 texture = ExtResource( 1 )
+expand = true
 
 [node name="TextureProgress" type="TextureProgress" parent="CanvasLayer/PanelContainer/VBoxContainer"]
-margin_top = 68.0
+margin_top = 34.0
 margin_right = 74.0
-margin_bottom = 76.0
+margin_bottom = 42.0
 size_flags_horizontal = 2
 size_flags_vertical = 2
 value = 50.0
@@ -46,37 +50,41 @@ texture_under = ExtResource( 8 )
 texture_progress = ExtResource( 7 )
 
 [node name="TextureProgress2" type="TextureProgress" parent="CanvasLayer/PanelContainer/VBoxContainer"]
-margin_top = 80.0
+margin_top = 46.0
 margin_right = 74.0
-margin_bottom = 88.0
+margin_bottom = 54.0
 size_flags_horizontal = 2
 size_flags_vertical = 2
 value = 30.0
 texture_under = ExtResource( 6 )
-texture_progress = ExtResource( 5 )
+texture_progress = ExtResource( 9 )
 
 [node name="PanelContainer2" type="PanelContainer" parent="CanvasLayer"]
-margin_left = 23.0
-margin_top = 157.0
-margin_right = 111.0
-margin_bottom = 259.0
-rect_scale = Vector2( 0.2, 0.2 )
+margin_left = 41.0
+margin_top = 149.0
+margin_right = 129.0
+margin_bottom = 217.0
+rect_scale = Vector2( 0.4, 0.4 )
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/PanelContainer2"]
 margin_left = 7.0
 margin_top = 7.0
 margin_right = 81.0
-margin_bottom = 95.0
+margin_bottom = 61.0
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer/PanelContainer2/VBoxContainer"]
-margin_right = 74.0
-margin_bottom = 64.0
+margin_right = 30.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 30, 30 )
+size_flags_horizontal = 0
+size_flags_vertical = 0
 texture = ExtResource( 1 )
+expand = true
 
 [node name="TextureProgress" type="TextureProgress" parent="CanvasLayer/PanelContainer2/VBoxContainer"]
-margin_top = 68.0
+margin_top = 34.0
 margin_right = 74.0
-margin_bottom = 76.0
+margin_bottom = 42.0
 size_flags_horizontal = 2
 size_flags_vertical = 2
 value = 50.0
@@ -84,37 +92,41 @@ texture_under = ExtResource( 8 )
 texture_progress = ExtResource( 7 )
 
 [node name="TextureProgress2" type="TextureProgress" parent="CanvasLayer/PanelContainer2/VBoxContainer"]
-margin_top = 80.0
+margin_top = 46.0
 margin_right = 74.0
-margin_bottom = 88.0
+margin_bottom = 54.0
 size_flags_horizontal = 2
 size_flags_vertical = 2
 value = 30.0
 texture_under = ExtResource( 6 )
-texture_progress = ExtResource( 9 )
+texture_progress = ExtResource( 5 )
 
 [node name="PanelContainer3" type="PanelContainer" parent="CanvasLayer"]
-margin_left = 42.0
-margin_top = 157.0
-margin_right = 130.0
-margin_bottom = 259.0
-rect_scale = Vector2( 0.2, 0.2 )
+margin_left = 78.0
+margin_top = 149.0
+margin_right = 166.0
+margin_bottom = 217.0
+rect_scale = Vector2( 0.4, 0.4 )
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/PanelContainer3"]
 margin_left = 7.0
 margin_top = 7.0
 margin_right = 81.0
-margin_bottom = 95.0
+margin_bottom = 61.0
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer/PanelContainer3/VBoxContainer"]
-margin_right = 74.0
-margin_bottom = 64.0
+margin_right = 30.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 30, 30 )
+size_flags_horizontal = 0
+size_flags_vertical = 0
 texture = ExtResource( 1 )
+expand = true
 
 [node name="TextureProgress" type="TextureProgress" parent="CanvasLayer/PanelContainer3/VBoxContainer"]
-margin_top = 68.0
+margin_top = 34.0
 margin_right = 74.0
-margin_bottom = 76.0
+margin_bottom = 42.0
 size_flags_horizontal = 2
 size_flags_vertical = 2
 value = 50.0
@@ -122,9 +134,9 @@ texture_under = ExtResource( 8 )
 texture_progress = ExtResource( 7 )
 
 [node name="TextureProgress2" type="TextureProgress" parent="CanvasLayer/PanelContainer3/VBoxContainer"]
-margin_top = 80.0
+margin_top = 46.0
 margin_right = 74.0
-margin_bottom = 88.0
+margin_bottom = 54.0
 size_flags_horizontal = 2
 size_flags_vertical = 2
 value = 30.0
@@ -132,27 +144,31 @@ texture_under = ExtResource( 6 )
 texture_progress = ExtResource( 3 )
 
 [node name="PanelContainer4" type="PanelContainer" parent="CanvasLayer"]
-margin_left = 61.0
-margin_top = 157.0
-margin_right = 149.0
-margin_bottom = 259.0
-rect_scale = Vector2( 0.2, 0.2 )
+margin_left = 115.0
+margin_top = 149.0
+margin_right = 203.0
+margin_bottom = 217.0
+rect_scale = Vector2( 0.4, 0.4 )
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/PanelContainer4"]
 margin_left = 7.0
 margin_top = 7.0
 margin_right = 81.0
-margin_bottom = 95.0
+margin_bottom = 61.0
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer/PanelContainer4/VBoxContainer"]
-margin_right = 74.0
-margin_bottom = 64.0
+margin_right = 30.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 30, 30 )
+size_flags_horizontal = 0
+size_flags_vertical = 0
 texture = ExtResource( 1 )
+expand = true
 
 [node name="TextureProgress" type="TextureProgress" parent="CanvasLayer/PanelContainer4/VBoxContainer"]
-margin_top = 68.0
+margin_top = 34.0
 margin_right = 74.0
-margin_bottom = 76.0
+margin_bottom = 42.0
 size_flags_horizontal = 2
 size_flags_vertical = 2
 value = 50.0
@@ -160,9 +176,9 @@ texture_under = ExtResource( 8 )
 texture_progress = ExtResource( 7 )
 
 [node name="TextureProgress2" type="TextureProgress" parent="CanvasLayer/PanelContainer4/VBoxContainer"]
-margin_top = 80.0
+margin_top = 46.0
 margin_right = 74.0
-margin_bottom = 88.0
+margin_bottom = 54.0
 size_flags_horizontal = 2
 size_flags_vertical = 2
 value = 30.0
