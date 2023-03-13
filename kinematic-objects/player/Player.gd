@@ -1,6 +1,7 @@
 extends KinematicObject
 
-onready var animated_sprite := $AnimatedSprite
+onready var animation_player := $AnimationPlayer
+onready var body := $Body
 
 func _physics_process(_delta):
 	apply_gravity()
@@ -8,23 +9,22 @@ func _physics_process(_delta):
 	var input = Vector2.ZERO
 	input.x = Input.get_axis("move_left", "move_right")
 	
-	animated_sprite.flip_h = input.x < 0
+	if input.x < 0: body.scale.x = -1
+	if input.x > 0: body.scale.x = 1
 	
 	if is_on_floor():
 		if Input.is_action_just_pressed("jump"):
 			jump()
 	else:
-		animated_sprite.play("Jump")
+		animation_player.play("Jump")
 		if Input.is_action_just_released("jump") and velocity.y <= -min_jump_height:
 			velocity.y = -min_jump_height
-	
+		
 		handle_body_in_air()
 	
 	process(input)
 	
 	if input.x == 0 and velocity.x == 0:
-		animated_sprite.play("idle")
-
-
-func _on_Enemy_health_changed():
-	pass # Replace with function body.
+		animation_player.play("Idle")
+	else:
+		animation_player.play("Run")
