@@ -6,9 +6,11 @@ const _ABILITY_ACTION_PREFFIX := "use_ability_"
 export(int) var ability_cell_number = 4
 
 var ability_list = []
-var direction = Vector2.ZERO
+var direction := Vector2.ZERO
+var owner_rect: Rect2
 
 var Shooting = preload("res://abilities/list/shooting/Shooting.tscn")
+var Shield = preload("res://abilities/list/shield/Shield.tscn")
 
 
 func _ready() -> void:
@@ -16,6 +18,7 @@ func _ready() -> void:
 		ability_list.append(null)
 	
 	put_ability(Shooting, 0)
+	put_ability(Shield, 1)
 
 
 func _physics_process(_delta) -> void:
@@ -28,7 +31,7 @@ func _physics_process(_delta) -> void:
 		var action_name = _ABILITY_ACTION_PREFFIX + str(i)
 		
 		if Input.is_action_pressed(action_name):
-			ability.activate(direction)
+			ability.activate(owner_rect, direction)
 		
 		if Input.is_action_just_released(action_name):
 			ability.deactivate()
@@ -64,3 +67,7 @@ func remove_ability(cell: int) -> void:
 
 func set_direction(new_dir: Vector2) -> void:
 	direction = new_dir
+
+
+func set_owner_size(rect: Rect2) -> void:
+	owner_rect = rect

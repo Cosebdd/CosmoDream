@@ -979,6 +979,8 @@ anims/Jump = SubResource( 7 )
 anims/RESET = SubResource( 5 )
 anims/Run = SubResource( 6 )
 
+[node name="AbilitySystem" parent="." instance=ExtResource( 3 )]
+
 [node name="Body" type="Node2D" parent="."]
 
 [node name="Polygons" type="Node2D" parent="Body"]
@@ -1159,9 +1161,6 @@ __meta__ = {
 
 [node name="Sword" parent="Body" instance=ExtResource( 1 )]
 position = Vector2( 19, -30 )
-
-[node name="AbilitySystem" parent="Body" instance=ExtResource( 3 )]
-position = Vector2( 22, -36 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( -1.5, -29.5 )

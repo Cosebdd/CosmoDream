@@ -40,6 +40,11 @@ _global_script_classes=[ {
 "path": "res://kinematic-objects/object/KinematicObject.gd"
 }, {
 "base": "Ability",
+"class": "ShieldAbility",
+"language": "GDScript",
+"path": "res://abilities/list/shield/Shield.gd"
+}, {
+"base": "Ability",
 "class": "ShootingAbility",
 "language": "GDScript",
 "path": "res://abilities/list/shooting/Shooting.gd"
@@ -56,6 +61,7 @@ _global_script_class_icons={
 "Hitbox": "",
 "Hurtbox": "",
 "KinematicObject": "",
+"ShieldAbility": "",
 "ShootingAbility": "",
 "Sword": ""
 }

@@ -17,10 +17,11 @@ enum {
 }
 
 var active := false
-onready var _charges: int = charge_limit
+onready var _charges = charge_limit
 var _recharge_timer: Timer = null
 var _delay_timer: Timer = null
 var _direction: Vector2 = Vector2.ZERO
+var _owner_rect: Rect2
 var _state = fire
 
 
@@ -41,7 +42,11 @@ func _ready():
 
 
 func _process(_delta):
-	if not (active and _delay_timer.is_stopped() and _recharge_timer.is_stopped()): return
+	var is_delay_timer_run = _delay_timer && !_delay_timer.is_stopped()
+	var is_recharge_rimer_run = _recharge_timer && !_recharge_timer.is_stopped()
+	
+	if not active or is_delay_timer_run or is_delay_timer_run: return
+	
 	_execute()
 
 
@@ -66,7 +71,8 @@ func _delay() -> void:
 
 
 func _fire() -> void:
-	_charges = clamp(_charges - 1, 0, charge_limit)
+	if _charges != null:
+		_charges = clamp(_charges - 1, 0, charge_limit)
 	
 	if _charges != null and _charges == 0:
 		_state = full_recharge
@@ -80,9 +86,11 @@ func upgrade(levels: int) -> void:
 	level = clamp(level + levels, 0, max_level)
 
 
-func activate(direction: Vector2) -> void:
-	active = true
+func activate(owner_rect: Rect2, direction: Vector2) -> void:
 	_direction = direction
+	_owner_rect = owner_rect
+	active = true
+	
 
 
 func deactivate() -> void:
@@ -90,7 +98,7 @@ func deactivate() -> void:
 
 
 func _handle_recharge_timeout() -> void:
-	_charges = charge_limit
+	_charges = clamp(recharge_value, 0, charge_limit)
 	_state = fire
 
 

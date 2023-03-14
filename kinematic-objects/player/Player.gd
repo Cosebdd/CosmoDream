@@ -3,7 +3,8 @@ extends KinematicObject
 onready var animation_player := $AnimationPlayer
 onready var body := $Body
 onready var remote_transform := $RemoteTransform2D
-onready var ability_system := $Body/AbilitySystem
+onready var ability_system := $AbilitySystem
+onready var collision := $CollisionShape2D
 
 enum {
 	idle,
@@ -15,6 +16,13 @@ var _state = idle
 
 func _ready() -> void:
 	ability_system.set_direction(Vector2.RIGHT)
+	var collision_extents = collision.shape.extents
+	var start_pos = Vector2(
+		collision.position.x - collision_extents.x,
+		collision.position.y - collision_extents.y
+	)
+	var collision_rect = Rect2(start_pos, collision_extents * 2)
+	ability_system.set_owner_size(collision_rect)
 
 
 func _physics_process(_delta) -> void:
