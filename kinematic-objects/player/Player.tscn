@@ -973,6 +973,7 @@ jump_height = 250
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "Run"
+reset_on_save = false
 anims/Idle = SubResource( 4 )
 anims/Jump = SubResource( 7 )
 anims/RESET = SubResource( 5 )
