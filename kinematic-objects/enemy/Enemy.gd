@@ -10,7 +10,7 @@ func _physics_process(_delta) -> void:
 func _on_Hurtbox_hit_taken(damage: int) -> void:
 	hit_points = clamp(hit_points - damage, 0, max_health)
 	
-	emit_signal("health_changed", hit_points)
+	emit_signal("health_changed", 0, hit_points)
 	
 	if hit_points == 0:
 		queue_free()
