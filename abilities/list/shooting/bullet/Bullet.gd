@@ -1,7 +1,7 @@
 extends KinematicBody2D
 class_name Bullet
 
-export(int) var speed = 100
+export(int) var speed = 300
 onready var _ttl := $TTL
 
 var _direction = Vector2.ZERO
