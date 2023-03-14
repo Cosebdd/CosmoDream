@@ -4,7 +4,8 @@
 
 [node name="ShootingAbility" type="Node2D"]
 script = ExtResource( 1 )
-charge_limit = 7
-recharge_time = 1.0
+charge_limit = 2
+recharge_value = 2
+recharge_time = 2.0
 recharge_after_fully_empty = true
 fire_delay = 1.0

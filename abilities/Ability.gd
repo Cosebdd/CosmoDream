@@ -5,7 +5,7 @@ export(int) var level = 1
 export(int) var max_level = 3
 export(int) var charge_limit = null # says how many shots we have
 export(int) var recharge_value = 1
-export(float) var recharge_time = null # says how long 1 shot is reloading
+export(float) var recharge_time = null # says how long is reloading
 export(bool) var recharge_after_fully_empty = false
 export(float) var fire_delay = null # set the delay between 2 fires when button is pressed
 
@@ -14,6 +14,7 @@ onready var _charges: int = charge_limit
 var _is_delay_between := false
 var _recharge_timer: Timer = null
 var _delay_timer: Timer = null
+var _direction: Vector2 = Vector2.ZERO
 
 
 func _ready():
@@ -32,7 +33,7 @@ func _ready():
 		add_child(_delay_timer)
 
 
-func _process(delta):
+func _process(_delta):
 	if not active or _is_delay_between: return
 	_execute()
 
@@ -52,8 +53,9 @@ func upgrade(levels: int) -> void:
 	level = clamp(level + levels, 0, max_level)
 
 
-func activate() -> void:
+func activate(direction: Vector2) -> void:
 	active = true
+	_direction = direction
 
 
 func deactivate() -> void:
