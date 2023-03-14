@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://sword/Sword.tscn" type="PackedScene" id=1]
 [ext_resource path="res://kinematic-objects/player/Player.gd" type="Script" id=2]
+[ext_resource path="res://abilities/ability-system/AbilitySystem.tscn" type="PackedScene" id=3]
 [ext_resource path="res://assets/player/PlayerAtlas.png" type="Texture" id=4]
 
 [sub_resource type="Animation" id=4]
@@ -972,10 +973,13 @@ jump_height = 250
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "Run"
+reset_on_save = false
 anims/Idle = SubResource( 4 )
 anims/Jump = SubResource( 7 )
 anims/RESET = SubResource( 5 )
 anims/Run = SubResource( 6 )
+
+[node name="AbilitySystem" parent="." instance=ExtResource( 3 )]
 
 [node name="Body" type="Node2D" parent="."]
 
@@ -1161,3 +1165,5 @@ position = Vector2( 19, -30 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( -1.5, -29.5 )
 shape = SubResource( 2 )
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="."]

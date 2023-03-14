@@ -5,15 +5,24 @@ export(int) var level = 1
 export(int) var max_level = 3
 export(int) var charge_limit = null # says how many shots we have
 export(int) var recharge_value = 1
-export(float) var recharge_time = null # says how long 1 shot is reloading
+export(float) var recharge_time = null # says how long is reloading
 export(bool) var recharge_after_fully_empty = false
 export(float) var fire_delay = null # set the delay between 2 fires when button is pressed
 
+
+enum {
+	full_recharge,
+	delay,
+	fire,
+}
+
 var active := false
-onready var _charges: int = charge_limit
-var _is_delay_between := false
+onready var _charges = charge_limit
 var _recharge_timer: Timer = null
 var _delay_timer: Timer = null
+var _direction: Vector2 = Vector2.ZERO
+var _owner_rect: Rect2
+var _state = fire
 
 
 func _ready():
@@ -32,28 +41,56 @@ func _ready():
 		add_child(_delay_timer)
 
 
-func _process(delta):
-	if not active or _is_delay_between: return
+func _process(_delta):
+	var is_delay_timer_run = _delay_timer && !_delay_timer.is_stopped()
+	var is_recharge_rimer_run = _recharge_timer && !_recharge_timer.is_stopped()
+	
+	if not active or is_delay_timer_run or is_recharge_rimer_run: return
+	
 	_execute()
 
 
 func _execute() -> void:
-	if _recharge_timer and not _recharge_timer.is_processing():
-		if (recharge_after_fully_empty and _charges == 0) or (not recharge_after_fully_empty and _charges < charge_limit):
-			_recharge_timer.start()
+	match _state:
+		fire:
+			_fire()
+		delay:
+			_delay()
+		full_recharge:
+			_full_recharge()
 
-	if _delay_timer and _charges != null and _charges > 0:
-		_delay_timer.start()
-		_is_delay_between = true
+
+func _full_recharge() -> void:
+	if not _recharge_timer.is_stopped(): return
+	_recharge_timer.start()
+
+
+func _delay() -> void:
+	if not _delay_timer.is_stopped(): return
+	_delay_timer.start()
+
+
+func _fire() -> void:
+	if _charges != null:
 		_charges = clamp(_charges - 1, 0, charge_limit)
+	
+	if _charges != null and _charges == 0:
+		_state = full_recharge
+		return
+	
+	if fire_delay != null:
+		_state = delay
 
 
 func upgrade(levels: int) -> void:
 	level = clamp(level + levels, 0, max_level)
 
 
-func activate() -> void:
+func activate(owner_rect: Rect2, direction: Vector2) -> void:
+	_direction = direction
+	_owner_rect = owner_rect
 	active = true
+	
 
 
 func deactivate() -> void:
@@ -61,9 +98,9 @@ func deactivate() -> void:
 
 
 func _handle_recharge_timeout() -> void:
-	_charges = clamp(_charges + recharge_value, 0, charge_limit)
-	if _charges < charge_limit: _recharge_timer.start()
+	_charges = clamp(recharge_value, 0, charge_limit)
+	_state = fire
 
 
 func _handle_delay_timeout() -> void:
-	_is_delay_between = false
+	_state = fire
