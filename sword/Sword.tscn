@@ -108,6 +108,5 @@ scale = Vector2( 0.0507812, 0.421875 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Sword/Hitbox"]
 position = Vector2( 788.757, -73.3159 )
-scale = Vector2( 1, 1 )
 shape = SubResource( 4 )
 disabled = true

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/RockyGrassTileMap.png-88ef99fa8fc10f49dc097d311a5b0adb.stex"
+path="res://.import/BulletRight.png-e9d25f9451040ef1d5d81e921a18e5ec.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/nature/RockyGrassTileMap.png"
-dest_files=[ "res://.import/RockyGrassTileMap.png-88ef99fa8fc10f49dc097d311a5b0adb.stex" ]
+source_file="res://assets/player/BulletRight.png"
+dest_files=[ "res://.import/BulletRight.png-e9d25f9451040ef1d5d81e921a18e5ec.stex" ]
 
 [params]
 
