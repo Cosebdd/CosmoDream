@@ -2,6 +2,8 @@ extends KinematicObject
 
 onready var animation_player := $AnimationPlayer
 onready var body := $Body
+onready var remote_transform = $RemoteTransform2D
+
 
 func _physics_process(_delta):
 	apply_gravity()
@@ -33,3 +35,7 @@ func _physics_process(_delta):
 		animation_player.play("Idle")
 	else:
 		animation_player.play("Run")
+
+
+func connect_camera(camera: Camera2D) -> void:
+	remote_transform.remote_path = camera.get_path()
