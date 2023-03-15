@@ -1,7 +1,7 @@
 extends KinematicBody2D
 class_name Bullet
 
-export(int) var speed = 300
+export(int) var speed = 5
 onready var _ttl := $TTL
 
 var _direction = Vector2.ZERO
@@ -27,4 +27,4 @@ func _on_TTL_timeout():
 
 func set_direction(direction: Vector2) -> void:
 	_direction = direction.normalized()
-	rotation = Vector2.UP.angle_to(_direction)
+	rotation = Vector2.RIGHT.angle_to(_direction)
