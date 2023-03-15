@@ -11,8 +11,10 @@ export(int) var max_health = 3
 export(int) var jump_height = 200
 export(int) var min_jump_height = 30
 export(int) var jump_acceleration_point = 10
+export(int) var max_jumps = 1
 
 var velocity := Vector2.ZERO
+onready var jumps_count = max_jumps
 onready var hit_points = max_health
 
 
@@ -35,6 +37,7 @@ func handle_body_in_air() -> void:
 
 func jump() -> void:
 	velocity.y = -jump_height
+	jumps_count = clamp(jumps_count - 1, 0, max_jumps)
 
 
 func handle_damage(damage: int) -> void:
@@ -48,3 +51,8 @@ func process(input: Vector2) -> void:
 		apply_acceleretion(input.x)
 	
 	velocity = move_and_slide(velocity, Vector2.UP)
+	
+	if is_on_floor():
+		jumps_count = max_jumps
+	elif jumps_count == max_jumps:
+		jumps_count = clamp(jumps_count - 1, 0, max_jumps)

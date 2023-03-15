@@ -6,19 +6,20 @@ const _ABILITY_ACTION_PREFFIX := "use_ability_"
 export(int) var ability_cell_number = 4
 
 var ability_list = []
-var direction := Vector2.ZERO
-var owner_rect: Rect2
+var _owner setget set_owner
 
 var Shooting = preload("res://abilities/list/shooting/Shooting.tscn")
 var Shield = preload("res://abilities/list/shield/Shield.tscn")
+var DubleJump = preload("res://abilities/list/duble-jump/DubleJump.tscn")
 
 
 func _ready() -> void:
-	for _i in range(0, ability_cell_number + 1):
+	for _i in range(ability_cell_number):
 		ability_list.append(null)
 	
 	put_ability(Shooting, 0)
 	put_ability(Shield, 1)
+	put_ability(DubleJump, 2)
 
 
 func _physics_process(_delta) -> void:
@@ -31,32 +32,26 @@ func _physics_process(_delta) -> void:
 		var action_name = _ABILITY_ACTION_PREFFIX + str(i)
 		
 		if Input.is_action_pressed(action_name):
-			ability.activate(owner_rect, direction)
+			ability.activate()
 		
 		if Input.is_action_just_released(action_name):
 			ability.deactivate()
-
-
-func set_abilities(abilities) -> void:
-	ability_list = abilities
-	for ability in abilities:
-		add_child(ability.instance())
 
 
 func put_ability(ability, cell: int) -> void:
 	var old_ability: Ability = ability_list[cell]
 	if old_ability is Ability:
 		old_ability.queue_free()
-
+	
 	var ability_instance = ability.instance()
+	if _owner: ability_instance.set_owner(_owner)
 	ability_list[cell] = ability_instance
 	add_child(ability_instance)
 
 
-func clear_abilityes() -> void:
-	for ability in ability_list:
-		ability.queue_free()
-	ability_list = []
+func set_abilities(abilities) -> void:
+	for i in range(abilities.size()):
+		put_ability(abilities[i], i)
 
 
 func remove_ability(cell: int) -> void:
@@ -65,9 +60,12 @@ func remove_ability(cell: int) -> void:
 	ability_list[cell] = null
 
 
-func set_direction(new_dir: Vector2) -> void:
-	direction = new_dir
+func clear_abilityes() -> void:
+	for i in range(ability_list.size()):
+		remove_ability(i)
 
 
-func set_owner_size(rect: Rect2) -> void:
-	owner_rect = rect
+func set_owner(owner_body) -> void:
+	_owner = owner_body
+	for ability in ability_list:
+		if ability: ability.set_owner(_owner)

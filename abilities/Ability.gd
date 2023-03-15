@@ -1,6 +1,7 @@
 extends Node2D
 class_name Ability
 
+export(bool) var is_internal_ability = false # if true - the ability will be rendered inside of object
 export(int) var level = 1
 export(int) var max_level = 3
 export(int) var charge_limit = null # says how many shots we have
@@ -16,12 +17,11 @@ enum {
 	fire,
 }
 
-var active := false
 onready var _charges = charge_limit
+var active := false
 var _recharge_timer: Timer = null
 var _delay_timer: Timer = null
-var _direction: Vector2 = Vector2.ZERO
-var _owner_rect: Rect2
+var _owner
 var _state = fire
 
 
@@ -86,11 +86,12 @@ func upgrade(levels: int) -> void:
 	level = clamp(level + levels, 0, max_level)
 
 
-func activate(owner_rect: Rect2, direction: Vector2) -> void:
-	_direction = direction
-	_owner_rect = owner_rect
+func set_owner(owner_body) -> void:
+	_owner = owner_body
+
+
+func activate() -> void:
 	active = true
-	
 
 
 func deactivate() -> void:

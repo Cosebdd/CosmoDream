@@ -5,6 +5,8 @@ onready var body := $Body
 onready var remote_transform := $RemoteTransform2D
 onready var ability_system := $AbilitySystem
 onready var collision := $CollisionShape2D
+onready var direction := Vector2.RIGHT
+var size_rect: Rect2
 
 enum {
 	idle,
@@ -14,15 +16,10 @@ enum {
 
 var _state = idle
 
+
 func _ready() -> void:
-	ability_system.set_direction(Vector2.RIGHT)
-	var collision_extents = collision.shape.extents
-	var start_pos = Vector2(
-		collision.position.x - collision_extents.x,
-		collision.position.y - collision_extents.y
-	)
-	var collision_rect = Rect2(start_pos, collision_extents * 2)
-	ability_system.set_owner_size(collision_rect)
+	size_rect = _get_size_rect()
+	ability_system.set_owner(self)
 
 
 func _physics_process(_delta) -> void:
@@ -33,19 +30,18 @@ func _physics_process(_delta) -> void:
 	
 	if input.x < 0:
 		body.scale.x = -1
-		ability_system.set_direction(Vector2.LEFT)
+		direction = Vector2.LEFT
 	if input.x > 0:
 		body.scale.x = 1
-		ability_system.set_direction(Vector2.RIGHT)
+		direction = Vector2.RIGHT
 	
 	if is_on_floor():
-		if Input.is_action_just_pressed("jump"):
-			jump()
-	else:
-		if Input.is_action_just_released("jump") and velocity.y <= -min_jump_height:
-			velocity.y = -min_jump_height
-		
 		handle_body_in_air()
+	elif Input.is_action_just_released("jump") and velocity.y <= -min_jump_height:
+		velocity.y = -min_jump_height
+	
+	if Input.is_action_just_pressed("jump") and jumps_count > 0:
+		jump()
 	
 	process(input)
 	
@@ -88,3 +84,12 @@ func _jump() -> void:
 
 func connect_camera(camera: Camera2D) -> void:
 	remote_transform.remote_path = camera.get_path()
+
+
+func _get_size_rect() -> Rect2:
+	var collision_extents = collision.shape.extents
+	var start_pos = Vector2(
+		collision.position.x - collision_extents.x,
+		collision.position.y - collision_extents.y
+	)
+	return Rect2(start_pos, collision_extents * 2)
