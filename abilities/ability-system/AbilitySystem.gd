@@ -11,7 +11,7 @@ var _owner setget set_owner
 var Shooting = preload("res://abilities/list/shooting/Shooting.tscn")
 var Shield = preload("res://abilities/list/shield/Shield.tscn")
 var DubleJump = preload("res://abilities/list/duble-jump/DubleJump.tscn")
-
+var Strafe = preload("res://abilities/list/strafe/Strafe.tscn")
 
 func _ready() -> void:
 	for _i in range(ability_cell_number):
@@ -20,6 +20,7 @@ func _ready() -> void:
 	put_ability(Shooting, 0)
 	put_ability(Shield, 1)
 	put_ability(DubleJump, 2)
+	put_ability(Strafe, 3)
 
 
 func _physics_process(_delta) -> void:
