@@ -44,7 +44,6 @@ func _ready():
 func _process(_delta):
 	var is_delay_timer_run = _delay_timer && !_delay_timer.is_stopped()
 	var is_recharge_rimer_run = _recharge_timer && !_recharge_timer.is_stopped()
-	
 	if not active or is_delay_timer_run or is_recharge_rimer_run: return
 	
 	_execute()
@@ -70,6 +69,9 @@ func _delay() -> void:
 	_delay_timer.start()
 
 
+func _fire_implementation() -> void:
+	print("Implement _fire_implementation method for your Ability")
+
 func _fire() -> void:
 	if _charges != null:
 		_charges = clamp(_charges - 1, 0, charge_limit)
@@ -80,6 +82,8 @@ func _fire() -> void:
 	
 	if fire_delay != null:
 		_state = delay
+	
+	_fire_implementation()
 
 
 func upgrade(levels: int) -> void:
