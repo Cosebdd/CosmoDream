@@ -19,7 +19,6 @@ anchor_bottom = 1.0
 script = ExtResource( 4 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
-layer = 2
 
 [node name="Ability1" type="PanelContainer" parent="CanvasLayer"]
 margin_left = 4.0
