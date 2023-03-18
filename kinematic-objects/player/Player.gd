@@ -6,6 +6,7 @@ onready var remote_transform := $RemoteTransform2D
 onready var ability_system := $AbilitySystem
 onready var collision := $CollisionShape2D
 onready var direction := Vector2.RIGHT
+onready var Heads := [$Body/Polygons/Torso/Heads/Cell1, $Body/Polygons/Torso/Heads/Cell2, $Body/Polygons/Torso/Heads/Cell3, $Body/Polygons/Torso/Heads/Cell4]
 var size_rect: Rect2
 
 enum {

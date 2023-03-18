@@ -1,0 +1,47 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://icon.png" type="Texture" id=1]
+[ext_resource path="res://assets/ui/HealthBarBackground.png" type="Texture" id=2]
+[ext_resource path="res://assets/ui/HealthBar.png" type="Texture" id=3]
+[ext_resource path="res://assets/ui/SpecialBarBlue.png" type="Texture" id=4]
+[ext_resource path="res://assets/ui/SpecialBarBackground.png" type="Texture" id=5]
+[ext_resource path="res://HUD/ability-cell/AbilityCell.gd" type="Script" id=6]
+
+[node name="AbilityCell" type="PanelContainer"]
+margin_right = 78.0
+margin_bottom = 102.0
+rect_scale = Vector2( 0.36, 0.36 )
+script = ExtResource( 6 )
+
+[node name="HBoxContainer" type="VBoxContainer" parent="."]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 81.0
+margin_bottom = 105.0
+
+[node name="Pic" type="TextureRect" parent="HBoxContainer"]
+margin_right = 74.0
+margin_bottom = 74.0
+rect_min_size = Vector2( 74, 74 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource( 1 )
+stretch_mode = 6
+
+[node name="HP" type="TextureProgress" parent="HBoxContainer"]
+margin_top = 78.0
+margin_right = 74.0
+margin_bottom = 86.0
+value = 50.0
+texture_under = ExtResource( 2 )
+texture_progress = ExtResource( 3 )
+texture_progress_offset = Vector2( 1, 1 )
+
+[node name="EP" type="TextureProgress" parent="HBoxContainer"]
+margin_top = 90.0
+margin_right = 74.0
+margin_bottom = 98.0
+value = 50.0
+texture_under = ExtResource( 5 )
+texture_progress = ExtResource( 4 )
+texture_progress_offset = Vector2( 1, 1 )

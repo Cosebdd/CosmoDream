@@ -10,9 +10,12 @@ func _ready():
 	if reset_saves:
 		Dialogic.reset_saves()
 	var d = Dialogic.start(timeline, '', "res://addons/dialogic/Nodes/DialogNode.tscn", add_canvas)
+	d.pause_mode = Node.PAUSE_MODE_PROCESS
 	get_parent().call_deferred('add_child', d)
+	get_tree().paused = true
 	_copy_signals(d if not add_canvas else d.dialog_node)	
 	queue_free()
+	
 
 func _copy_signals(dialogic:Node):
 	var sigs = self.get_signal_list()
