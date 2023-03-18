@@ -1,0 +1,21 @@
+{
+	"color": "#fff9f4f9",
+	"description": "",
+	"display_name": "",
+	"display_name_bool": true,
+	"id": "character-1679097646.json",
+	"mirror_portraits": false,
+	"name": "Jill",
+	"nickname": "",
+	"nickname_bool": false,
+	"offset_x": 130,
+	"offset_y": -50,
+	"portraits": [
+		{
+			"name": "Default",
+			"path": "res://assets/player/Heads/Jill.png"
+		}
+	],
+	"scale": 60,
+	"theme": ""
+}
