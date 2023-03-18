@@ -642,13 +642,5 @@ position = Vector2( 149, 107 )
 [node name="Enemy" parent="." instance=ExtResource( 3 )]
 position = Vector2( 126, 107 )
 
-[node name="HUD" parent="." instance=ExtResource( 5 )]
-margin_left = 202.0
-margin_top = 106.0
-margin_right = 202.0
-margin_bottom = 106.0
-
 [node name="Dialog" parent="." instance=ExtResource( 8 )]
 timeline = "timeline-1679097959.json"
-
-[connection signal="health_changed" from="Enemy" to="HUD" method="_on_cell_health_changed"]
