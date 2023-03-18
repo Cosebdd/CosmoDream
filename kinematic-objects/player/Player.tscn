@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://sword/Sword.tscn" type="PackedScene" id=1]
 [ext_resource path="res://kinematic-objects/player/Player.gd" type="Script" id=2]
 [ext_resource path="res://abilities/ability-system/AbilitySystem.tscn" type="PackedScene" id=3]
 [ext_resource path="res://assets/player/PlayerAtlas.png" type="Texture" id=4]
+[ext_resource path="res://assets/player/SmallHeads/SmallHeadsAtlas.png" type="Texture" id=5]
 
 [sub_resource type="Animation" id=4]
 resource_name = "Idle"
@@ -984,6 +985,7 @@ anims/Run = SubResource( 6 )
 [node name="Body" type="Node2D" parent="."]
 
 [node name="Polygons" type="Node2D" parent="Body"]
+position = Vector2( 0, 4 )
 __meta__ = {
 "_edit_group_": true
 }
@@ -1051,6 +1053,38 @@ skeleton = NodePath("../../Skeleton2D")
 polygon = PoolVector2Array( 3, 15, 2, 16, 0, 19, 0, 37, 1, 38, 3, 39, 22, 39, 24, 37, 24, 20, 23, 18, 22, 16, 21, 15 )
 uv = PoolVector2Array( 3, 15, 2, 16, 0, 19, 0, 37, 1, 38, 3, 39, 22, 39, 24, 37, 24, 20, 23, 18, 22, 16, 21, 15 )
 bones = [ "Torso", PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ), "Torso/LegL", PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ), "Torso/LegL/FootL", PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ), "Torso/Head", PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ), "Torso/ShoulderR", PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ), "Torso/ShoulderR/WristR", PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ), "Torso/ShoulderL", PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ), "Torso/ShoulderL/WristL", PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ), "Torso/LegR", PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ), "Torso/LegR/FootR", PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ) ]
+
+[node name="Jill" type="Polygon2D" parent="Body/Polygons/Torso"]
+position = Vector2( 10, 28 )
+texture = ExtResource( 5 )
+skeleton = NodePath("../../../Skeleton2D")
+polygon = PoolVector2Array( 0, 0, 5, 0, 5, 5, 0, 5 )
+uv = PoolVector2Array( 0, 0, 5, 0, 5, 5, 0, 5 )
+bones = [ "Torso", PoolRealArray( 1, 1, 1, 1 ), "Torso/LegL", PoolRealArray( 0, 0, 0, 0 ), "Torso/LegL/FootL", PoolRealArray( 0, 0, 0, 0 ), "Torso/Head", PoolRealArray( 0, 0, 0, 0 ), "Torso/ShoulderR", PoolRealArray( 0, 0, 0, 0 ), "Torso/ShoulderR/WristR", PoolRealArray( 0, 0, 0, 0 ), "Torso/ShoulderL", PoolRealArray( 0, 0, 0, 0 ), "Torso/ShoulderL/WristL", PoolRealArray( 0, 0, 0, 0 ), "Torso/LegR", PoolRealArray( 0, 0, 0, 0 ), "Torso/LegR/FootR", PoolRealArray( 0, 0, 0, 0 ) ]
+
+[node name="Jojo" type="Polygon2D" parent="Body/Polygons/Torso"]
+position = Vector2( 10, 26 )
+texture = ExtResource( 5 )
+skeleton = NodePath("../../../Skeleton2D")
+polygon = PoolVector2Array( 5, 0, 10, 0, 10, 5, 5, 5 )
+uv = PoolVector2Array( 5, 0, 10, 0, 10, 5, 5, 5 )
+bones = [ "Torso", PoolRealArray( 1, 1, 1, 1 ), "Torso/LegL", PoolRealArray( 0, 0, 0, 0 ), "Torso/LegL/FootL", PoolRealArray( 0, 0, 0, 0 ), "Torso/Head", PoolRealArray( 0, 0, 0, 0 ), "Torso/ShoulderR", PoolRealArray( 0, 0, 0, 0 ), "Torso/ShoulderR/WristR", PoolRealArray( 0, 0, 0, 0 ), "Torso/ShoulderL", PoolRealArray( 0, 0, 0, 0 ), "Torso/ShoulderL/WristL", PoolRealArray( 0, 0, 0, 0 ), "Torso/LegR", PoolRealArray( 0, 0, 0, 0 ), "Torso/LegR/FootR", PoolRealArray( 0, 0, 0, 0 ) ]
+
+[node name="Atlas" type="Polygon2D" parent="Body/Polygons/Torso"]
+position = Vector2( 10, 17 )
+texture = ExtResource( 5 )
+skeleton = NodePath("../../../Skeleton2D")
+polygon = PoolVector2Array( 0, 5, 5, 5, 5, 10, 0, 10 )
+uv = PoolVector2Array( 0, 5, 5, 5, 5, 10, 0, 10 )
+bones = [ "Torso", PoolRealArray( 1, 1, 1, 1 ), "Torso/LegL", PoolRealArray( 0, 0, 0, 0 ), "Torso/LegL/FootL", PoolRealArray( 0, 0, 0, 0 ), "Torso/Head", PoolRealArray( 0, 0, 0, 0 ), "Torso/ShoulderR", PoolRealArray( 0, 0, 0, 0 ), "Torso/ShoulderR/WristR", PoolRealArray( 0, 0, 0, 0 ), "Torso/ShoulderL", PoolRealArray( 0, 0, 0, 0 ), "Torso/ShoulderL/WristL", PoolRealArray( 0, 0, 0, 0 ), "Torso/LegR", PoolRealArray( 0, 0, 0, 0 ), "Torso/LegR/FootR", PoolRealArray( 0, 0, 0, 0 ) ]
+
+[node name="CaptBolt" type="Polygon2D" parent="Body/Polygons/Torso"]
+position = Vector2( 10, 15 )
+texture = ExtResource( 5 )
+skeleton = NodePath("../../../Skeleton2D")
+polygon = PoolVector2Array( 5, 5, 10, 5, 10, 10, 5, 10 )
+uv = PoolVector2Array( 5, 5, 10, 5, 10, 10, 5, 10 )
+bones = [ "Torso", PoolRealArray( 1, 1, 1, 1 ), "Torso/LegL", PoolRealArray( 0, 0, 0, 0 ), "Torso/LegL/FootL", PoolRealArray( 0, 0, 0, 0 ), "Torso/Head", PoolRealArray( 0, 0, 0, 0 ), "Torso/ShoulderR", PoolRealArray( 0, 0, 0, 0 ), "Torso/ShoulderR/WristR", PoolRealArray( 0, 0, 0, 0 ), "Torso/ShoulderL", PoolRealArray( 0, 0, 0, 0 ), "Torso/ShoulderL/WristL", PoolRealArray( 0, 0, 0, 0 ), "Torso/LegR", PoolRealArray( 0, 0, 0, 0 ), "Torso/LegR/FootR", PoolRealArray( 0, 0, 0, 0 ) ]
 
 [node name="TorsoGlass" type="Polygon2D" parent="Body/Polygons/Torso"]
 position = Vector2( 9, -20 )
