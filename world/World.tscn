@@ -6,6 +6,7 @@
 [ext_resource path="res://assets/nature/Tree0.png" type="Texture" id=4]
 [ext_resource path="res://HUD/ability_cells/AbilityCells.tscn" type="PackedScene" id=5]
 [ext_resource path="res://assets/backgrounds/NatureBackground.png" type="Texture" id=6]
+[ext_resource path="res://addons/dialogic/Dialog.tscn" type="PackedScene" id=6]
 [ext_resource path="res://world/World.gd" type="Script" id=7]
 
 [sub_resource type="ConvexPolygonShape2D" id=4]
@@ -638,5 +639,12 @@ position = Vector2( 149, 107 )
 position = Vector2( 126, 107 )
 
 [node name="HUD" parent="." instance=ExtResource( 5 )]
+
+[node name="Dialog" parent="." instance=ExtResource( 6 )]
+margin_left = 202.0
+margin_top = 106.0
+margin_right = 202.0
+margin_bottom = 106.0
+timeline = "timeline-1679097959.json"
 
 [connection signal="health_changed" from="Enemy" to="HUD" method="_on_cell_health_changed"]
