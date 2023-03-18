@@ -1,7 +1,8 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://assets/nature/NatureTileMap.png" type="Texture" id=1]
 [ext_resource path="res://kinematic-objects/enemies/spider/VirusSpider.tscn" type="PackedScene" id=2]
+[ext_resource path="res://kinematic-objects/player/Player.tscn" type="PackedScene" id=3]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
@@ -112,11 +113,17 @@ points = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
 
 [node name="TestPolygon" type="Node2D"]
 
+[node name="VirusSpider" parent="." instance=ExtResource( 2 )]
+position = Vector2( 146, 42 )
+
 [node name="VirusSpider2" parent="." instance=ExtResource( 2 )]
-position = Vector2( 161, 45 )
+position = Vector2( 143, 154 )
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource( 10 )
 cell_size = Vector2( 16, 16 )
 format = 1
 tile_data = PoolIntArray( 196613, 0, 1, 196614, 0, 1, 196615, 0, 1, 196616, 0, 1, 196617, 0, 1, 196618, 0, 1, 196619, 0, 1, 196620, 0, 1, 393232, 0, 1, 458753, 0, 1, 458768, 0, 1, 524289, 0, 1, 524304, 0, 1, 589825, 0, 1, 589840, 0, 1, 655361, 0, 1, 655362, 0, 1, 655363, 0, 1, 655364, 0, 1, 655365, 0, 1, 655366, 0, 1, 655367, 0, 1, 655368, 0, 1, 655369, 0, 1, 655370, 0, 1, 655371, 0, 1, 655372, 0, 1, 655373, 0, 1, 655374, 0, 1, 655375, 0, 1, 655376, 0, 1 )
+
+[node name="Player" parent="." instance=ExtResource( 3 )]
+position = Vector2( 264, 90 )

@@ -757,7 +757,6 @@ polygon = PoolVector2Array( -25, 0, -19, -26, -6, -26, -6, -43, 6, -43, 6, -26, 
 [node name="Timer" type="Timer" parent="."]
 one_shot = true
 
-[connection signal="child_entered_tree" from="Body/RayCast2D" to="." method="_on_RayCast2D_child_entered_tree"]
 [connection signal="player_inside" from="Awareness" to="." method="_on_Awareness_player_inside"]
 [connection signal="player_outside" from="Awareness" to="." method="_on_Awareness_player_outside"]
 [connection signal="timeout" from="Timer" to="." method="_on_delay_timer"]

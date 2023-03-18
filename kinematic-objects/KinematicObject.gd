@@ -2,8 +2,8 @@ extends KinematicBody2D
 class_name KinematicObject
 
 export(int) var max_speed = 100
-export(int) var acceleration = 15
-export(int) var friction = 15
+export(int) var acceleration = 1500
+export(int) var friction = 1500
 export(int) var gravity = 10
 export(int) var max_gravity = 200
 export(int) var gravity_enhancement = 4
@@ -22,12 +22,12 @@ func apply_gravity() -> void:
 	velocity.y = min(velocity.y + gravity, max_gravity)
 
 
-func apply_friction() -> void:
-	velocity.x = move_toward(velocity.x, 0, friction)
+func apply_friction(delta: float) -> void:
+	velocity.x = move_toward(velocity.x, 0, friction * delta)
 
 
-func apply_acceleretion(direction: int) -> void:
-	velocity.x = move_toward(velocity.x, max_speed * direction, acceleration)
+func apply_acceleretion(direction: int, delta: float) -> void:
+	velocity.x = move_toward(velocity.x, max_speed * direction, acceleration * delta)
 
 
 func handle_body_in_air() -> void:
@@ -44,11 +44,11 @@ func handle_damage(damage: int) -> void:
 	hit_points = clamp(hit_points - damage, 0, max_health)
 
 
-func process(input: Vector2) -> void:
+func process(input: Vector2, delta: float) -> void:
 	if input.x == 0:
-		apply_friction()
+		apply_friction(delta)
 	else:
-		apply_acceleretion(input.x)
+		apply_acceleretion(input.x, delta)
 	
 	velocity = move_and_slide(velocity, Vector2.UP)
 	

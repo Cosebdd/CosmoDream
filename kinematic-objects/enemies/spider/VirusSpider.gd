@@ -28,30 +28,32 @@ func _ready() -> void:
 	patrol_delay_timer.wait_time = patrol_delay
 
 
-func _physics_process(_delta) -> void:
+func _physics_process(delta: float) -> void:
 	match _state:
 		idle: _idle()
 		move: _move()
 		attack: _attack()
 	
-	if not patrol_delay_timer.is_stopped():
-		return
-	
 	apply_gravity()
 	
-	var changed_direction = body.scale.x != direction
+	var can_move = edge_ray.is_colliding()
+	var is_just_turned = body.scale.x != direction
 	body.scale.x = direction
-	var _direction = Vector2(direction, 0)
-	process(_direction)
+	var _direction = Vector2(
+		direction if can_move else 0,
+		0
+	)
+	
+	process(_direction, delta)
+	
+	if not is_on_floor(): return
 	
 	if _player_to_follow:
 		direction = Directions.right if _player_to_follow.position.x > position.x else Directions.left 
 		return
 	
-	if velocity.x == 0 or not (edge_ray.is_colliding() or changed_direction):
-		velocity.x = 0
-		
-		if not _player_to_follow:
+	if not is_just_turned and (velocity.x == 0 or not edge_ray.is_colliding()):
+		if not _player_to_follow and patrol_delay_timer.is_stopped():
 			patrol_delay_timer.start()
 
 
@@ -85,7 +87,5 @@ func _on_Awareness_player_inside(player: Player) -> void:
 
 func _on_Awareness_player_outside():
 	_player_to_follow = null
-
-
-func _on_RayCast2D_child_entered_tree(node):
-	print(node)
+#	if not edge_ray.is_colliding():
+#		direction *= -1
