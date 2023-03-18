@@ -8,6 +8,7 @@ func _ready():
 
 
 func _input(event):
-	if event.is_action_pressed("ui_cancel"):
-		get_tree().paused = !get_tree().paused
-		canvas.visible = get_tree().paused
+#	if event.is_action_pressed("ui_cancel"):
+#		get_tree().paused = !get_tree().paused
+#		canvas.visible = get_tree().paused
+	pass

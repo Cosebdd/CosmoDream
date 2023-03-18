@@ -589,6 +589,8 @@ script = ExtResource( 7 )
 
 [node name="HUD" parent="." instance=ExtResource( 5 )]
 
+[node name="PauseScreen" parent="." instance=ExtResource( 8 )]
+
 [node name="Camera2D" type="Camera2D" parent="."]
 offset = Vector2( 0, -50 )
 current = true
