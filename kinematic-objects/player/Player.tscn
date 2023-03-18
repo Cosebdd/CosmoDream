@@ -985,7 +985,6 @@ anims/Run = SubResource( 6 )
 [node name="Body" type="Node2D" parent="."]
 
 [node name="Polygons" type="Node2D" parent="Body"]
-position = Vector2( 0, 4 )
 __meta__ = {
 "_edit_group_": true
 }
