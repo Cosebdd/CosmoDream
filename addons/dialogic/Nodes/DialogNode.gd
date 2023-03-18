@@ -573,6 +573,7 @@ func on_timeline_end():
 	# TODO remove event_end in 2.0
 	emit_signal("event_end", "timeline")
 	emit_signal("timeline_end", timeline_name)
+	get_tree().paused = false
 
 # does checks and calls the above functions
 func _emit_timeline_signals():
