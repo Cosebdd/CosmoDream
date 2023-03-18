@@ -11,6 +11,9 @@ var _ability: Ability
 
 func init(ability):
 	_ability = ability as Ability
+	
+	picture.texture = _ability.picture
+	
 	hp_box.max_value = float(_ability.max_health)
 	hp_box.value = float(_ability.max_health)
 	
@@ -23,10 +26,6 @@ func init(ability):
 
 func _exit_tree():
 	_ability.disconnect("charges_updated", self, "set_ep")
-
-
-func set_picture(pic: Texture) -> void:
-	picture.texture = pic
 
 
 func set_hp(hp: float) -> void:
