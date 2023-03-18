@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=2]
+[gd_scene load_steps=41 format=2]
 
 [ext_resource path="res://kinematic-objects/player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/nature/NatureTileMap.png" type="Texture" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://assets/nature/Tree0.png" type="Texture" id=4]
 [ext_resource path="res://HUD/ability_cells/AbilityCells.tscn" type="PackedScene" id=5]
 [ext_resource path="res://assets/backgrounds/NatureBackground.png" type="Texture" id=6]
+[ext_resource path="res://addons/dialogic/Dialog.tscn" type="PackedScene" id=6]
 [ext_resource path="res://world/World.gd" type="Script" id=7]
 [ext_resource path="res://addons/dialogic/Dialog.tscn" type="PackedScene" id=8]
 
@@ -645,6 +646,13 @@ margin_right = 202.0
 margin_bottom = 106.0
 
 [node name="Dialog" parent="." instance=ExtResource( 8 )]
+timeline = "timeline-1679097959.json"
+
+[node name="Dialog" parent="." instance=ExtResource( 6 )]
+margin_left = 202.0
+margin_top = 106.0
+margin_right = 202.0
+margin_bottom = 106.0
 timeline = "timeline-1679097959.json"
 
 [connection signal="health_changed" from="Enemy" to="HUD" method="_on_cell_health_changed"]
