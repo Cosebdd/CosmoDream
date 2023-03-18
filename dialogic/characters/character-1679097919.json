@@ -1,0 +1,21 @@
+{
+	"color": "#ff08895c",
+	"description": "",
+	"display_name": "",
+	"display_name_bool": false,
+	"id": "character-1679097919.json",
+	"mirror_portraits": false,
+	"name": "Person3",
+	"nickname": "",
+	"nickname_bool": false,
+	"offset_x": 130,
+	"offset_y": -50,
+	"portraits": [
+		{
+			"name": "Default",
+			"path": "res://icon.png"
+		}
+	],
+	"scale": 60,
+	"theme": ""
+}
