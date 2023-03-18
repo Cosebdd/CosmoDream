@@ -1,4 +1,5 @@
 extends KinematicObject
+class_name Player
 
 onready var animation_player := $AnimationPlayer
 onready var animation_tree := $AnimationTree
