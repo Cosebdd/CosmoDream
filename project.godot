@@ -156,6 +156,10 @@ config/name="CosmoDream"
 run/main_scene="res://world/World.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+Events="*res://global/Events.gd"
+
 [display]
 
 window/size/width=320

@@ -587,6 +587,10 @@ points = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
 [node name="World" type="Node2D"]
 script = ExtResource( 7 )
 
+[node name="HUD" parent="." instance=ExtResource( 5 )]
+
+[node name="PauseScreen" parent="." instance=ExtResource( 6 )]
+
 [node name="Camera2D" type="Camera2D" parent="."]
 offset = Vector2( 0, -50 )
 current = true
