@@ -70,7 +70,7 @@
 			"character": "character-1679097880.json",
 			"event_id": "dialogic_001",
 			"portrait": "",
-			"text": "Not as terrible as the one we saw about your mother during the recent system glitch"
+			"text": "Not as terrible as the one we saw about your mother during the recent system glitch."
 		},
 		{
 			"animation": "[Default]",
@@ -168,7 +168,7 @@
 			"character": "character-1679097940.json",
 			"event_id": "dialogic_001",
 			"portrait": "",
-			"text": "Remember, we all have unique skills, so please don’t fucking die! I don’t want to lose the shotgun or a shield or whatever you have there"
+			"text": "Remember, we all have unique skills, so please don’t die! I don’t want to lose the shotgun or a shield or whatever you have there!"
 		},
 		{
 			"animation": "[Default]",
@@ -352,7 +352,7 @@
 			"character": "character-1679097940.json",
 			"event_id": "dialogic_001",
 			"portrait": "",
-			"text": "Let's fucking do that!"
+			"text": "Let's do that!"
 		}
 	],
 	"metadata": {
