@@ -5,7 +5,7 @@
 	"display_name_bool": false,
 	"id": "character-1679097940.json",
 	"mirror_portraits": false,
-	"name": "Person4",
+	"name": "Captain Bolt",
 	"nickname": "",
 	"nickname_bool": false,
 	"offset_x": 130,
@@ -13,7 +13,7 @@
 	"portraits": [
 		{
 			"name": "Default",
-			"path": "res://icon.png"
+			"path": "res://assets/player/Heads/CaptBolt.png"
 		}
 	],
 	"scale": 60,
