@@ -48,25 +48,37 @@ func put_ability(ability, cell: int) -> void:
 	if _owner: ability_instance.set_owner(_owner)
 	ability_list[cell] = ability_instance
 	add_child(ability_instance)
+	_emit_abilities_changes()
 
 
 func set_abilities(abilities) -> void:
 	for i in range(abilities.size()):
 		put_ability(abilities[i], i)
+	
+	_emit_abilities_changes()
+
 
 
 func remove_ability(cell: int) -> void:
 	var ability_to_remove: Ability = ability_list[cell]
 	ability_to_remove.queue_free()
 	ability_list[cell] = null
+	
+	_emit_abilities_changes()
 
 
 func clear_abilityes() -> void:
 	for i in range(ability_list.size()):
 		remove_ability(i)
+	
+	_emit_abilities_changes()
 
 
 func set_owner(owner_body) -> void:
 	_owner = owner_body
 	for ability in ability_list:
 		if ability: ability.set_owner(_owner)
+
+
+func _emit_abilities_changes() -> void:
+	Events.emit_signal("set_abilities", ability_list)

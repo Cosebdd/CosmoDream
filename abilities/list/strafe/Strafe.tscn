@@ -1,9 +1,11 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://abilities/list/strafe/Strafe.gd" type="Script" id=1]
+[ext_resource path="res://assets/player/Heads/Jill.png" type="Texture" id=2]
 
 [node name="StrafeAbility" type="Node2D"]
 script = ExtResource( 1 )
+picture = ExtResource( 2 )
 charge_limit = 1
 recharge_time = 0.5
 recharge_after_fully_empty = true

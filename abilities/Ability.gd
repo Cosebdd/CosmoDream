@@ -1,6 +1,12 @@
 extends Node2D
 class_name Ability
 
+signal hp_updated(hp)
+signal ability_recharge(timeout)
+signal charges_updated(charges)
+
+export(Texture) var picture = preload("res://icon.png")
+export(float) var max_health = 100.0
 export(bool) var is_internal_ability = false # if true - the ability will be rendered inside of object
 export(int) var level = 1
 export(int) var max_level = 3
@@ -23,6 +29,7 @@ var _recharge_timer: Timer = null
 var _delay_timer: Timer = null
 var _owner
 var _state = fire
+var _health = max_health
 
 
 func _ready():
@@ -62,6 +69,7 @@ func _execute() -> void:
 func _full_recharge() -> void:
 	if not _recharge_timer.is_stopped(): return
 	_recharge_timer.start()
+	emit_signal("ability_recharge", _recharge_timer.time_left)
 
 
 func _delay() -> void:
@@ -75,6 +83,7 @@ func _fire_implementation() -> void:
 func _fire() -> void:
 	if _charges != null:
 		_charges = clamp(_charges - 1, 0, charge_limit)
+		emit_signal("charges_updated", _charges)
 	
 	if _charges != null and _charges == 0:
 		_state = full_recharge
@@ -104,6 +113,7 @@ func deactivate() -> void:
 
 func _handle_recharge_timeout() -> void:
 	_charges = clamp(recharge_value, 0, charge_limit)
+	emit_signal("charges_updated", _charges)
 	_state = fire
 
 

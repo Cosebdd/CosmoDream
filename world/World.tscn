@@ -4,7 +4,7 @@
 [ext_resource path="res://assets/nature/NatureTileMap.png" type="Texture" id=2]
 [ext_resource path="res://kinematic-objects/enemy/Enemy.tscn" type="PackedScene" id=3]
 [ext_resource path="res://assets/nature/Tree0.png" type="Texture" id=4]
-[ext_resource path="res://HUD/ability_cells/AbilityCells.tscn" type="PackedScene" id=5]
+[ext_resource path="res://HUD/ability-cells/AbilityCells.tscn" type="PackedScene" id=5]
 [ext_resource path="res://assets/backgrounds/NatureBackground.png" type="Texture" id=6]
 [ext_resource path="res://world/World.gd" type="Script" id=7]
 [ext_resource path="res://addons/dialogic/Dialog.tscn" type="PackedScene" id=8]
@@ -587,6 +587,10 @@ points = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
 [node name="World" type="Node2D"]
 script = ExtResource( 7 )
 
+[node name="HUD" parent="." instance=ExtResource( 5 )]
+
+[node name="PauseScreen" parent="." instance=ExtResource( 8 )]
+
 [node name="Camera2D" type="Camera2D" parent="."]
 offset = Vector2( 0, -50 )
 current = true
@@ -638,13 +642,5 @@ position = Vector2( 149, 107 )
 [node name="Enemy" parent="." instance=ExtResource( 3 )]
 position = Vector2( 126, 107 )
 
-[node name="HUD" parent="." instance=ExtResource( 5 )]
-margin_left = 202.0
-margin_top = 106.0
-margin_right = 202.0
-margin_bottom = 106.0
-
 [node name="Dialog" parent="." instance=ExtResource( 8 )]
 timeline = "timeline-1679097959.json"
-
-[connection signal="health_changed" from="Enemy" to="HUD" method="_on_cell_health_changed"]

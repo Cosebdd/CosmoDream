@@ -1,13 +1,15 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://icon.png" type="Texture" id=1]
 [ext_resource path="res://abilities/list/shield/Shield.gd" type="Script" id=2]
+[ext_resource path="res://assets/player/Heads/Jojo.png" type="Texture" id=3]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 45.0111
 
 [node name="Shield" type="Area2D"]
 script = ExtResource( 2 )
+picture = ExtResource( 3 )
 recharge_value = 0
 
 [node name="Sprite" type="Sprite" parent="."]
