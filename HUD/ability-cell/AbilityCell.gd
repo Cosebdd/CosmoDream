@@ -38,6 +38,7 @@ func set_ep(ep) -> void:
 
 func set_hp_diff(hp_diff: float) -> void:
 	_tween_bar(hp_box, hp_box.value + hp_diff, true)
+	_tween_pic(hp_diff > 0)
 
 
 func set_ep_diff(ep_diff: float) -> void:
@@ -45,16 +46,24 @@ func set_ep_diff(ep_diff: float) -> void:
 
 
 func _tween_bar(object: TextureProgress, value: float, with_color_effect = false, time = box_animation_time) -> void:
-	var tween := create_tween().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_BOUNCE)
+	var tween := create_tween()
+	tween.set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_BOUNCE)
 	tween.tween_property(object, "value", value, time)
 	
 	if with_color_effect:
-		var color
-		if value < object.value:
-			color = Color('ff0000')
-		else:
-			color = Color('80ff6a')
+		var is_positive = value > object.value
 		tween.parallel()
-		tween.tween_property(object, "modulate", color, 0.15)
+		tween.tween_property(object, "modulate", _get_modulate_color(is_positive), 0.15)
 		tween.tween_property(object, "modulate", Color(1,1,1,1), 0.15)
 
+
+func _tween_pic(positive = false) -> void:
+	var tween := create_tween()
+	tween.set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_BOUNCE)
+	tween.parallel()
+	tween.tween_property(picture, "modulate", _get_modulate_color(positive), 0.15)
+	tween.tween_property(picture, "modulate", Color(1,1,1,1), 0.15)
+
+
+func _get_modulate_color(positive = false) -> Color:
+	return Color('80ff6a') if positive else Color('ff0000')
