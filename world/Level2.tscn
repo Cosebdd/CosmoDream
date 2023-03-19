@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=2]
+[gd_scene load_steps=43 format=2]
 
 [ext_resource path="res://assets/backgrounds/NatureDestroyedBackground1.png" type="Texture" id=1]
 [ext_resource path="res://assets/nature/NatureTileMap.png" type="Texture" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://HUD/ability-cells/AbilityCells.tscn" type="PackedScene" id=4]
 [ext_resource path="res://world/Level3.tscn" type="PackedScene" id=5]
 [ext_resource path="res://kinematic-objects/player/Player.tscn" type="PackedScene" id=6]
+[ext_resource path="res://kinematic-objects/enemies/spider/VirusSpider.tscn" type="PackedScene" id=7]
 [ext_resource path="res://world/World.gd" type="Script" id=8]
 
 [sub_resource type="ConvexPolygonShape2D" id=4]
@@ -665,5 +666,43 @@ position = Vector2( 396, 710 )
 [node name="NextLevelCollision" type="CollisionShape2D" parent="NextLevelArea"]
 position = Vector2( 3509, -881 )
 shape = SubResource( 37 )
+
+[node name="Enemies" type="Node2D" parent="."]
+
+[node name="VirusSpider" parent="Enemies" instance=ExtResource( 7 )]
+position = Vector2( 590, 248 )
+
+[node name="VirusSpider2" parent="Enemies" instance=ExtResource( 7 )]
+position = Vector2( 924, 239 )
+
+[node name="VirusSpider3" parent="Enemies" instance=ExtResource( 7 )]
+position = Vector2( 1212, 245 )
+
+[node name="VirusSpider4" parent="Enemies" instance=ExtResource( 7 )]
+position = Vector2( 1373, 241 )
+
+[node name="VirusSpider5" parent="Enemies" instance=ExtResource( 7 )]
+position = Vector2( 1984, -71 )
+
+[node name="VirusSpider6" parent="Enemies" instance=ExtResource( 7 )]
+position = Vector2( 1566, -25 )
+
+[node name="VirusSpider7" parent="Enemies" instance=ExtResource( 7 )]
+position = Vector2( 2242, 24 )
+
+[node name="VirusSpider8" parent="Enemies" instance=ExtResource( 7 )]
+position = Vector2( 2534, -76 )
+
+[node name="VirusSpider9" parent="Enemies" instance=ExtResource( 7 )]
+position = Vector2( 2729, 25 )
+
+[node name="VirusSpider10" parent="Enemies" instance=ExtResource( 7 )]
+position = Vector2( 2879, 84 )
+
+[node name="VirusSpider11" parent="Enemies" instance=ExtResource( 7 )]
+position = Vector2( 3161, 249 )
+
+[node name="VirusSpider12" parent="Enemies" instance=ExtResource( 7 )]
+position = Vector2( 3359, 248 )
 
 [connection signal="body_entered" from="NextLevelArea" to="." method="_on_NextLevelArea_body_entered"]
