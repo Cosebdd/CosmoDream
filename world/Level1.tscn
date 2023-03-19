@@ -680,7 +680,7 @@ position = Vector2( 60, 8 )
 position = Vector2( 1348, 152 )
 
 [node name="VirusSpider9" parent="Enemies" instance=ExtResource( 9 )]
-position = Vector2( 473, 99 )
+position = Vector2( 467, 103 )
 
 [node name="VirusSpider2" parent="Enemies" instance=ExtResource( 9 )]
 position = Vector2( 1816, 71 )

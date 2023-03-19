@@ -131,5 +131,15 @@ func _on_Hurtbox_hit_taken(damage: int, object):
 
 func die() -> void:
 	.die()
-	yield(get_tree().create_timer(2.0), "timeout")
-	get_tree().change_scene("res://world/Level1.tscn")
+	
+	# Remove the current level
+	var root = get_tree().root
+	var level = root.get_child(0)
+	print(level)
+	root.remove_child(level)
+	level.call_deferred("free")
+
+	# Add the next level
+	var next_level_resource = load("res://world/Level1.tscn")
+	var next_level = next_level_resource.instance()
+	root.add_child(next_level)

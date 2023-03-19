@@ -123,7 +123,7 @@ func activate() -> void:
 
 func deactivate() -> void:
 	active = false
-	_recharge_timer.start()
+	if _recharge_timer != null: _recharge_timer.start()
 
 
 func _handle_recharge_timeout() -> void:

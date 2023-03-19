@@ -25,7 +25,7 @@ func init(ability):
 
 
 func _exit_tree():
-	if _ability:
+	if is_instance_valid(_ability):
 		_ability.disconnect("charges_updated", self, "set_ep")
 
 
