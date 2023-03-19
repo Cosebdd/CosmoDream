@@ -267,7 +267,6 @@ shape = SubResource( 5 )
 
 [node name="InnerGun" type="Polygon2D" parent="Body/AnimatedParts"]
 position = Vector2( 0, -1 )
-scale = Vector2( 1.04544, 1.04544 )
 offset = Vector2( -16, -45 )
 texture = ExtResource( 1 )
 polygon = PoolVector2Array( 13, 35, 11, 36, 8, 39, 7, 41, 7, 43, 3, 43, 3, 46, 7, 46, 7, 48, 8, 50, 11, 53, 14, 54, 18, 54, 21, 53, 24, 50, 25, 48, 25, 46, 29, 46, 29, 43, 25, 43, 25, 41, 24, 39, 21, 36, 19, 35 )
