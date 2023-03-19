@@ -614,6 +614,7 @@ height = 218.0
 [node name="VirusSpider" type="KinematicBody2D"]
 script = ExtResource( 2 )
 max_speed = 30
+max_health = 100
 
 [node name="Body" type="Node2D" parent="."]
 
@@ -731,6 +732,7 @@ enabled = true
 cast_to = Vector2( 0, 5 )
 
 [node name="Hitbox" parent="Body" instance=ExtResource( 4 )]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Body/Hitbox"]
 position = Vector2( 31, -26 )
@@ -738,6 +740,7 @@ shape = SubResource( 6 )
 disabled = true
 
 [node name="AttackRange" parent="Body" instance=ExtResource( 6 )]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Body/AttackRange"]
 position = Vector2( 23, -26 )
@@ -750,9 +753,11 @@ anims/RESET = SubResource( 2 )
 anims/Walk = SubResource( 3 )
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+visible = false
 polygon = PoolVector2Array( -25, 0, -19, -26, -6, -26, -6, -43, 6, -43, 6, -26, 19, -26, 25, 0 )
 
 [node name="Awareness" parent="." instance=ExtResource( 3 )]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Awareness"]
 position = Vector2( 0, -34 )
@@ -760,6 +765,7 @@ rotation = 1.5708
 shape = SubResource( 5 )
 
 [node name="Hurtbox" parent="." instance=ExtResource( 5 )]
+visible = false
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Hurtbox"]
 polygon = PoolVector2Array( -25, 0, -19, -26, -6, -26, -6, -43, 6, -43, 6, -26, 19, -26, 25, 0 )
@@ -774,4 +780,5 @@ one_shot = true
 [connection signal="enemy_outside_range" from="Body/AttackRange" to="." method="_on_AttackRange_enemy_outside_range"]
 [connection signal="player_inside" from="Awareness" to="." method="_on_Awareness_player_inside"]
 [connection signal="player_outside" from="Awareness" to="." method="_on_Awareness_player_outside"]
+[connection signal="hit_taken" from="Hurtbox" to="." method="_on_Hurtbox_hit_taken"]
 [connection signal="timeout" from="PatrolTimer" to="." method="_on_delay_timer"]

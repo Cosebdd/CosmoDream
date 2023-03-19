@@ -110,3 +110,17 @@ func _on_AttackRange_enemy_inside_range(enemy):
 
 func _on_AttackRange_enemy_outside_range():
 	_is_attack_mode = false
+
+
+func _on_Hurtbox_hit_taken(damage: int):
+	health = clamp(health - damage, 0, max_health)
+	_hit_transition()
+	
+	
+func _hit_transition() -> void:
+	var tween = create_tween()
+	tween.set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_QUAD)
+	tween.tween_property(self, 'position', Vector2(position.x - 10, position.y), 0.1)
+	tween.parallel()
+	tween.tween_property(self, 'modulate', Color('70ff0000'), 0.1)
+	tween.tween_property(self, 'modulate', Color(1,1,1,1), 0.1)

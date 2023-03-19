@@ -16,6 +16,7 @@ export(int) var max_jumps = 1
 var velocity := Vector2.ZERO
 onready var jumps_count = max_jumps
 onready var hit_points = max_health
+onready var health = max_health
 
 
 func apply_gravity() -> void:
