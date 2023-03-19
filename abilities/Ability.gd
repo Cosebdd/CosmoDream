@@ -76,6 +76,9 @@ func _execute() -> void:
 
 
 func _full_recharge() -> void:
+	if _charges != null and _charges == 0:
+		active = false
+	
 	if not _recharge_timer.is_stopped(): return
 	_recharge_timer.start()
 	emit_signal("ability_recharge", _recharge_timer.time_left)
@@ -113,17 +116,22 @@ func set_owner(owner_body) -> void:
 
 
 func activate() -> void:
-	active = true
+	if _charges != 0:
+		if _recharge_timer != null: _recharge_timer.stop()
+		active = true
 
 
 func deactivate() -> void:
 	active = false
+	_recharge_timer.start()
 
 
 func _handle_recharge_timeout() -> void:
-	_charges = clamp(recharge_value, 0, charge_limit)
+	_charges = clamp(_charges + recharge_value, 0, charge_limit)
 	emit_signal("charges_updated", _charges)
 	_state = fire
+	if _charges < charge_limit and not recharge_after_fully_empty:
+		_recharge_timer.start()
 
 
 func _handle_delay_timeout() -> void:

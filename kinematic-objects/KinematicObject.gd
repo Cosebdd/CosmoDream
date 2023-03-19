@@ -12,6 +12,7 @@ export(int) var jump_height = 200
 export(int) var min_jump_height = 30
 export(int) var jump_acceleration_point = 10
 export(int) var max_jumps = 1
+export(bool) var is_invincible = false
 
 var velocity := Vector2.ZERO
 onready var jumps_count = max_jumps
@@ -50,11 +51,17 @@ func die() -> void:
 
 
 func get_damaged(damage: int, damage_deeler) -> void:
+	if is_invincible: return
+	
 	_hit_transition(damage_deeler)
 	health = clamp(health - damage, 0, max_health)
 	
 	if health <= 0:
 		die()
+
+
+func set_invincibility(_invincibility: bool) -> void:
+	is_invincible = _invincibility
 
 
 func _hit_transition(damage_deeler) -> void:
