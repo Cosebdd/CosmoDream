@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/realm.jpeg-4dada1a7ebb83fb0a4a0e5de6db3eb12.stex"
+path="res://.import/realm.png-e7df7371a483aedfe477efceed17b573.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/opening/realm.jpeg"
-dest_files=[ "res://.import/realm.jpeg-4dada1a7ebb83fb0a4a0e5de6db3eb12.stex" ]
+source_file="res://assets/opening/realm.png"
+dest_files=[ "res://.import/realm.png-e7df7371a483aedfe477efceed17b573.stex" ]
 
 [params]
 
