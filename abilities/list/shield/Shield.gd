@@ -15,3 +15,7 @@ func _process(_delta) -> void:
 	)
 	sprite.visible = active
 	collision.disabled = !active
+
+
+func _fire_implementation() -> void:
+	pass

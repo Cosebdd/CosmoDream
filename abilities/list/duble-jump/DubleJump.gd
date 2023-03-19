@@ -14,3 +14,7 @@ func set_owner(owner_body) -> void:
 
 func _exit_tree() -> void:
 	_owner.max_jumps = old_jumps_numner
+
+
+func _fire_implementation() -> void:
+	pass

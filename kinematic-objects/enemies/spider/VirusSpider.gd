@@ -118,7 +118,6 @@ func _die():
 
 func _on_Hurtbox_hit_taken(damage: int, object):
 	health = clamp(health - damage, 0, max_health)
-	print(health, damage)
 	if health == 0:
 		_die()
 	_hit_transition(object)
