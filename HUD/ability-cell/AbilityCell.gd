@@ -30,6 +30,8 @@ func _exit_tree():
 
 func set_hp(hp: float) -> void:
 	_tween_bar(hp_box, hp)
+	if hp <= 0: _handle_empty_hp()
+	else: _reset_cell()
 
 
 func set_ep(ep) -> void:
@@ -39,6 +41,8 @@ func set_ep(ep) -> void:
 func set_hp_diff(hp_diff: float) -> void:
 	_tween_bar(hp_box, hp_box.value + hp_diff, true)
 	_tween_pic(hp_diff > 0)
+	if hp_box.value <= abs(hp_diff) and hp_diff < 0: _handle_empty_hp()
+	else: _reset_cell()
 
 
 func set_ep_diff(ep_diff: float) -> void:
@@ -67,3 +71,13 @@ func _tween_pic(positive = false) -> void:
 
 func _get_modulate_color(positive = false) -> Color:
 	return Color('80ff6a') if positive else Color('ff0000')
+
+
+func _handle_empty_hp() -> void:
+	_tween_bar(hp_box, 0)
+	_tween_bar(ep_box, 0)
+	modulate = Color("a7484848")
+
+
+func _reset_cell() -> void:
+	modulate = Color(1,1,1,1)

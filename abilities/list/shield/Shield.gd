@@ -7,7 +7,7 @@ onready var collision := $CollisionShape2D
 
 
 func _process(_delta) -> void:
-	if not _owner: return
+	if not _owner or is_destroyed()	: return
 	
 	position = Vector2(
 		_owner.size_rect.position.x + _owner.size_rect.size.x / 2,

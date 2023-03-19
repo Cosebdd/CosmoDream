@@ -7,9 +7,12 @@ onready var body := $Body
 onready var remote_transform := $RemoteTransform2D
 onready var ability_system := $AbilitySystem
 onready var collision := $CollisionShape2D
+onready var invincivility_timer := $InvincibilityTimer
 onready var direction := Vector2.RIGHT
 onready var Heads := [$Body/Polygons/Torso/Heads/Cell1, $Body/Polygons/Torso/Heads/Cell2, $Body/Polygons/Torso/Heads/Cell3, $Body/Polygons/Torso/Heads/Cell4]
 var size_rect: Rect2
+
+export(float) var invincibility_time_after_damage = 0.5
 
 enum movement { idle, run }
 
@@ -27,6 +30,7 @@ var _state = idle
 func _ready() -> void:
 	size_rect = _get_size_rect()
 	ability_system.set_owner(self)
+	invincivility_timer.wait_time = invincibility_time_after_damage
 
 
 func _physics_process(delta) -> void:
@@ -108,3 +112,12 @@ func _get_size_rect() -> Rect2:
 
 func _on_Shot_Started() -> void:
 	animation_tree.set("parameters/Shot/active", true)
+
+
+func _on_Hurtbox_hit_taken(damage: int, object):
+	if not invincivility_timer.is_stopped(): return
+	print(invincivility_timer.is_stopped())
+	
+	get_damaged(damage, object)
+	Events.emit_signal("user_gets_damage", damage)
+	invincivility_timer.start()
