@@ -8,5 +8,3 @@ func _ready():
 	$KillswitchOFF.visible = true
 	yield(get_tree().create_timer(8), "timeout")
 	$FadingAnimation.play("Fade out")
-	yield(get_tree().create_timer(3), "timeout")
-	get_tree().change_scene("res://opening/Opening1A/Opening1A.tscn")
