@@ -1,5 +1,5 @@
 extends KinematicObject
-class_name VirusSpider
+class_name SphereRobot
 
 onready var body := $Body
 onready var edge_ray := $Body/RayCast2D
@@ -74,7 +74,7 @@ func _idle() -> void:
 
 
 func _move() -> void:
-	animation_player.play("Walk")
+	animation_player.play("Right")
 	
 	if velocity.x == 0:
 		_state = idle
@@ -101,10 +101,10 @@ func _on_Awareness_player_inside(player: Player) -> void:
 
 func _on_Awareness_player_outside():
 	_player_to_follow = null
-	_is_attack_mode = false	
+	_is_attack_mode = false
 
 
-func _on_AttackRange_enemy_inside_range(enemy):
+func _on_AttackRange_enemy_inside_range(enemy: Player):
 	_is_attack_mode = true
 
 
