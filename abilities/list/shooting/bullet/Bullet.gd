@@ -22,7 +22,7 @@ func _physics_process(delta: float) -> void:
 		_ttl.start()
 	
 	var _velocity = move_and_slide(_direction * speed)
-	if _velocity.distance_to(Vector2.ZERO) < speed:
+	if _velocity.length() < speed:
 		queue_free()
 
 
@@ -37,7 +37,7 @@ func _on_TTL_timeout():
 func set_direction(direction: Vector2) -> void:
 	_direction = direction.normalized()
 	rotation = Vector2.RIGHT.angle_to(_direction)
-	
-	
+
+
 func set_spawn_delay(delay: float) -> void:
 	_delay = delay

@@ -1270,8 +1270,6 @@ node_connections = [ "Shot", 0, "Melee", "Shot", 1, "Shoot", "in_air_state", 0, 
 collision_layer = 2
 script = ExtResource( 2 )
 max_speed = 150
-acceleration = 20
-friction = 20
 jump_height = 250
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

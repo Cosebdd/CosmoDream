@@ -1,4 +1,5 @@
 extends KinematicObject
+class_name Player
 
 onready var animation_player := $AnimationPlayer
 onready var animation_tree := $AnimationTree
@@ -28,7 +29,7 @@ func _ready() -> void:
 	ability_system.set_owner(self)
 
 
-func _physics_process(_delta) -> void:
+func _physics_process(delta) -> void:
 	apply_gravity()
 	
 	var input = Vector2.ZERO
@@ -52,7 +53,7 @@ func _physics_process(_delta) -> void:
 	if Input.is_action_just_pressed("jump") and jumps_count > 0:
 		jump()
 	
-	process(input)
+	process(input, delta)
 	
 	# handle only animations state
 	match _state:

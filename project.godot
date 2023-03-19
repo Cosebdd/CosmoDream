@@ -24,6 +24,16 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://abilities/ability-system/AbilitySystem.gd"
 }, {
+"base": "Area2D",
+"class": "AttackRange",
+"language": "GDScript",
+"path": "res://areas/attack-range/AttackRange.gd"
+}, {
+"base": "Area2D",
+"class": "Awareness",
+"language": "GDScript",
+"path": "res://areas/awareness/Awareness.gd"
+}, {
 "base": "KinematicBody2D",
 "class": "Bullet",
 "language": "GDScript",
@@ -102,7 +112,12 @@ _global_script_classes=[ {
 "base": "KinematicBody2D",
 "class": "KinematicObject",
 "language": "GDScript",
-"path": "res://kinematic-objects/object/KinematicObject.gd"
+"path": "res://kinematic-objects/KinematicObject.gd"
+}, {
+"base": "KinematicObject",
+"class": "Player",
+"language": "GDScript",
+"path": "res://kinematic-objects/player/Player.gd"
 }, {
 "base": "Ability",
 "class": "ShieldAbility",
@@ -123,11 +138,18 @@ _global_script_classes=[ {
 "class": "Sword",
 "language": "GDScript",
 "path": "res://sword/Sword.gd"
+}, {
+"base": "KinematicObject",
+"class": "VirusSpider",
+"language": "GDScript",
+"path": "res://kinematic-objects/enemies/spider/VirusSpider.gd"
 } ]
 _global_script_class_icons={
 "Ability": "",
 "AbilityCell": "",
 "AbilitySystem": "",
+"AttackRange": "",
+"Awareness": "",
 "Bullet": "",
 "DTS": "",
 "Dialogic": "",
@@ -144,10 +166,12 @@ _global_script_class_icons={
 "Hitbox": "",
 "Hurtbox": "",
 "KinematicObject": "",
+"Player": "",
 "ShieldAbility": "",
 "ShootingAbility": "",
 "StrafeAbility": "",
-"Sword": ""
+"Sword": "",
+"VirusSpider": ""
 }
 
 [application]
