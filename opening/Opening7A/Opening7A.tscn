@@ -74,13 +74,13 @@ script = ExtResource( 5 )
 
 [node name="MarginContainer" type="MarginContainer" parent="Camera2D"]
 margin_left = -155.0
-margin_top = 59.0
+margin_top = 60.0
 margin_right = 151.0
-margin_bottom = 82.0
+margin_bottom = 89.0
 
 [node name="ColorRect" type="ColorRect" parent="Camera2D/MarginContainer"]
 margin_right = 306.0
-margin_bottom = 23.0
+margin_bottom = 29.0
 color = Color( 0.027451, 0.027451, 0.027451, 1 )
 
 [node name="MarginContainer" type="MarginContainer" parent="Camera2D/MarginContainer/ColorRect"]
@@ -94,16 +94,16 @@ margin_right = 298.0
 margin_bottom = 37.0
 rect_min_size = Vector2( 0, 30 )
 custom_fonts/normal_font = SubResource( 1 )
-text = "This collective entity is capable of traveling through the network and fighting the nightmares."
+text = "The surviving crew members decide to resist the deranged computer by combining their consciousness into a super-consciousness. This collective entity is capable of traveling through the network and fighting the nightmares."
 script = ExtResource( 2 )
 
 [node name="Tween" type="Tween" parent="Camera2D/MarginContainer/ColorRect/MarginContainer/MainText"]
 
 [node name="ColorRect" type="ColorRect" parent="."]
-margin_left = -126.0
-margin_top = -97.0
-margin_right = 334.0
-margin_bottom = 193.0
+margin_left = -105.0
+margin_top = -179.0
+margin_right = 397.0
+margin_bottom = 208.0
 color = Color( 0.0156863, 0.0156863, 0.0156863, 1 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
