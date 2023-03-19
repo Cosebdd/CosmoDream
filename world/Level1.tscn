@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=2]
+[gd_scene load_steps=45 format=2]
 
 [ext_resource path="res://assets/backgrounds/NatureBackground.png" type="Texture" id=1]
 [ext_resource path="res://assets/nature/NatureTileMap.png" type="Texture" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://addons/dialogic/Dialog.tscn" type="PackedScene" id=7]
 [ext_resource path="res://world/World.gd" type="Script" id=8]
 [ext_resource path="res://kinematic-objects/enemies/spider/VirusSpider.tscn" type="PackedScene" id=9]
+[ext_resource path="res://kinematic-objects/enemies/sphere/SphereRobot.tscn" type="PackedScene" id=10]
 
 [sub_resource type="ConvexPolygonShape2D" id=4]
 points = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
@@ -698,5 +699,14 @@ position = Vector2( 3310, -335 )
 
 [node name="VirusSpider7" parent="Enemies" instance=ExtResource( 9 )]
 position = Vector2( 3366, -696 )
+
+[node name="SphereRobot" parent="." instance=ExtResource( 10 )]
+position = Vector2( 1132, -31 )
+
+[node name="SphereRobot2" parent="." instance=ExtResource( 10 )]
+position = Vector2( 2782, -91 )
+
+[node name="SphereRobot3" parent="." instance=ExtResource( 10 )]
+position = Vector2( 3088, -932 )
 
 [connection signal="body_entered" from="NextLevelArea" to="." method="_on_NextLevelArea_body_entered"]
