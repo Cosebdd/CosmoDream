@@ -7,6 +7,10 @@
 [ext_resource path="res://areas/hurtbox/Hurtbox.tscn" type="PackedScene" id=5]
 [ext_resource path="res://areas/attack-range/AttackRange.tscn" type="PackedScene" id=6]
 
+[sub_resource type="CapsuleShape2D" id=5]
+radius = 34.0
+height = 218.0
+
 [sub_resource type="CapsuleShape2D" id=6]
 radius = 14.0
 height = 18.0
@@ -607,16 +611,24 @@ tracks/11/keys = {
 "values": [ 0.0, 0.0, 0.0, 0.0 ]
 }
 
-[sub_resource type="CapsuleShape2D" id=5]
-radius = 34.0
-height = 218.0
-
 [node name="VirusSpider" type="KinematicBody2D"]
 script = ExtResource( 2 )
 max_speed = 30
 max_health = 2
 
 [node name="Body" type="Node2D" parent="."]
+
+[node name="Hurtbox" parent="Body" instance=ExtResource( 5 )]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Body/Hurtbox"]
+polygon = PoolVector2Array( -25, 0, -19, -26, -6, -26, -6, -43, 6, -43, 6, -26, 19, -26, 25, 0 )
+
+[node name="Awareness" parent="Body" instance=ExtResource( 3 )]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Body/Awareness"]
+position = Vector2( 0, -34 )
+rotation = 1.5708
+shape = SubResource( 5 )
 
 [node name="Node2D" type="Node2D" parent="Body"]
 scale = Vector2( -1, 1 )
@@ -753,27 +765,16 @@ anims/Walk = SubResource( 3 )
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 polygon = PoolVector2Array( -25, 0, -19, -26, -6, -26, -6, -43, 6, -43, 6, -26, 19, -26, 25, 0 )
 
-[node name="Awareness" parent="." instance=ExtResource( 3 )]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Awareness"]
-position = Vector2( 0, -34 )
-rotation = 1.5708
-shape = SubResource( 5 )
-
-[node name="Hurtbox" parent="." instance=ExtResource( 5 )]
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Hurtbox"]
-polygon = PoolVector2Array( -25, 0, -19, -26, -6, -26, -6, -43, 6, -43, 6, -26, 19, -26, 25, 0 )
-
 [node name="PatrolTimer" type="Timer" parent="."]
 one_shot = true
 
 [node name="AttackDelayTimer" type="Timer" parent="."]
 one_shot = true
 
+[connection signal="hit_taken" from="Body/Hurtbox" to="." method="_on_Hurtbox_hit_taken"]
+[connection signal="player_inside" from="Body/Awareness" to="." method="_on_Awareness_player_inside"]
+[connection signal="player_outside" from="Body/Awareness" to="." method="_on_Awareness_player_outside"]
 [connection signal="enemy_inside_range" from="Body/AttackRange" to="." method="_on_AttackRange_enemy_inside_range"]
 [connection signal="enemy_outside_range" from="Body/AttackRange" to="." method="_on_AttackRange_enemy_outside_range"]
-[connection signal="player_inside" from="Awareness" to="." method="_on_Awareness_player_inside"]
-[connection signal="player_outside" from="Awareness" to="." method="_on_Awareness_player_outside"]
-[connection signal="hit_taken" from="Hurtbox" to="." method="_on_Hurtbox_hit_taken"]
 [connection signal="timeout" from="PatrolTimer" to="." method="_on_delay_timer"]
+[connection signal="timeout" from="AttackDelayTimer" to="." method="_on_delay_timer"]

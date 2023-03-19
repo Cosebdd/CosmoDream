@@ -1,11 +1,13 @@
 extends KinematicObject
-class_name VirusSpider
+class_name BasicEnemy
 
 onready var body := $Body
-onready var edge_ray := $Body/RayCast2D
+onready var edge_ray := $Body/LedgeCheck
 onready var patrol_delay_timer := $PatrolTimer
 onready var attack_delay_timer := $AttackDelayTimer
 onready var animation_player := $AnimationPlayer
+
+onready var basic_collision := $BaseCollision
 
 enum Directions {
 	left = -1
@@ -30,6 +32,9 @@ var _is_attack_mode := false
 func _ready() -> void:
 	patrol_delay_timer.wait_time = patrol_delay
 	attack_delay_timer.wait_time = attack_delay
+	
+	if basic_collision:
+		body.add_child(basic_collision)
 
 
 func _physics_process(delta: float) -> void:
@@ -89,28 +94,3 @@ func _attack() -> void:
 		yield(animation_player, "animation_finished")
 		attack_delay_timer.start()
 	_state = idle
-
-
-func _on_delay_timer() -> void:
-	direction *= -1
-
-
-func _on_Awareness_player_inside(player: Player) -> void:
-	_player_to_follow = player
-
-
-func _on_Awareness_player_outside():
-	_player_to_follow = null
-	_is_attack_mode = false	
-
-
-func _on_AttackRange_enemy_inside_range(enemy):
-	_is_attack_mode = true
-
-
-func _on_AttackRange_enemy_outside_range():
-	_is_attack_mode = false
-
-
-func _on_Hurtbox_hit_taken(damage: int, object):
-	get_damaged(damage, object)

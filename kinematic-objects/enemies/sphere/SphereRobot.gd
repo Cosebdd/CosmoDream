@@ -1,11 +1,13 @@
 extends KinematicObject
-class_name VirusSpider
+class_name SphereRobot
 
 onready var body := $Body
 onready var edge_ray := $Body/RayCast2D
 onready var patrol_delay_timer := $PatrolTimer
 onready var attack_delay_timer := $AttackDelayTimer
 onready var animation_player := $AnimationPlayer
+onready var laser_left := $Body/LaserBeemLeft
+onready var laser_right := $Body/LaserBeemRight
 
 enum Directions {
 	left = -1
@@ -74,7 +76,7 @@ func _idle() -> void:
 
 
 func _move() -> void:
-	animation_player.play("Walk")
+	animation_player.play("Right")
 	
 	if velocity.x == 0:
 		_state = idle
@@ -86,7 +88,11 @@ func _move() -> void:
 func _attack() -> void:
 	if attack_delay_timer.is_stopped():
 		animation_player.play("Attack")
+		laser_left.set_active(true)
+		laser_right.set_active(true)
 		yield(animation_player, "animation_finished")
+		laser_left.set_active(false)
+		laser_right.set_active(false)
 		attack_delay_timer.start()
 	_state = idle
 
@@ -101,10 +107,10 @@ func _on_Awareness_player_inside(player: Player) -> void:
 
 func _on_Awareness_player_outside():
 	_player_to_follow = null
-	_is_attack_mode = false	
+	_is_attack_mode = false
 
 
-func _on_AttackRange_enemy_inside_range(enemy):
+func _on_AttackRange_enemy_inside_range(enemy: Player):
 	_is_attack_mode = true
 
 
@@ -113,4 +119,5 @@ func _on_AttackRange_enemy_outside_range():
 
 
 func _on_Hurtbox_hit_taken(damage: int, object):
+	if object.owner == self: return
 	get_damaged(damage, object)

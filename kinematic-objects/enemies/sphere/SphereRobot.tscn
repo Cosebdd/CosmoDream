@@ -1,12 +1,34 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://assets/enemies/SphereRobotAtlas.png" type="Texture" id=1]
+[ext_resource path="res://kinematic-objects/enemies/sphere/SphereRobot.gd" type="Script" id=2]
+[ext_resource path="res://areas/awareness/Awareness.tscn" type="PackedScene" id=3]
+[ext_resource path="res://areas/attack-range/AttackRange.tscn" type="PackedScene" id=4]
+[ext_resource path="res://areas/hitbox/Hitbox.tscn" type="PackedScene" id=5]
+[ext_resource path="res://areas/hurtbox/Hurtbox.tscn" type="PackedScene" id=6]
+[ext_resource path="res://laser-beem/LaserBeem.tscn" type="PackedScene" id=7]
+
+[sub_resource type="CircleShape2D" id=5]
+radius = 17.0
+
+[sub_resource type="CapsuleShape2D" id=6]
+radius = 50.0
+height = 262.0
+
+[sub_resource type="CapsuleShape2D" id=7]
+radius = 49.0
+height = 264.0
+
+[sub_resource type="RectangleShape2D" id=9]
+
+[sub_resource type="CircleShape2D" id=8]
+radius = 20.2237
 
 [sub_resource type="Animation" id=4]
 resource_name = "Attack"
 length = 0.6
 tracks/0/type = "value"
-tracks/0/path = NodePath("Body/InnerGun:position")
+tracks/0/path = NodePath("Body/AnimatedParts/InnerGun:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -18,7 +40,7 @@ tracks/0/keys = {
 "values": [ Vector2( 0, -1 ) ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("Body/InnerGun:rotation_degrees")
+tracks/1/path = NodePath("Body/AnimatedParts/InnerGun:rotation_degrees")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -30,7 +52,7 @@ tracks/1/keys = {
 "values": [ 0.0 ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("Body/InnerGun:scale")
+tracks/2/path = NodePath("Body/AnimatedParts/InnerGun:scale")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -42,7 +64,7 @@ tracks/2/keys = {
 "values": [ Vector2( 1, 1 ), Vector2( 1.1, 1.01 ), Vector2( 1, 1 ) ]
 }
 tracks/3/type = "value"
-tracks/3/path = NodePath("Body/OuterSphere:position")
+tracks/3/path = NodePath("Body/AnimatedParts/OuterSphere:position")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
@@ -54,7 +76,7 @@ tracks/3/keys = {
 "values": [ Vector2( 0, -2 ) ]
 }
 tracks/4/type = "value"
-tracks/4/path = NodePath("Body/OuterSphere:rotation_degrees")
+tracks/4/path = NodePath("Body/AnimatedParts/OuterSphere:rotation_degrees")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/imported = false
@@ -71,7 +93,7 @@ resource_name = "Idle"
 length = 4.0
 loop = true
 tracks/0/type = "value"
-tracks/0/path = NodePath("Body/OuterSphere:scale")
+tracks/0/path = NodePath("Body/AnimatedParts/OuterSphere:scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -83,7 +105,7 @@ tracks/0/keys = {
 "values": [ Vector2( 1, 1 ), Vector2( 1, 0.97 ), Vector2( 1, 1 ) ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("Body/InnerGun:rotation_degrees")
+tracks/1/path = NodePath("Body/AnimatedParts/InnerGun:rotation_degrees")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -95,7 +117,7 @@ tracks/1/keys = {
 "values": [ 0.0, 90.0, 0.0 ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("Body/InnerGun:scale")
+tracks/2/path = NodePath("Body/AnimatedParts/InnerGun:scale")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -107,7 +129,7 @@ tracks/2/keys = {
 "values": [ Vector2( 1, 1 ), Vector2( 1.05, 1.05 ), Vector2( 1, 1 ) ]
 }
 tracks/3/type = "value"
-tracks/3/path = NodePath("Body/OuterSphere:position")
+tracks/3/path = NodePath("Body/AnimatedParts/OuterSphere:position")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
@@ -119,7 +141,7 @@ tracks/3/keys = {
 "values": [ Vector2( -9.53674e-07, -2 ), Vector2( 0, -1.78 ), Vector2( -9.53674e-07, -2 ) ]
 }
 tracks/4/type = "value"
-tracks/4/path = NodePath("Body/OuterSphere:rotation_degrees")
+tracks/4/path = NodePath("Body/AnimatedParts/OuterSphere:rotation_degrees")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/imported = false
@@ -134,7 +156,7 @@ tracks/4/keys = {
 [sub_resource type="Animation" id=2]
 length = 0.001
 tracks/0/type = "value"
-tracks/0/path = NodePath("Body/OuterSphere:position")
+tracks/0/path = NodePath("Body/AnimatedParts/OuterSphere:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -146,7 +168,7 @@ tracks/0/keys = {
 "values": [ Vector2( 0, -2 ) ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("Body/OuterSphere:rotation_degrees")
+tracks/1/path = NodePath("Body/AnimatedParts/OuterSphere:rotation_degrees")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -158,7 +180,7 @@ tracks/1/keys = {
 "values": [ 0.0 ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("Body/InnerGun:position")
+tracks/2/path = NodePath("Body/AnimatedParts/InnerGun:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -170,7 +192,7 @@ tracks/2/keys = {
 "values": [ Vector2( 0, -1 ) ]
 }
 tracks/3/type = "value"
-tracks/3/path = NodePath("Body/InnerGun:rotation_degrees")
+tracks/3/path = NodePath("Body/AnimatedParts/InnerGun:rotation_degrees")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
@@ -186,7 +208,7 @@ tracks/3/keys = {
 resource_name = "Right"
 loop = true
 tracks/0/type = "value"
-tracks/0/path = NodePath("Body/OuterSphere:rotation_degrees")
+tracks/0/path = NodePath("Body/AnimatedParts/OuterSphere:rotation_degrees")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -198,7 +220,7 @@ tracks/0/keys = {
 "values": [ 0.0, 180.0, 360.0 ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("Body/OuterSphere:position")
+tracks/1/path = NodePath("Body/AnimatedParts/OuterSphere:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -210,7 +232,7 @@ tracks/1/keys = {
 "values": [ Vector2( -9.53674e-07, -2 ) ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("Body/InnerGun:position")
+tracks/2/path = NodePath("Body/AnimatedParts/InnerGun:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -222,7 +244,7 @@ tracks/2/keys = {
 "values": [ Vector2( 0, -1 ) ]
 }
 tracks/3/type = "value"
-tracks/3/path = NodePath("Body/InnerGun:rotation_degrees")
+tracks/3/path = NodePath("Body/AnimatedParts/InnerGun:rotation_degrees")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
@@ -234,27 +256,88 @@ tracks/3/keys = {
 "values": [ 0.0 ]
 }
 
-[node name="SphereRobot" type="Node2D"]
+[node name="SphereRobot" type="KinematicBody2D"]
 position = Vector2( 0, -15 )
+script = ExtResource( 2 )
+patrol_delay = 4.0
+attack_delay = 4.0
+
+[node name="BaseCollision" type="CollisionShape2D" parent="."]
+position = Vector2( 0, -2 )
+shape = SubResource( 5 )
 
 [node name="Body" type="Node2D" parent="."]
 
-[node name="InnerGun" type="Polygon2D" parent="Body"]
+[node name="LaserBeemRight" parent="Body" instance=ExtResource( 7 )]
+position = Vector2( 13.027, -1.70965 )
+
+[node name="LaserBeemLeft" parent="Body" instance=ExtResource( 7 )]
+position = Vector2( -12.9108, -1.56123 )
+scale = Vector2( -1, 1 )
+
+[node name="AnimatedParts" type="Node2D" parent="Body"]
+
+[node name="InnerGun" type="Polygon2D" parent="Body/AnimatedParts"]
 position = Vector2( 0, -1 )
+scale = Vector2( 1.04622, 1.04622 )
 offset = Vector2( -16, -45 )
 texture = ExtResource( 1 )
 polygon = PoolVector2Array( 13, 35, 11, 36, 8, 39, 7, 41, 7, 43, 3, 43, 3, 46, 7, 46, 7, 48, 8, 50, 11, 53, 14, 54, 18, 54, 21, 53, 24, 50, 25, 48, 25, 46, 29, 46, 29, 43, 25, 43, 25, 41, 24, 39, 21, 36, 19, 35 )
 uv = PoolVector2Array( 13, 35, 11, 36, 8, 39, 7, 41, 7, 43, 3, 43, 3, 46, 7, 46, 7, 48, 8, 50, 11, 53, 14, 54, 18, 54, 21, 53, 24, 50, 25, 48, 25, 46, 29, 46, 29, 43, 25, 43, 25, 41, 24, 39, 21, 36, 19, 35 )
 
-[node name="OuterSphere" type="Polygon2D" parent="Body"]
+[node name="OuterSphere" type="Polygon2D" parent="Body/AnimatedParts"]
 position = Vector2( 0, -2 )
+scale = Vector2( 1, 0.972266 )
 offset = Vector2( -16, -16 )
 texture = ExtResource( 1 )
 polygon = PoolVector2Array( 11, 0, 10, 0, 8, 1, 6, 2, 2, 6, 1, 8, 0, 11, 0, 12, 0, 22, 1, 24, 2, 26, 5, 30, 6, 31, 8, 32, 10, 33, 11, 33, 21, 33, 22, 33, 24, 32, 27, 30, 30, 26, 32, 22, 32, 21, 32, 11, 31, 8, 29, 5, 26, 2, 24, 1, 22, 0, 21, 0 )
 uv = PoolVector2Array( 11, 0, 10, 0, 8, 1, 6, 2, 2, 6, 1, 8, 0, 11, 0, 12, 0, 22, 1, 24, 2, 26, 5, 30, 6, 31, 8, 32, 10, 33, 11, 33, 21, 33, 22, 33, 24, 32, 27, 30, 30, 26, 32, 22, 32, 21, 32, 11, 31, 8, 29, 5, 26, 2, 24, 1, 22, 0, 21, 0 )
+
+[node name="RayCast2D" type="RayCast2D" parent="Body"]
+position = Vector2( 19, 15 )
+enabled = true
+cast_to = Vector2( 0, 5 )
+
+[node name="Awareness" parent="Body" instance=ExtResource( 3 )]
+
+[node name="AwarenessCollision" type="CollisionShape2D" parent="Body/Awareness"]
+rotation = 1.5708
+shape = SubResource( 6 )
+
+[node name="AttackRange" parent="Body" instance=ExtResource( 4 )]
+
+[node name="AttackCollision" type="CollisionShape2D" parent="Body/AttackRange"]
+rotation = 1.5708
+shape = SubResource( 7 )
+
+[node name="Hitbox" parent="Body" instance=ExtResource( 5 )]
+
+[node name="HitboxCollision" type="CollisionShape2D" parent="Body/Hitbox"]
+position = Vector2( 204, -4 )
+shape = SubResource( 9 )
+disabled = true
+
+[node name="Hurtbox" parent="Body" instance=ExtResource( 6 )]
+
+[node name="HurtboxCollision" type="CollisionShape2D" parent="Body/Hurtbox"]
+position = Vector2( 0, -2 )
+shape = SubResource( 8 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/Attack = SubResource( 4 )
 anims/Idle = SubResource( 1 )
 anims/RESET = SubResource( 2 )
 anims/Right = SubResource( 3 )
+
+[node name="PatrolTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="AttackDelayTimer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="player_inside" from="Body/Awareness" to="." method="_on_Awareness_player_inside"]
+[connection signal="player_outside" from="Body/Awareness" to="." method="_on_Awareness_player_outside"]
+[connection signal="enemy_inside_range" from="Body/AttackRange" to="." method="_on_AttackRange_enemy_inside_range"]
+[connection signal="enemy_outside_range" from="Body/AttackRange" to="." method="_on_AttackRange_enemy_outside_range"]
+[connection signal="hit_taken" from="Body/Hurtbox" to="." method="_on_Hurtbox_hit_taken"]
+[connection signal="timeout" from="PatrolTimer" to="." method="_on_delay_timer"]
