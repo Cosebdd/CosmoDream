@@ -1,6 +1,7 @@
 extends KinematicObject
 
 onready var animation_player := $AnimationPlayer
+onready var animation_tree := $AnimationTree
 onready var body := $Body
 onready var remote_transform := $RemoteTransform2D
 onready var ability_system := $AbilitySystem
@@ -8,6 +9,10 @@ onready var collision := $CollisionShape2D
 onready var direction := Vector2.RIGHT
 onready var Heads := [$Body/Polygons/Torso/Heads/Cell1, $Body/Polygons/Torso/Heads/Cell2, $Body/Polygons/Torso/Heads/Cell3, $Body/Polygons/Torso/Heads/Cell4]
 var size_rect: Rect2
+
+enum movement { idle, run }
+
+enum in_air_state { ground, air }
 
 enum {
 	idle,
@@ -36,6 +41,9 @@ func _physics_process(_delta) -> void:
 		body.scale.x = 1
 		direction = Vector2.RIGHT
 	
+	if Input.is_action_just_pressed("base_attack"):
+		animation_tree.set("parameters/Melee/active", true)
+	
 	if is_on_floor():
 		handle_body_in_air()
 	elif Input.is_action_just_released("jump") and velocity.y <= -min_jump_height:
@@ -54,7 +62,7 @@ func _physics_process(_delta) -> void:
 
 
 func _idle() -> void:
-	animation_player.play("Idle")
+	animation_tree.set("parameters/movement/current", movement.idle)
 	
 	if not is_on_floor():
 		_state = jump
@@ -65,7 +73,7 @@ func _idle() -> void:
 
 
 func _run() -> void:
-	animation_player.play("Run")
+	animation_tree.set("parameters/movement/current", movement.run)
 	
 	if not is_on_floor():
 		_state = jump
@@ -77,10 +85,11 @@ func _run() -> void:
 
 func _jump() -> void:
 	if animation_player.current_animation != "Jump" and animation_player.current_animation != '':
-		animation_player.play("Jump")
+		animation_tree.set("parameters/in_air_state/current", in_air_state.air)
 	
 	if is_on_floor():
 		_state = idle
+		animation_tree.set("parameters/in_air_state/current", in_air_state.ground)
 
 
 func connect_camera(camera: Camera2D) -> void:

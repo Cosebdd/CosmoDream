@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=42 format=2]
 
 [ext_resource path="res://sword/Sword.tscn" type="PackedScene" id=1]
 [ext_resource path="res://kinematic-objects/player/Player.gd" type="Script" id=2]
@@ -6,6 +6,97 @@
 [ext_resource path="res://assets/player/PlayerAtlas.png" type="Texture" id=4]
 [ext_resource path="res://assets/player/SmallHeads/SmallHeadsAtlas.png" type="Texture" id=5]
 [ext_resource path="res://assets/player/Sword.png" type="Texture" id=6]
+[ext_resource path="res://assets/player/Shotgun.png" type="Texture" id=7]
+[ext_resource path="res://assets/player/SwordSlash.png" type="Texture" id=8]
+[ext_resource path="res://assets/player/ShotgunFire.png" type="Texture" id=9]
+
+[sub_resource type="Animation" id=8]
+resource_name = "Attack"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("Body/Skeleton2D/Torso/ShoulderL/WristL:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 18 ), Vector2( 0, 18 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Body/Skeleton2D/Torso/ShoulderL/WristL:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 44.9999, 89.9999 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Body/Skeleton2D/Torso/ShoulderL:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( -12, -17 ), Vector2( -12, -17 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Body/Skeleton2D/Torso/ShoulderL:rotation_degrees")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ -94.0856, -8.53076 ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Body/Polygons/Sword/Splash:playing")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Body/Polygons/Sword/Splash:frame")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("Body/Polygons/Sword/Splash:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
 
 [sub_resource type="Animation" id=4]
 resource_name = "Idle"
@@ -105,7 +196,7 @@ tracks/7/keys = {
 "times": PoolRealArray( 0, 1, 2 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
-"values": [ 90.0, 93.1798, 90.0 ]
+"values": [ -30.0, -30.0, -30.0 ]
 }
 tracks/8/type = "value"
 tracks/8/path = NodePath("Body/Skeleton2D/Torso/LegR/FootR:position")
@@ -962,8 +1053,218 @@ tracks/19/keys = {
 "values": [ 85.6013, 0.0, 3.76627, 75.0, 85.6013 ]
 }
 
+[sub_resource type="Animation" id=9]
+resource_name = "Shoot"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/path = NodePath("Body/Skeleton2D/Torso/ShoulderR:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.4 ),
+"transitions": PoolRealArray( 3.73213, 4.43828, 1 ),
+"update": 0,
+"values": [ Vector2( 8, -17 ), Vector2( 8, -17 ), Vector2( 8, -17 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Body/Skeleton2D/Torso/ShoulderR:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.4 ),
+"transitions": PoolRealArray( 3.73213, 4.43828, 1 ),
+"update": 0,
+"values": [ -11.8887, -2.13443e-07, -9.46232 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Body/Skeleton2D/Torso/ShoulderR/WristR:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.1, 0.4 ),
+"transitions": PoolRealArray( 3.73213, 4.43828, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 18 ), Vector2( 0, 18 ), Vector2( 0, 18 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Body/Skeleton2D/Torso/ShoulderR/WristR:rotation_degrees")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.1, 0.4 ),
+"transitions": PoolRealArray( 3.73213, 4.43828, 1 ),
+"update": 0,
+"values": [ 89.9999, 78.1112, -15.0 ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Body/Polygons/Shotgun/ShotgunFire:frame")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0.1 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Body/Polygons/Shotgun/ShotgunFire:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+
+[sub_resource type="AtlasTexture" id=32]
+atlas = ExtResource( 9 )
+region = Rect2( 0, 0, 10, 10 )
+
+[sub_resource type="AtlasTexture" id=33]
+atlas = ExtResource( 9 )
+region = Rect2( 10, 0, 10, 10 )
+
+[sub_resource type="AtlasTexture" id=34]
+atlas = ExtResource( 9 )
+region = Rect2( 20, 0, 10, 10 )
+
+[sub_resource type="AtlasTexture" id=35]
+atlas = ExtResource( 9 )
+region = Rect2( 30, 0, 10, 10 )
+
+[sub_resource type="SpriteFrames" id=36]
+animations = [ {
+"frames": [ SubResource( 32 ), SubResource( 33 ), SubResource( 34 ), SubResource( 35 ) ],
+"loop": true,
+"name": "default",
+"speed": 24.0
+} ]
+
+[sub_resource type="AtlasTexture" id=22]
+atlas = ExtResource( 8 )
+region = Rect2( 0, 0, 50, 35 )
+
+[sub_resource type="AtlasTexture" id=23]
+atlas = ExtResource( 8 )
+region = Rect2( 50, 0, 50, 35 )
+
+[sub_resource type="AtlasTexture" id=24]
+atlas = ExtResource( 8 )
+region = Rect2( 100, 0, 50, 35 )
+
+[sub_resource type="AtlasTexture" id=25]
+atlas = ExtResource( 8 )
+region = Rect2( 150, 0, 50, 35 )
+
+[sub_resource type="AtlasTexture" id=26]
+atlas = ExtResource( 8 )
+region = Rect2( 200, 0, 50, 35 )
+
+[sub_resource type="AtlasTexture" id=27]
+atlas = ExtResource( 8 )
+region = Rect2( 250, 0, 50, 35 )
+
+[sub_resource type="AtlasTexture" id=28]
+atlas = ExtResource( 8 )
+region = Rect2( 300, 0, 50, 35 )
+
+[sub_resource type="AtlasTexture" id=29]
+atlas = ExtResource( 8 )
+region = Rect2( 350, 0, 50, 35 )
+
+[sub_resource type="AtlasTexture" id=30]
+atlas = ExtResource( 8 )
+region = Rect2( 400, 0, 50, 35 )
+
+[sub_resource type="SpriteFrames" id=31]
+animations = [ {
+"frames": [ SubResource( 22 ), SubResource( 23 ), SubResource( 24 ), SubResource( 25 ), SubResource( 26 ), SubResource( 27 ), SubResource( 28 ), SubResource( 29 ), SubResource( 30 ) ],
+"loop": false,
+"name": "default",
+"speed": 24.0
+} ]
+
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 11.5, 29.5 )
+
+[sub_resource type="AnimationNodeAnimation" id=17]
+animation = "Attack"
+
+[sub_resource type="AnimationNodeAnimation" id=10]
+animation = "Idle"
+
+[sub_resource type="AnimationNodeAnimation" id=14]
+animation = "Jump"
+
+[sub_resource type="AnimationNodeOneShot" id=21]
+filter_enabled = true
+filters = [ "Body/Polygons/Sword/Splash:frame", "Body/Polygons/Sword/Splash:playing", "Body/Polygons/Sword/Splash:visible", "Body/Skeleton2D/Torso/ShoulderL/WristL:position", "Body/Skeleton2D/Torso/ShoulderL/WristL:rotation_degrees", "Body/Skeleton2D/Torso/ShoulderL:position", "Body/Skeleton2D/Torso/ShoulderL:rotation_degrees" ]
+fadein_time = 0.0
+fadeout_time = 0.0
+
+[sub_resource type="AnimationNodeAnimation" id=11]
+animation = "Run"
+
+[sub_resource type="AnimationNodeAnimation" id=19]
+animation = "Shoot"
+
+[sub_resource type="AnimationNodeOneShot" id=20]
+filter_enabled = true
+filters = [ "Body/Polygons/Shotgun/ShotgunFire:frame", "Body/Polygons/Shotgun/ShotgunFire:visible", "Body/Skeleton2D/Torso/ShoulderR/WristR:position", "Body/Skeleton2D/Torso/ShoulderR/WristR:rotation_degrees", "Body/Skeleton2D/Torso/ShoulderR:position", "Body/Skeleton2D/Torso/ShoulderR:rotation_degrees" ]
+fadein_time = 0.04
+fadeout_time = 0.05
+
+[sub_resource type="AnimationNodeTransition" id=15]
+input_count = 2
+xfade_time = 0.2
+input_0/name = "ground"
+input_0/auto_advance = false
+input_1/name = "air"
+input_1/auto_advance = false
+
+[sub_resource type="AnimationNodeTransition" id=12]
+input_count = 2
+xfade_time = 0.1
+input_0/name = "idle"
+input_0/auto_advance = false
+input_1/name = "run"
+input_1/auto_advance = false
+
+[sub_resource type="AnimationNodeBlendTree" id=13]
+graph_offset = Vector2( -493.334, -79.8397 )
+nodes/Attack/node = SubResource( 17 )
+nodes/Attack/position = Vector2( 340, 280 )
+nodes/Idle/node = SubResource( 10 )
+nodes/Idle/position = Vector2( -300, 20 )
+nodes/Jump/node = SubResource( 14 )
+nodes/Jump/position = Vector2( -20, 240 )
+nodes/Melee/node = SubResource( 21 )
+nodes/Melee/position = Vector2( 540, 40 )
+nodes/Run/node = SubResource( 11 )
+nodes/Run/position = Vector2( -300, 160 )
+nodes/Shoot/node = SubResource( 19 )
+nodes/Shoot/position = Vector2( 640, 280 )
+nodes/Shot/node = SubResource( 20 )
+nodes/Shot/position = Vector2( 800, 40 )
+nodes/in_air_state/node = SubResource( 15 )
+nodes/in_air_state/position = Vector2( 240, 60 )
+nodes/movement/node = SubResource( 12 )
+nodes/movement/position = Vector2( -20, 60 )
+nodes/output/position = Vector2( 1040, 80 )
+node_connections = [ "Shot", 0, "Melee", "Shot", 1, "Shoot", "in_air_state", 0, "movement", "in_air_state", 1, "Jump", "output", 0, "Shot", "Melee", 0, "in_air_state", "Melee", 1, "Attack", "movement", 0, "Idle", "movement", 1, "Run" ]
 
 [node name="Player" type="KinematicBody2D"]
 collision_layer = 2
@@ -976,10 +1277,12 @@ jump_height = 250
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "Run"
 reset_on_save = false
+anims/Attack = SubResource( 8 )
 anims/Idle = SubResource( 4 )
 anims/Jump = SubResource( 7 )
 anims/RESET = SubResource( 5 )
 anims/Run = SubResource( 6 )
+anims/Shoot = SubResource( 9 )
 
 [node name="AbilitySystem" parent="." instance=ExtResource( 3 )]
 
@@ -1005,6 +1308,22 @@ skeleton = NodePath("../../Skeleton2D")
 polygon = PoolVector2Array( 39, 23, 37, 25, 37, 28, 39, 30, 39, 38, 43, 38, 43, 30, 45, 28, 45, 25, 43, 23 )
 uv = PoolVector2Array( 39, 23, 37, 25, 37, 28, 39, 30, 39, 38, 43, 38, 43, 30, 45, 28, 45, 25, 43, 23 )
 bones = [ "Torso", PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ), "Torso/LegR2", PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ), "Torso/LegR2/FootR", PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ), "Torso/Head", PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ), "Torso/ShoulderR", PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ), "Torso/ShoulderR/WristR", PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ), "Torso/ShoulderL", PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ), "Torso/ShoulderL/WristL", PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ), "Torso/LegR", PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ), "Torso/LegR/FootR", PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ) ]
+
+[node name="Shotgun" type="Polygon2D" parent="Body/Polygons"]
+position = Vector2( 1, -17 )
+texture = ExtResource( 7 )
+skeleton = NodePath("../../Skeleton2D")
+polygon = PoolVector2Array( 14, 0, 37, 0, 37, 4, 34, 6, 28, 8, 19, 9, 1, 9, 0, 8, 0, 5, 1, 4, 10, 4, 10, 3 )
+uv = PoolVector2Array( 14, 0, 37, 0, 37, 4, 34, 6, 28, 8, 19, 9, 1, 9, 0, 8, 0, 5, 1, 4, 10, 4, 10, 3 )
+bones = [ "Torso", PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ), "Torso/LegL", PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ), "Torso/LegL/FootL", PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ), "Torso/Head", PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ), "Torso/ShoulderR", PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ), "Torso/ShoulderR/WristR", PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ), "Torso/ShoulderL", PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ), "Torso/ShoulderL/WristL", PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ), "Torso/LegR", PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ), "Torso/LegR/FootR", PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ) ]
+
+[node name="ShotgunFire" type="AnimatedSprite" parent="Body/Polygons/Shotgun"]
+visible = false
+show_behind_parent = true
+position = Vector2( 42, -5 )
+frames = SubResource( 36 )
+frame = 2
+playing = true
 
 [node name="HandR" type="Polygon2D" parent="Body/Polygons"]
 position = Vector2( 69, -25 )
@@ -1129,6 +1448,14 @@ polygon = PoolVector2Array( 0, 4, 15, 4, 15, 0.999999, 16, 0, 75, 0, 75, 0.99999
 uv = PoolVector2Array( 0, 4, 15, 4, 15, 0.999999, 16, 0, 75, 0, 75, 0.999999, 64, 12, 22, 12, 20, 11, 20, 12, 19, 13, 16, 13, 15, 12, 15, 8, 3, 8, 0, 5 )
 bones = [ "Torso", PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ), "Torso/LegL", PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ), "Torso/LegL/FootL", PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ), "Torso/Head", PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ), "Torso/ShoulderR", PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ), "Torso/ShoulderR/WristR", PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ), "Torso/ShoulderL", PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ), "Torso/ShoulderL/WristL", PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ), "Torso/LegR", PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ), "Torso/LegR/FootR", PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ) ]
 
+[node name="Splash" type="AnimatedSprite" parent="Body/Polygons/Sword"]
+visible = false
+show_behind_parent = true
+position = Vector2( 41, -27 )
+scale = Vector2( 2.50982, 2.50982 )
+frames = SubResource( 31 )
+frame = 4
+
 [node name="HandL" type="Polygon2D" parent="Body/Polygons"]
 position = Vector2( 47, -33 )
 rotation = 1.5708
@@ -1139,15 +1466,16 @@ uv = PoolVector2Array( 19, 55, 25, 55, 25, 62, 19, 62, 18, 61, 18, 56 )
 bones = [ "Torso", PoolRealArray( 0, 0, 0, 0, 0, 0 ), "Torso/LegL", PoolRealArray( 0, 0, 0, 0, 0, 0 ), "Torso/LegL/FootL", PoolRealArray( 0, 0, 0, 0, 0, 0 ), "Torso/Head", PoolRealArray( 0, 0, 0, 0, 0, 0 ), "Torso/ShoulderR", PoolRealArray( 0, 0, 0, 0, 0, 0 ), "Torso/ShoulderR/WristR", PoolRealArray( 0, 0, 0, 0, 0, 0 ), "Torso/ShoulderL", PoolRealArray( 0, 0, 0, 0, 0, 0 ), "Torso/ShoulderL/WristL", PoolRealArray( 1, 1, 1, 1, 1, 1 ), "Torso/LegR", PoolRealArray( 0, 0, 0, 0, 0, 0 ), "Torso/LegR/FootR", PoolRealArray( 0, 0, 0, 0, 0, 0 ) ]
 
 [node name="Skeleton2D" type="Skeleton2D" parent="Body"]
+visible = false
 
 [node name="Torso" type="Bone2D" parent="Body/Skeleton2D"]
-position = Vector2( 1, -25 )
+position = Vector2( 1, -24.5817 )
 rest = Transform2D( 1, 0, 0, 1, 1, -25 )
 default_length = 4.0
 
 [node name="LegL" type="Bone2D" parent="Body/Skeleton2D/Torso"]
-position = Vector2( -4, 0 )
-rotation = 1.5708
+position = Vector2( -4, -0.418314 )
+rotation = 1.60291
 rest = Transform2D( -4.37114e-08, 1, -1, -4.37114e-08, -4, 0 )
 default_length = 13.0
 __meta__ = {
@@ -1157,6 +1485,7 @@ __meta__ = {
 
 [node name="FootL" type="Bone2D" parent="Body/Skeleton2D/Torso/LegL"]
 position = Vector2( 13, -7.15256e-07 )
+rotation = -0.0321147
 rest = Transform2D( 1, 0, 0, 1, 13, -7.15256e-07 )
 default_length = 10.0
 __meta__ = {
@@ -1171,6 +1500,7 @@ default_length = 5.0
 
 [node name="ShoulderR" type="Bone2D" parent="Body/Skeleton2D/Torso"]
 position = Vector2( 8, -17 )
+rotation = -0.0232158
 rest = Transform2D( 1, 0, 0, 1, 8, -17 )
 __meta__ = {
 "_edit_bone_": true,
@@ -1179,7 +1509,7 @@ __meta__ = {
 
 [node name="WristR" type="Bone2D" parent="Body/Skeleton2D/Torso/ShoulderR"]
 position = Vector2( 0, 18 )
-rotation = 1.5708
+rotation = -0.523598
 rest = Transform2D( -4.37114e-08, 1, -1, -4.37114e-08, 0, 18 )
 default_length = 11.0
 __meta__ = {
@@ -1188,6 +1518,7 @@ __meta__ = {
 
 [node name="ShoulderL" type="Bone2D" parent="Body/Skeleton2D/Torso"]
 position = Vector2( -12, -17 )
+rotation = 0.0219962
 rest = Transform2D( 1, 0, 0, 1, -12, -17 )
 __meta__ = {
 "_edit_bone_": true,
@@ -1196,7 +1527,7 @@ __meta__ = {
 
 [node name="WristL" type="Bone2D" parent="Body/Skeleton2D/Torso/ShoulderL"]
 position = Vector2( 0, 18 )
-rotation = 1.5708
+rotation = 1.5488
 rest = Transform2D( -4.37114e-08, 1, -1, -4.37114e-08, 0, 18 )
 default_length = 11.0
 __meta__ = {
@@ -1204,8 +1535,8 @@ __meta__ = {
 }
 
 [node name="LegR" type="Bone2D" parent="Body/Skeleton2D/Torso"]
-position = Vector2( 3, 9.53674e-07 )
-rotation = 1.5708
+position = Vector2( 3, -0.418312 )
+rotation = 1.53868
 rest = Transform2D( -4.37114e-08, 1, -1, -4.37114e-08, 3, 9.53674e-07 )
 default_length = 13.0
 __meta__ = {
@@ -1215,6 +1546,7 @@ __meta__ = {
 
 [node name="FootR" type="Bone2D" parent="Body/Skeleton2D/Torso/LegR"]
 position = Vector2( 13, -7.15256e-07 )
+rotation = 0.0321147
 rest = Transform2D( 1, 0, 0, 1, 13, -7.15256e-07 )
 default_length = 10.0
 __meta__ = {
@@ -1222,10 +1554,21 @@ __meta__ = {
 }
 
 [node name="Sword" parent="Body" instance=ExtResource( 1 )]
-position = Vector2( 19, -30 )
+position = Vector2( 9, -38 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( -1.5, -29.5 )
 shape = SubResource( 2 )
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="."]
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource( 13 )
+anim_player = NodePath("../AnimationPlayer")
+active = true
+parameters/Melee/active = false
+parameters/Shot/active = false
+parameters/in_air_state/current = 0
+parameters/movement/current = 0
+
+[editable path="Body/Sword"]
