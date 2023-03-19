@@ -1,0 +1,112 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://assets/opening/capsules.png" type="Texture" id=1]
+[ext_resource path="res://assets/fonts/Press_Start_2P/PressStart2P-Regular.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://opening/Opening1A/MainText1A.gd" type="Script" id=3]
+[ext_resource path="res://opening/Opening1A/Camera2D_1A.gd" type="Script" id=4]
+[ext_resource path="res://opening/Opening2A/Opening2A.gd" type="Script" id=5]
+
+[sub_resource type="DynamicFont" id=1]
+size = 5
+font_data = ExtResource( 2 )
+
+[sub_resource type="Animation" id=2]
+resource_name = "Fade in"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 0.0156863, 0.0156863, 0.0156863, 1 ), Color( 0.0156863, 0.0156863, 0.0156863, 0 ) ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "Fade out"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 0.0156863, 0.0156863, 0.0156863, 0 ), Color( 0.0156863, 0.0156863, 0.0156863, 1 ) ]
+}
+
+[sub_resource type="Animation" id=3]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 0.0156863, 0.0156863, 0.0156863, 1 ) ]
+}
+
+[node name="Opening2A" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 5 )
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 126.136, 59.352 )
+scale = Vector2( 0.098, 0.098 )
+texture = ExtResource( 1 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2( 160, 89 )
+current = true
+script = ExtResource( 4 )
+
+[node name="MarginContainer" type="MarginContainer" parent="Camera2D"]
+margin_left = -155.0
+margin_top = 47.0
+margin_right = 151.0
+margin_bottom = 82.0
+
+[node name="ColorRect" type="ColorRect" parent="Camera2D/MarginContainer"]
+margin_right = 306.0
+margin_bottom = 35.0
+color = Color( 0.027451, 0.027451, 0.027451, 1 )
+
+[node name="MarginContainer" type="MarginContainer" parent="Camera2D/MarginContainer/ColorRect"]
+margin_left = 7.0
+margin_top = 4.0
+margin_right = 305.0
+margin_bottom = 34.0
+
+[node name="MainText" type="RichTextLabel" parent="Camera2D/MarginContainer/ColorRect/MarginContainer"]
+margin_right = 298.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 0, 30 )
+custom_fonts/normal_font = SubResource( 1 )
+text = "As space travelers haven't learned to fly at the speed of light, they are forced to immerse themselves in hibernation in order to survive such long journeys. Frozen and motionless in their capsules, like in coffins, they drift amidst the cold and indifferent darkness."
+script = ExtResource( 3 )
+
+[node name="Tween" type="Tween" parent="Camera2D/MarginContainer/ColorRect/MarginContainer/MainText"]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_left = -76.0
+margin_top = -62.0
+margin_right = 384.0
+margin_bottom = 228.0
+color = Color( 0.0156863, 0.0156863, 0.0156863, 1 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+"anims/Fade in" = SubResource( 2 )
+"anims/Fade out" = SubResource( 4 )
+anims/RESET = SubResource( 3 )
