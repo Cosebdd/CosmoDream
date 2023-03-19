@@ -3,7 +3,8 @@ class_name VirusSpider
 
 onready var body := $Body
 onready var edge_ray := $Body/RayCast2D
-onready var patrol_delay_timer := $Timer
+onready var patrol_delay_timer := $PatrolTimer
+onready var attack_delay_timer := $AttackDelayTimer
 onready var animation_player := $AnimationPlayer
 
 enum Directions {
@@ -19,13 +20,16 @@ enum {
 
 export(Directions) var direction = Directions.right
 export(float) var patrol_delay = 1.0
+export(float) var attack_delay = 1.0
 
 var _state = idle
 var _player_to_follow: Player
+var _is_attack_mode := false
 
 
 func _ready() -> void:
 	patrol_delay_timer.wait_time = patrol_delay
+	attack_delay_timer.wait_time = attack_delay
 
 
 func _physics_process(delta: float) -> void:
@@ -33,6 +37,8 @@ func _physics_process(delta: float) -> void:
 		idle: _idle()
 		move: _move()
 		attack: _attack()
+	
+	if _is_attack_mode: return
 	
 	apply_gravity()
 	
@@ -62,6 +68,9 @@ func _idle() -> void:
 	
 	if velocity.x != 0:
 		_state = move
+	
+	if _is_attack_mode:
+		_state = attack
 
 
 func _move() -> void:
@@ -69,11 +78,16 @@ func _move() -> void:
 	
 	if velocity.x == 0:
 		_state = idle
+	
+	if _is_attack_mode:
+		_state = attack
 
 
 func _attack() -> void:
-	animation_player.play("Attack")
-	yield(animation_player, "animation_finished")
+	if attack_delay_timer.is_stopped():
+		animation_player.play("Attack")
+		yield(animation_player, "animation_finished")
+		attack_delay_timer.start()
 	_state = idle
 
 
@@ -87,5 +101,12 @@ func _on_Awareness_player_inside(player: Player) -> void:
 
 func _on_Awareness_player_outside():
 	_player_to_follow = null
-#	if not edge_ray.is_colliding():
-#		direction *= -1
+	_is_attack_mode = false	
+
+
+func _on_AttackRange_enemy_inside_range(enemy):
+	_is_attack_mode = true
+
+
+func _on_AttackRange_enemy_outside_range():
+	_is_attack_mode = false

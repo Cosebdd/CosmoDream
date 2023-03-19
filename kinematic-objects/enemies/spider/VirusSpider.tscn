@@ -1,14 +1,18 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://assets/enemies/SpiderAtlas.png" type="Texture" id=1]
 [ext_resource path="res://kinematic-objects/enemies/spider/VirusSpider.gd" type="Script" id=2]
 [ext_resource path="res://areas/awareness/Awareness.tscn" type="PackedScene" id=3]
 [ext_resource path="res://areas/hitbox/Hitbox.tscn" type="PackedScene" id=4]
 [ext_resource path="res://areas/hurtbox/Hurtbox.tscn" type="PackedScene" id=5]
+[ext_resource path="res://areas/attack-range/AttackRange.tscn" type="PackedScene" id=6]
 
 [sub_resource type="CapsuleShape2D" id=6]
 radius = 14.0
 height = 18.0
+
+[sub_resource type="CircleShape2D" id=7]
+radius = 23.0
 
 [sub_resource type="Animation" id=4]
 resource_name = "Attack"
@@ -733,6 +737,12 @@ position = Vector2( 31, -26 )
 shape = SubResource( 6 )
 disabled = true
 
+[node name="AttackRange" parent="Body" instance=ExtResource( 6 )]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Body/AttackRange"]
+position = Vector2( 23, -26 )
+shape = SubResource( 7 )
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/Attack = SubResource( 4 )
 anims/Idle = SubResource( 1 )
@@ -754,9 +764,14 @@ shape = SubResource( 5 )
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Hurtbox"]
 polygon = PoolVector2Array( -25, 0, -19, -26, -6, -26, -6, -43, 6, -43, 6, -26, 19, -26, 25, 0 )
 
-[node name="Timer" type="Timer" parent="."]
+[node name="PatrolTimer" type="Timer" parent="."]
 one_shot = true
 
+[node name="AttackDelayTimer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="enemy_inside_range" from="Body/AttackRange" to="." method="_on_AttackRange_enemy_inside_range"]
+[connection signal="enemy_outside_range" from="Body/AttackRange" to="." method="_on_AttackRange_enemy_outside_range"]
 [connection signal="player_inside" from="Awareness" to="." method="_on_Awareness_player_inside"]
 [connection signal="player_outside" from="Awareness" to="." method="_on_Awareness_player_outside"]
-[connection signal="timeout" from="Timer" to="." method="_on_delay_timer"]
+[connection signal="timeout" from="PatrolTimer" to="." method="_on_delay_timer"]
