@@ -7,14 +7,7 @@ var _abilities = []
 
 func _ready():
 	Events.connect("set_abilities", self, "_on_abilities_change")
-
-
-func _process(delta):
-	if Input.is_action_just_pressed("test-injury"):
-		_abilities[0].set_hp_diff(-10.0)
-	
-	if Input.is_action_just_pressed("test-heal"):
-		_abilities[0].set_hp_diff(10.0)
+	Events.connect("ability_gets_damage", self, "_on_ability_gets_damage")
 
 
 func _clear_abilities() -> void:
@@ -36,3 +29,8 @@ func _on_abilities_change(abilities: Array) -> void:
 	for a in abilities:
 		if not a: continue
 		_process_ability(a)
+
+
+func _on_ability_gets_damage(_ability, index, damage) -> void:
+	var ability_cell = _abilities[index] as AbilityCell
+	ability_cell.set_hp_diff(-damage)

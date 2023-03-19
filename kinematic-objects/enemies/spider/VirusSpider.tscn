@@ -12,7 +12,7 @@ radius = 14.0
 height = 18.0
 
 [sub_resource type="CircleShape2D" id=7]
-radius = 23.0
+radius = 19.0263
 
 [sub_resource type="Animation" id=4]
 resource_name = "Attack"
@@ -732,18 +732,16 @@ enabled = true
 cast_to = Vector2( 0, 5 )
 
 [node name="Hitbox" parent="Body" instance=ExtResource( 4 )]
-visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Body/Hitbox"]
-position = Vector2( 31, -26 )
+position = Vector2( 33, -26 )
 shape = SubResource( 6 )
 disabled = true
 
 [node name="AttackRange" parent="Body" instance=ExtResource( 6 )]
-visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Body/AttackRange"]
-position = Vector2( 23, -26 )
+position = Vector2( 21, -23 )
 shape = SubResource( 7 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -753,11 +751,9 @@ anims/RESET = SubResource( 2 )
 anims/Walk = SubResource( 3 )
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-visible = false
 polygon = PoolVector2Array( -25, 0, -19, -26, -6, -26, -6, -43, 6, -43, 6, -26, 19, -26, 25, 0 )
 
 [node name="Awareness" parent="." instance=ExtResource( 3 )]
-visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Awareness"]
 position = Vector2( 0, -34 )
@@ -765,7 +761,6 @@ rotation = 1.5708
 shape = SubResource( 5 )
 
 [node name="Hurtbox" parent="." instance=ExtResource( 5 )]
-visible = false
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Hurtbox"]
 polygon = PoolVector2Array( -25, 0, -19, -26, -6, -26, -6, -43, 6, -43, 6, -26, 19, -26, 25, 0 )

@@ -14,6 +14,8 @@ var DubleJump = preload("res://abilities/list/duble-jump/DubleJump.tscn")
 var Strafe = preload("res://abilities/list/strafe/Strafe.tscn")
 
 func _ready() -> void:
+	randomize()
+	Events.connect("user_gets_damage", self, "_on_Player_gets_damage")
 	for _i in range(ability_cell_number):
 		ability_list.append(null)
 	
@@ -82,3 +84,21 @@ func set_owner(owner_body) -> void:
 
 func _emit_abilities_changes() -> void:
 	Events.emit_signal("set_abilities", ability_list)
+
+
+func _on_Player_gets_damage(damage) -> void:
+	var is_all_destroyed = true
+	for ability in ability_list:
+		if not ability.is_destroyed():
+			is_all_destroyed = false
+			break
+	
+	if is_all_destroyed: return
+	
+	var ability_index = randi() % ability_list.size()
+	while ability_list[ability_index].is_destroyed():
+		ability_index = randi() % ability_list.size()
+	
+	var a = ability_list[ability_index]
+	a.get_damage(damage)
+	Events.emit_signal("ability_gets_damage", a, ability_index, damage)
