@@ -4,15 +4,23 @@ class_name ShootingAbility
 export(int) var spread_angle = 15
 export(int) var fragment_number = 7
 export(float) var max_fragment_spawn_delay = 0.1
+export(float) var y_spawn_offset = 0.0
+export(float) var x_spawn_offset = 0.0
 
 var Bullet = preload("res://abilities/list/shooting/bullet/Bullet.tscn")
 
+signal shot_started;
+
+func _ready():
+	var player = get_tree().root.find_node("Player", true, false)
+	connect("shot_started", player, "_on_Shot_Started")
 
 func _fire_implementation():
 	_shot()
 
 
 func _shot() -> void:
+	emit_signal("shot_started")
 	randomize()
 	for _i in range(fragment_number):
 		var bullet = _generate_fragment()
@@ -30,11 +38,11 @@ func _generate_fragment() -> Bullet:
 		randi() % int(max_fragment_spawn_delay * 1000) + 1
 	) / 1000
 	
-	var offset_x = _owner.size_rect.size.x * _owner.direction.x
+	var offset_x = (x_spawn_offset + _owner.size_rect.size.x) * _owner.direction.x
 	
 	var owner_center_position = Vector2(
 		_owner.size_rect.position.x + _owner.size_rect.size.x / 2 + offset_x,
-		_owner.size_rect.position.y + _owner.size_rect.size.y / 2
+		_owner.size_rect.position.y + _owner.size_rect.size.y / 2 + y_spawn_offset
 	)
 	var bullet = Bullet.instance()
 	bullet.set_direction(_owner.direction.rotated(random_angle))

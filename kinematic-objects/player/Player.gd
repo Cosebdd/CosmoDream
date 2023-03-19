@@ -103,3 +103,7 @@ func _get_size_rect() -> Rect2:
 		collision.position.y - collision_extents.y
 	)
 	return Rect2(start_pos, collision_extents * 2)
+
+
+func _on_Shot_Started() -> void:
+	animation_tree.set("parameters/Shot/active", true)
