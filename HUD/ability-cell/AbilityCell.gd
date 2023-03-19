@@ -25,7 +25,8 @@ func init(ability):
 
 
 func _exit_tree():
-	_ability.disconnect("charges_updated", self, "set_ep")
+	if _ability:
+		_ability.disconnect("charges_updated", self, "set_ep")
 
 
 func set_hp(hp: float) -> void:

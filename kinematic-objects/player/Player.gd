@@ -116,7 +116,6 @@ func _on_Shot_Started() -> void:
 
 func _on_Hurtbox_hit_taken(damage: int, object):
 	if not invincivility_timer.is_stopped(): return
-	print(invincivility_timer.is_stopped())
 	
 	get_damaged(damage, object)
 	Events.emit_signal("user_gets_damage", damage)
