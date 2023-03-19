@@ -195,7 +195,7 @@ _global_script_class_icons={
 [application]
 
 config/name="CosmoDream"
-run/main_scene="res://world/World.tscn"
+run/main_scene="res://opening/Opening1A/Opening1A.tscn"
 config/icon="res://icon.png"
 
 [autoload]
@@ -214,6 +214,11 @@ window/stretch/aspect="keep_height"
 [editor_plugins]
 
 enabled=PoolStringArray( "res://addons/dialogic/plugin.cfg" )
+
+[global]
+
+"Main scene"=false
+Scene=false
 
 [gui]
 
