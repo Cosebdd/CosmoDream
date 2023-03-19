@@ -259,6 +259,7 @@ tracks/3/keys = {
 [node name="SphereRobot" type="KinematicBody2D"]
 position = Vector2( 0, -15 )
 script = ExtResource( 2 )
+patrol_delay = 4.0
 attack_delay = 4.0
 
 [node name="BaseCollision" type="CollisionShape2D" parent="."]
