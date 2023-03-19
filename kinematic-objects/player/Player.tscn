@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=2]
+[gd_scene load_steps=44 format=2]
 
 [ext_resource path="res://sword/Sword.tscn" type="PackedScene" id=1]
 [ext_resource path="res://kinematic-objects/player/Player.gd" type="Script" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://assets/player/Shotgun.png" type="Texture" id=7]
 [ext_resource path="res://assets/player/SwordSlash.png" type="Texture" id=8]
 [ext_resource path="res://assets/player/ShotgunFire.png" type="Texture" id=9]
+[ext_resource path="res://areas/hurtbox/Hurtbox.tscn" type="PackedScene" id=10]
 
 [sub_resource type="Animation" id=8]
 resource_name = "Attack"
@@ -1129,6 +1130,75 @@ tracks/5/keys = {
 "values": [ true, false ]
 }
 
+[sub_resource type="AnimationNodeAnimation" id=17]
+animation = "Attack"
+
+[sub_resource type="AnimationNodeAnimation" id=10]
+animation = "Idle"
+
+[sub_resource type="AnimationNodeAnimation" id=14]
+animation = "Jump"
+
+[sub_resource type="AnimationNodeOneShot" id=21]
+filter_enabled = true
+filters = [ "Body/Polygons/Sword/Splash:frame", "Body/Polygons/Sword/Splash:playing", "Body/Polygons/Sword/Splash:visible", "Body/Skeleton2D/Torso/ShoulderL/WristL:position", "Body/Skeleton2D/Torso/ShoulderL/WristL:rotation_degrees", "Body/Skeleton2D/Torso/ShoulderL:position", "Body/Skeleton2D/Torso/ShoulderL:rotation_degrees" ]
+fadein_time = 0.0
+fadeout_time = 0.0
+
+[sub_resource type="AnimationNodeAnimation" id=11]
+animation = "Run"
+
+[sub_resource type="AnimationNodeAnimation" id=19]
+animation = "Shoot"
+
+[sub_resource type="AnimationNodeOneShot" id=20]
+filter_enabled = true
+filters = [ "Body/Polygons/Shotgun/ShotgunFire:frame", "Body/Polygons/Shotgun/ShotgunFire:visible", "Body/Skeleton2D/Torso/ShoulderR/WristR:position", "Body/Skeleton2D/Torso/ShoulderR/WristR:rotation_degrees", "Body/Skeleton2D/Torso/ShoulderR:position", "Body/Skeleton2D/Torso/ShoulderR:rotation_degrees" ]
+fadein_time = 0.04
+fadeout_time = 0.05
+
+[sub_resource type="AnimationNodeTransition" id=15]
+input_count = 2
+xfade_time = 0.2
+input_0/name = "ground"
+input_0/auto_advance = false
+input_1/name = "air"
+input_1/auto_advance = false
+
+[sub_resource type="AnimationNodeTransition" id=12]
+input_count = 2
+xfade_time = 0.1
+input_0/name = "idle"
+input_0/auto_advance = false
+input_1/name = "run"
+input_1/auto_advance = false
+
+[sub_resource type="AnimationNodeBlendTree" id=13]
+graph_offset = Vector2( -247.524, 12.1472 )
+nodes/Attack/node = SubResource( 17 )
+nodes/Attack/position = Vector2( 340, 280 )
+nodes/Idle/node = SubResource( 10 )
+nodes/Idle/position = Vector2( -300, 20 )
+nodes/Jump/node = SubResource( 14 )
+nodes/Jump/position = Vector2( -20, 240 )
+nodes/Melee/node = SubResource( 21 )
+nodes/Melee/position = Vector2( 540, 40 )
+nodes/Run/node = SubResource( 11 )
+nodes/Run/position = Vector2( -300, 160 )
+nodes/Shoot/node = SubResource( 19 )
+nodes/Shoot/position = Vector2( 640, 280 )
+nodes/Shot/node = SubResource( 20 )
+nodes/Shot/position = Vector2( 800, 40 )
+nodes/in_air_state/node = SubResource( 15 )
+nodes/in_air_state/position = Vector2( 240, 60 )
+nodes/movement/node = SubResource( 12 )
+nodes/movement/position = Vector2( -20, 60 )
+nodes/output/position = Vector2( 1040, 80 )
+node_connections = [ "in_air_state", 0, "movement", "in_air_state", 1, "Jump", "movement", 0, "Idle", "movement", 1, "Run", "Melee", 0, "in_air_state", "Melee", 1, "Attack", "Shot", 0, "Melee", "Shot", 1, "Shoot", "output", 0, "Shot" ]
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 11.5, 29.5 )
+
 [sub_resource type="AtlasTexture" id=32]
 atlas = ExtResource( 9 )
 region = Rect2( 0, 0, 10, 10 )
@@ -1197,81 +1267,14 @@ animations = [ {
 "speed": 24.0
 } ]
 
-[sub_resource type="RectangleShape2D" id=2]
+[sub_resource type="RectangleShape2D" id=37]
 extents = Vector2( 11.5, 29.5 )
-
-[sub_resource type="AnimationNodeAnimation" id=17]
-animation = "Attack"
-
-[sub_resource type="AnimationNodeAnimation" id=10]
-animation = "Idle"
-
-[sub_resource type="AnimationNodeAnimation" id=14]
-animation = "Jump"
-
-[sub_resource type="AnimationNodeOneShot" id=21]
-filter_enabled = true
-filters = [ "Body/Polygons/Sword/Splash:frame", "Body/Polygons/Sword/Splash:playing", "Body/Polygons/Sword/Splash:visible", "Body/Skeleton2D/Torso/ShoulderL/WristL:position", "Body/Skeleton2D/Torso/ShoulderL/WristL:rotation_degrees", "Body/Skeleton2D/Torso/ShoulderL:position", "Body/Skeleton2D/Torso/ShoulderL:rotation_degrees" ]
-fadein_time = 0.0
-fadeout_time = 0.0
-
-[sub_resource type="AnimationNodeAnimation" id=11]
-animation = "Run"
-
-[sub_resource type="AnimationNodeAnimation" id=19]
-animation = "Shoot"
-
-[sub_resource type="AnimationNodeOneShot" id=20]
-filter_enabled = true
-filters = [ "Body/Polygons/Shotgun/ShotgunFire:frame", "Body/Polygons/Shotgun/ShotgunFire:visible", "Body/Skeleton2D/Torso/ShoulderR/WristR:position", "Body/Skeleton2D/Torso/ShoulderR/WristR:rotation_degrees", "Body/Skeleton2D/Torso/ShoulderR:position", "Body/Skeleton2D/Torso/ShoulderR:rotation_degrees" ]
-fadein_time = 0.04
-fadeout_time = 0.05
-
-[sub_resource type="AnimationNodeTransition" id=15]
-input_count = 2
-xfade_time = 0.2
-input_0/name = "ground"
-input_0/auto_advance = false
-input_1/name = "air"
-input_1/auto_advance = false
-
-[sub_resource type="AnimationNodeTransition" id=12]
-input_count = 2
-xfade_time = 0.1
-input_0/name = "idle"
-input_0/auto_advance = false
-input_1/name = "run"
-input_1/auto_advance = false
-
-[sub_resource type="AnimationNodeBlendTree" id=13]
-graph_offset = Vector2( -493.334, -79.8397 )
-nodes/Attack/node = SubResource( 17 )
-nodes/Attack/position = Vector2( 340, 280 )
-nodes/Idle/node = SubResource( 10 )
-nodes/Idle/position = Vector2( -300, 20 )
-nodes/Jump/node = SubResource( 14 )
-nodes/Jump/position = Vector2( -20, 240 )
-nodes/Melee/node = SubResource( 21 )
-nodes/Melee/position = Vector2( 540, 40 )
-nodes/Run/node = SubResource( 11 )
-nodes/Run/position = Vector2( -300, 160 )
-nodes/Shoot/node = SubResource( 19 )
-nodes/Shoot/position = Vector2( 640, 280 )
-nodes/Shot/node = SubResource( 20 )
-nodes/Shot/position = Vector2( 800, 40 )
-nodes/in_air_state/node = SubResource( 15 )
-nodes/in_air_state/position = Vector2( 240, 60 )
-nodes/movement/node = SubResource( 12 )
-nodes/movement/position = Vector2( -20, 60 )
-nodes/output/position = Vector2( 1040, 80 )
-node_connections = [ "Shot", 0, "Melee", "Shot", 1, "Shoot", "in_air_state", 0, "movement", "in_air_state", 1, "Jump", "output", 0, "Shot", "Melee", 0, "in_air_state", "Melee", 1, "Attack", "movement", 0, "Idle", "movement", 1, "Run" ]
 
 [node name="Player" type="KinematicBody2D"]
 collision_layer = 2
 script = ExtResource( 2 )
 max_speed = 150
-acceleration = 20
-friction = 20
+max_health = 4
 jump_height = 250
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -1284,7 +1287,18 @@ anims/RESET = SubResource( 5 )
 anims/Run = SubResource( 6 )
 anims/Shoot = SubResource( 9 )
 
-[node name="AbilitySystem" parent="." instance=ExtResource( 3 )]
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource( 13 )
+anim_player = NodePath("../AnimationPlayer")
+active = true
+parameters/Melee/active = false
+parameters/Shot/active = false
+parameters/in_air_state/current = 0
+parameters/movement/current = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( -1.5, -29.5 )
+shape = SubResource( 2 )
 
 [node name="Body" type="Node2D" parent="."]
 
@@ -1322,7 +1336,7 @@ visible = false
 show_behind_parent = true
 position = Vector2( 42, -5 )
 frames = SubResource( 36 )
-frame = 2
+frame = 1
 playing = true
 
 [node name="HandR" type="Polygon2D" parent="Body/Polygons"]
@@ -1454,7 +1468,6 @@ show_behind_parent = true
 position = Vector2( 41, -27 )
 scale = Vector2( 2.50982, 2.50982 )
 frames = SubResource( 31 )
-frame = 4
 
 [node name="HandL" type="Polygon2D" parent="Body/Polygons"]
 position = Vector2( 47, -33 )
@@ -1469,13 +1482,13 @@ bones = [ "Torso", PoolRealArray( 0, 0, 0, 0, 0, 0 ), "Torso/LegL", PoolRealArra
 visible = false
 
 [node name="Torso" type="Bone2D" parent="Body/Skeleton2D"]
-position = Vector2( 1, -24.5817 )
+position = Vector2( 1, -24.7169 )
 rest = Transform2D( 1, 0, 0, 1, 1, -25 )
 default_length = 4.0
 
 [node name="LegL" type="Bone2D" parent="Body/Skeleton2D/Torso"]
-position = Vector2( -4, -0.418314 )
-rotation = 1.60291
+position = Vector2( -4, -0.283053 )
+rotation = 1.59253
 rest = Transform2D( -4.37114e-08, 1, -1, -4.37114e-08, -4, 0 )
 default_length = 13.0
 __meta__ = {
@@ -1485,7 +1498,7 @@ __meta__ = {
 
 [node name="FootL" type="Bone2D" parent="Body/Skeleton2D/Torso/LegL"]
 position = Vector2( 13, -7.15256e-07 )
-rotation = -0.0321147
+rotation = -0.0217305
 rest = Transform2D( 1, 0, 0, 1, 13, -7.15256e-07 )
 default_length = 10.0
 __meta__ = {
@@ -1500,7 +1513,7 @@ default_length = 5.0
 
 [node name="ShoulderR" type="Bone2D" parent="Body/Skeleton2D/Torso"]
 position = Vector2( 8, -17 )
-rotation = -0.0232158
+rotation = -0.015709
 rest = Transform2D( 1, 0, 0, 1, 8, -17 )
 __meta__ = {
 "_edit_bone_": true,
@@ -1509,7 +1522,7 @@ __meta__ = {
 
 [node name="WristR" type="Bone2D" parent="Body/Skeleton2D/Torso/ShoulderR"]
 position = Vector2( 0, 18 )
-rotation = -0.523598
+rotation = -0.523599
 rest = Transform2D( -4.37114e-08, 1, -1, -4.37114e-08, 0, 18 )
 default_length = 11.0
 __meta__ = {
@@ -1518,7 +1531,7 @@ __meta__ = {
 
 [node name="ShoulderL" type="Bone2D" parent="Body/Skeleton2D/Torso"]
 position = Vector2( -12, -17 )
-rotation = 0.0219962
+rotation = 0.0148838
 rest = Transform2D( 1, 0, 0, 1, -12, -17 )
 __meta__ = {
 "_edit_bone_": true,
@@ -1527,7 +1540,7 @@ __meta__ = {
 
 [node name="WristL" type="Bone2D" parent="Body/Skeleton2D/Torso/ShoulderL"]
 position = Vector2( 0, 18 )
-rotation = 1.5488
+rotation = 1.55591
 rest = Transform2D( -4.37114e-08, 1, -1, -4.37114e-08, 0, 18 )
 default_length = 11.0
 __meta__ = {
@@ -1535,8 +1548,8 @@ __meta__ = {
 }
 
 [node name="LegR" type="Bone2D" parent="Body/Skeleton2D/Torso"]
-position = Vector2( 3, -0.418312 )
-rotation = 1.53868
+position = Vector2( 3, -0.283052 )
+rotation = 1.54907
 rest = Transform2D( -4.37114e-08, 1, -1, -4.37114e-08, 3, 9.53674e-07 )
 default_length = 13.0
 __meta__ = {
@@ -1546,7 +1559,7 @@ __meta__ = {
 
 [node name="FootR" type="Bone2D" parent="Body/Skeleton2D/Torso/LegR"]
 position = Vector2( 13, -7.15256e-07 )
-rotation = 0.0321147
+rotation = 0.0217305
 rest = Transform2D( 1, 0, 0, 1, 13, -7.15256e-07 )
 default_length = 10.0
 __meta__ = {
@@ -1556,19 +1569,19 @@ __meta__ = {
 [node name="Sword" parent="Body" instance=ExtResource( 1 )]
 position = Vector2( 9, -38 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="Hurtbox" parent="Body" instance=ExtResource( 10 )]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Body/Hurtbox"]
 position = Vector2( -1.5, -29.5 )
-shape = SubResource( 2 )
+shape = SubResource( 37 )
+
+[node name="AbilitySystem" parent="." instance=ExtResource( 3 )]
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="."]
 
-[node name="AnimationTree" type="AnimationTree" parent="."]
-tree_root = SubResource( 13 )
-anim_player = NodePath("../AnimationPlayer")
-active = true
-parameters/Melee/active = false
-parameters/Shot/active = false
-parameters/in_air_state/current = 0
-parameters/movement/current = 0
+[node name="InvincibilityTimer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="hit_taken" from="Body/Hurtbox" to="." method="_on_Hurtbox_hit_taken"]
 
 [editable path="Body/Sword"]

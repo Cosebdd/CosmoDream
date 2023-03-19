@@ -6,7 +6,7 @@ signal ability_recharge(timeout)
 signal charges_updated(charges)
 
 export(Texture) var picture = preload("res://icon.png")
-export(float) var max_health = 100.0
+export(int) var max_health = 1
 export(bool) var is_internal_ability = false # if true - the ability will be rendered inside of object
 export(int) var level = 1
 export(int) var max_level = 3
@@ -51,9 +51,18 @@ func _ready():
 func _process(_delta):
 	var is_delay_timer_run = _delay_timer && !_delay_timer.is_stopped()
 	var is_recharge_rimer_run = _recharge_timer && !_recharge_timer.is_stopped()
-	if not active or is_delay_timer_run or is_recharge_rimer_run: return
+	
+	if not active or is_delay_timer_run or is_recharge_rimer_run or is_destroyed(): return
 	
 	_execute()
+
+
+func is_destroyed() -> bool:
+	return _health <= 0
+
+
+func get_damage(damage: int) -> void:
+	_health = clamp(_health - damage, 0, max_health)
 
 
 func _execute() -> void:
