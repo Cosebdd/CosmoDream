@@ -45,6 +45,7 @@ func _generate_fragment() -> Bullet:
 		_owner.size_rect.position.y + _owner.size_rect.size.y / 2 + y_spawn_offset
 	)
 	var bullet = Bullet.instance()
+	bullet.is_safe_for_player = true
 	bullet.set_direction(_owner.direction.rotated(random_angle))
 	bullet.set_spawn_delay(spawn_delay)
 	bullet.global_position = global_position + owner_center_position

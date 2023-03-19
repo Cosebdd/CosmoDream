@@ -2,6 +2,7 @@ extends KinematicBody2D
 class_name Bullet
 
 export(int) var speed = 400
+export(bool) var is_safe_for_player = false
 onready var _ttl := $TTL
 onready var sprite := $Sprite
 
