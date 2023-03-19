@@ -12,6 +12,7 @@ var Bullet = preload("res://abilities/list/shooting/bullet/Bullet.tscn")
 signal shot_started;
 
 func _ready():
+	randomize()
 	var player = get_tree().root.find_node("Player", true, false)
 	connect("shot_started", player, "_on_Shot_Started")
 
@@ -21,7 +22,6 @@ func _fire_implementation():
 
 func _shot() -> void:
 	emit_signal("shot_started")
-	randomize()
 	for _i in range(fragment_number):
 		var bullet = _generate_fragment()
 		get_tree().root.get_child(0).add_child(bullet)

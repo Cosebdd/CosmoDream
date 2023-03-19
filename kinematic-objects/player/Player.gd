@@ -123,6 +123,13 @@ func _on_Hurtbox_hit_taken(damage: int, object):
 	if bullet && bullet.is_safe_for_player:
 		return
 	
-	get_damaged(damage, object)
-	Events.emit_signal("user_gets_damage", damage)
-	invincivility_timer.start()
+	if not is_invincible:
+		get_damaged(damage, object)
+		Events.emit_signal("user_gets_damage", damage)
+		invincivility_timer.start()
+
+
+func die() -> void:
+	.die()
+	yield(get_tree().create_timer(2.0), "timeout")
+	get_tree().change_scene("res://world/Level1.tscn")
