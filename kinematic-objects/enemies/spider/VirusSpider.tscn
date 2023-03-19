@@ -614,7 +614,7 @@ height = 218.0
 [node name="VirusSpider" type="KinematicBody2D"]
 script = ExtResource( 2 )
 max_speed = 30
-max_health = 100
+max_health = 2
 
 [node name="Body" type="Node2D" parent="."]
 
