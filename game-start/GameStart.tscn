@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://cut-scene-driver/CutSceneDriver.tscn" type="PackedScene" id=1]
 [ext_resource path="res://opening/Scene1.tres" type="Resource" id=2]
@@ -7,12 +7,11 @@
 [ext_resource path="res://opening/Scene3.tres" type="Resource" id=5]
 [ext_resource path="res://opening/Scene4.tres" type="Resource" id=6]
 [ext_resource path="res://opening/Scene5.tres" type="Resource" id=7]
-[ext_resource path="res://opening/Scene6.tres" type="Resource" id=8]
-[ext_resource path="res://opening/Scene7.tres" type="Resource" id=9]
-[ext_resource path="res://opening/Scene8.tres" type="Resource" id=10]
+[ext_resource path="res://opening/Scene6.tres" type="Resource" id=9]
+[ext_resource path="res://opening/Scene7.tres" type="Resource" id=10]
 
 [node name="GameStart" type="Node"]
 
 [node name="CutSceneDriver" parent="." instance=ExtResource( 1 )]
-scene_sequence = [ ExtResource( 2 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ) ]
+scene_sequence = [ ExtResource( 2 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 9 ), ExtResource( 10 ) ]
 after_finish_scene = ExtResource( 3 )

@@ -10,6 +10,7 @@ onready var overlay := $Camera2D/CanvasLayer/Overlay
 onready var animation_player := $AnimationPlayer
 onready var text_container := $Camera2D/CanvasLayer/TextContainer
 onready var text := $Camera2D/CanvasLayer/TextContainer/SceneText
+onready var press_any_key := $Camera2D/CanvasLayer/TextContainer/PressAnyKeyCaption
 onready var camera := $Camera2D
 
 var _current_scene
@@ -20,9 +21,12 @@ func _ready() -> void:
 
 
 func _input(event) -> void:
-	if event.is_action_pressed("skip-cutscene") and animation_player.current_animation != "finish":
-		if animation_player.is_playing():
+	if event.is_pressed():
+		if animation_player.current_animation != "finish" and animation_player.is_playing():
 			_finish_transition()
+			return
+		elif animation_player.current_animation == "finish":
+			_switch_scene()
 			return
 		
 		_finish_cut_scene()
@@ -77,13 +81,6 @@ func _start_backgound_transition(scene) -> void:
 
 
 func _finish_transition() -> void:
-	animation_player.stop()
-	text.percent_visible = 1.0
-	overlay.color = Color(0,0,0,0)
-	
-	if _current_scene.camera_finish_position:
-		camera.offset = _current_scene.camera_finish_position
-	
 	var animation = animation_player.get_animation("start")
-	animation.track_set_key_value(2, 0, Vector2.ZERO)
-	animation.track_set_key_value(2, 1, Vector2.ZERO)
+	
+	animation_player.advance(animation.length)
