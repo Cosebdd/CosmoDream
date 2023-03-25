@@ -1,0 +1,13 @@
+[gd_resource type="Resource" load_steps=3 format=2]
+
+[ext_resource path="res://cut-scene-driver/CutSceneData.gd" type="Script" id=1]
+[ext_resource path="res://assets/opening/brains.jpeg" type="Texture" id=2]
+
+[resource]
+script = ExtResource( 1 )
+scene_image = ExtResource( 2 )
+camera_initial_position = Vector2( 20, 30 )
+camera_finish_position = Vector2( 20, 5 )
+image_scale = Vector2( 0.3, 0.3 )
+text = "But this is not just an ordinary dream. In order to preserve their sanity, people's consciousness is merged into clusters, and they share one collective dream where they can communicate with each other."
+textbox_height = 40

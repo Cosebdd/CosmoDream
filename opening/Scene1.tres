@@ -1,0 +1,14 @@
+[gd_resource type="Resource" load_steps=3 format=2]
+
+[ext_resource path="res://cut-scene-driver/CutSceneData.gd" type="Script" id=1]
+[ext_resource path="res://assets/opening/spaceship.jpeg" type="Texture" id=2]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource( 1 )
+scene_image = ExtResource( 2 )
+camera_initial_position = Vector2( 60, 90 )
+camera_finish_position = Vector2( 50, 70 )
+image_scale = Vector2( 0.3, 0.3 )
+text = "Year 103xx. Humanity is forced to colonize other worlds. One of many like it, the spaceship \"Morpheus\" moves through the endless darkness towards a distant planet suitable for life. It has been traveling for thousands of years."
+textbox_height = 40

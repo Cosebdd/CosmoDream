@@ -1,0 +1,13 @@
+[gd_resource type="Resource" load_steps=3 format=2]
+
+[ext_resource path="res://cut-scene-driver/CutSceneData.gd" type="Script" id=1]
+[ext_resource path="res://assets/opening/realm.png" type="Texture" id=2]
+
+[resource]
+script = ExtResource( 1 )
+scene_image = ExtResource( 2 )
+camera_initial_position = Vector2( 20, 20 )
+camera_finish_position = Vector2( 5, 5 )
+image_scale = Vector2( 0.08, 0.08 )
+text = "In their dreams, created by special architects, they live in a fairy-tale world devoid of worries and suffering."
+textbox_height = 20

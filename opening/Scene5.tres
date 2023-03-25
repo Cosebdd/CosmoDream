@@ -1,0 +1,13 @@
+[gd_resource type="Resource" load_steps=3 format=2]
+
+[ext_resource path="res://cut-scene-driver/CutSceneData.gd" type="Script" id=1]
+[ext_resource path="res://assets/opening/correpted_realm.png" type="Texture" id=2]
+
+[resource]
+script = ExtResource( 1 )
+scene_image = ExtResource( 2 )
+camera_initial_position = Vector2( 15, 15 )
+camera_finish_position = Vector2( 30, 30 )
+image_scale = Vector2( 0.08, 0.08 )
+text = "But one day, the idyll is shattered by a terrible incident. One of the astronauts disappears from the dream, and along with him, a part of the shared dream vanishes. The dream reality begins to fill with nightmares and collapse, and the travelers realize that the AI controlling the ship has turned against them."
+textbox_height = 55

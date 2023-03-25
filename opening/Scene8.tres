@@ -1,0 +1,14 @@
+[gd_resource type="Resource" load_steps=3 format=2]
+
+[ext_resource path="res://cut-scene-driver/CutSceneData.gd" type="Script" id=1]
+[ext_resource path="res://assets/closing/final_scene/KillSwitchOn.png" type="Texture" id=2]
+
+[resource]
+script = ExtResource( 1 )
+scene_image = ExtResource( 2 )
+camera_initial_position = Vector2( 15, 20 )
+camera_finish_position = Vector2( 40, 90 )
+image_scale = Vector2( 0.26, 0.26 )
+text = "Before it's too late, the heroic band must reach
+the \"Kill switch\" to disable the insane computer."
+textbox_height = 20
