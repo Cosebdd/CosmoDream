@@ -7,7 +7,7 @@
 script = ExtResource( 1 )
 scene_image = ExtResource( 2 )
 camera_initial_position = Vector2( 20, 20 )
-camera_finish_position = Vector2( 5, 5 )
+camera_finish_position = Vector2( -1, -1 )
 image_scale = Vector2( 0.08, 0.08 )
 text = "In their dreams, created by special architects, they live in a fairy-tale world devoid of worries and suffering."
 textbox_height = 20
