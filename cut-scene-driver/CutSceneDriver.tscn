@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://cut-scene-driver/CutSceneDriver.gd" type="Script" id=2]
 [ext_resource path="res://assets/fonts/Press_Start_2P/PressStart2P-Regular.ttf" type="DynamicFontData" id=3]
@@ -124,28 +124,47 @@ tracks/1/keys = {
 "values": [ 0.0, 1.0 ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("Camera2D:offset")
+tracks/2/path = NodePath("Camera2D/CanvasLayer/TextContainer/PressAnyKeyCaption:modulate")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0, 6 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Vector2( 0, 0 ), Vector2( 0, 0 ) ]
-}
-tracks/3/type = "value"
-tracks/3/path = NodePath("Camera2D/CanvasLayer/TextContainer/PressAnyKeyCaption:modulate")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
 "times": PoolRealArray( 0, 5.6, 6 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=6]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Camera2D:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=7]
+resource_name = "camera_transition"
+length = 6.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("Camera2D:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 6 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 0, 0 ) ]
 }
 
 [sub_resource type="DynamicFont" id=4]
@@ -169,6 +188,10 @@ script = ExtResource( 2 )
 anims/RESET = SubResource( 3 )
 anims/finish = SubResource( 1 )
 anims/start = SubResource( 2 )
+
+[node name="BackgroundTransition" type="AnimationPlayer" parent="."]
+anims/RESET = SubResource( 6 )
+anims/camera_transition = SubResource( 7 )
 
 [node name="Backgound" type="TextureRect" parent="."]
 stretch_mode = 3

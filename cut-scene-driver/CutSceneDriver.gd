@@ -8,6 +8,7 @@ export(PackedScene) var after_finish_scene
 onready var background := $Backgound
 onready var overlay := $Camera2D/CanvasLayer/Overlay
 onready var animation_player := $AnimationPlayer
+onready var animation_camera_transition := $BackgroundTransition
 onready var text_container := $Camera2D/CanvasLayer/TextContainer
 onready var text := $Camera2D/CanvasLayer/TextContainer/SceneText
 onready var press_any_key := $Camera2D/CanvasLayer/TextContainer/PressAnyKeyCaption
@@ -36,6 +37,7 @@ func _run_scene(scene_to_play) -> void:
 	_prepare_scene(scene_to_play)
 	_start_backgound_transition(scene_to_play)
 	animation_player.play("start")
+	animation_camera_transition.play("camera_transition")
 
 
 func _prepare_scene(scene) -> void:
@@ -75,9 +77,9 @@ func _start_backgound_transition(scene) -> void:
 	var _scene = scene as CutSceneData
 	if not _scene.camera_finish_position: return
 	
-	var animation = animation_player.get_animation("start")
-	animation.track_set_key_value(2, 0, camera.offset)
-	animation.track_set_key_value(2, 1, _scene.camera_finish_position)
+	var animation = animation_camera_transition.get_animation("camera_transition")
+	animation.track_set_key_value(0, 0, camera.offset)
+	animation.track_set_key_value(0, 1, _scene.camera_finish_position)
 
 
 func _finish_transition() -> void:
