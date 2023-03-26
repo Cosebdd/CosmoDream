@@ -11,4 +11,4 @@ func _ready() -> void:
 
 func _on_NextLevelArea_body_entered(body):
 	if body.get_name() == "Player":
-		get_tree().change_scene(nextScene.resource_path)
+		get_tree().change_scene_to(nextScene)

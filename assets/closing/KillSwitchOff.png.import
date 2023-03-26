@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/KillSwitchOn.png-4bce7c261148ecad155f61de4f7f26de.stex"
+path="res://.import/KillSwitchOff.png-db88b741b3f5a48b6b69fbb2a5a959e7.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/closing/final_scene/KillSwitchOn.png"
-dest_files=[ "res://.import/KillSwitchOn.png-4bce7c261148ecad155f61de4f7f26de.stex" ]
+source_file="res://assets/closing/KillSwitchOff.png"
+dest_files=[ "res://.import/KillSwitchOff.png-db88b741b3f5a48b6b69fbb2a5a959e7.stex" ]
 
 [params]
 

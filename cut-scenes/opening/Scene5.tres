@@ -5,6 +5,7 @@
 
 [resource]
 script = ExtResource( 1 )
+with_transition_to_next = true
 scene_image = ExtResource( 2 )
 camera_initial_position = Vector2( 15, 15 )
 camera_finish_position = Vector2( 30, 30 )
