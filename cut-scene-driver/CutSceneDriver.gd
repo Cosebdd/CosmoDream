@@ -36,7 +36,9 @@ func _input(event) -> void:
 func _run_scene(scene_to_play) -> void:
 	_prepare_scene(scene_to_play)
 	_start_backgound_transition(scene_to_play)
+	animation_player.stop()
 	animation_player.play("start")
+	animation_camera_transition.stop()
 	animation_camera_transition.play("camera_transition")
 
 
