@@ -1170,7 +1170,7 @@ animation = "Shoot"
 
 [sub_resource type="AnimationNodeOneShot" id=20]
 filter_enabled = true
-filters = [ "AudioStreamPlayer", "Body/Polygons/Shotgun/ShotgunFire:frame", "Body/Polygons/Shotgun/ShotgunFire:visible", "Body/Skeleton2D/Torso/ShoulderR/WristR:position", "Body/Skeleton2D/Torso/ShoulderR/WristR:rotation_degrees", "Body/Skeleton2D/Torso/ShoulderR:position", "Body/Skeleton2D/Torso/ShoulderR:rotation_degrees", "Sfx" ]
+filters = ["Body/Polygons/Shotgun/ShotgunFire:frame", "Body/Polygons/Shotgun/ShotgunFire:visible", "Body/Skeleton2D/Torso/ShoulderR/WristR:position", "Body/Skeleton2D/Torso/ShoulderR/WristR:rotation_degrees", "Body/Skeleton2D/Torso/ShoulderR:position", "Body/Skeleton2D/Torso/ShoulderR:rotation_degrees", "Sfx" ]
 fadein_time = 0.04
 fadeout_time = 0.05
 
