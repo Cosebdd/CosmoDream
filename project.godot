@@ -17,7 +17,7 @@ _global_script_classes=[ {
 "base": "PanelContainer",
 "class": "AbilityCell",
 "language": "GDScript",
-"path": "res://HUD/ability-cell/AbilityCell.gd"
+"path": "res://UI/HUD/ability-cell/AbilityCell.gd"
 }, {
 "base": "Node2D",
 "class": "AbilitySystem",

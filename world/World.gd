@@ -4,7 +4,7 @@ export(PackedScene) var nextScene
 
 onready var player := $Player
 onready var camera := $Camera2D
-onready var transitionScene: = preload("res://HUD/LevelTransition.tscn")
+onready var transitionScene: = preload("res://UI/LevelTransition.tscn")
 
 func _ready() -> void:
 	player.connect_camera(camera)
