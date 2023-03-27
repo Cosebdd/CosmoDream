@@ -8,6 +8,7 @@ onready var remote_transform := $RemoteTransform2D
 onready var ability_system := $AbilitySystem
 onready var collision := $CollisionShape2D
 onready var invincivility_timer := $InvincibilityTimer
+onready var sound_effects := $Sfx
 onready var direction := Vector2.RIGHT
 onready var Heads := [$Body/Polygons/Torso/Heads/Cell1, $Body/Polygons/Torso/Heads/Cell2, $Body/Polygons/Torso/Heads/Cell3, $Body/Polygons/Torso/Heads/Cell4]
 var size_rect: Rect2
@@ -30,6 +31,7 @@ var _state = idle
 func _ready() -> void:
 	size_rect = _get_size_rect()
 	ability_system.set_owner(self)
+	sound_effects.set_owner(self)
 	invincivility_timer.wait_time = invincibility_time_after_damage
 
 
