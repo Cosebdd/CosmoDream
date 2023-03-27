@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=2]
+[gd_scene load_steps=47 format=2]
 
 [ext_resource path="res://sword/Sword.tscn" type="PackedScene" id=1]
 [ext_resource path="res://kinematic-objects/player/Player.gd" type="Script" id=2]
@@ -10,6 +10,9 @@
 [ext_resource path="res://assets/player/SwordSlash.png" type="Texture" id=8]
 [ext_resource path="res://assets/player/ShotgunFire.png" type="Texture" id=9]
 [ext_resource path="res://areas/hurtbox/Hurtbox.tscn" type="PackedScene" id=10]
+[ext_resource path="res://kinematic-objects/player/Sfx.gd" type="Script" id=11]
+[ext_resource path="res://assets/sounds/sfx/shotgun_shot.wav" type="AudioStream" id=12]
+[ext_resource path="res://assets/sounds/sfx/reload.wav" type="AudioStream" id=13]
 
 [sub_resource type="Animation" id=8]
 resource_name = "Attack"
@@ -1129,6 +1132,20 @@ tracks/5/keys = {
 "update": 1,
 "values": [ true, false ]
 }
+tracks/6/type = "method"
+tracks/6/path = NodePath("Sfx")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "play_shot_sound"
+} ]
+}
 
 [sub_resource type="AnimationNodeAnimation" id=17]
 animation = "Attack"
@@ -1153,7 +1170,7 @@ animation = "Shoot"
 
 [sub_resource type="AnimationNodeOneShot" id=20]
 filter_enabled = true
-filters = [ "Body/Polygons/Shotgun/ShotgunFire:frame", "Body/Polygons/Shotgun/ShotgunFire:visible", "Body/Skeleton2D/Torso/ShoulderR/WristR:position", "Body/Skeleton2D/Torso/ShoulderR/WristR:rotation_degrees", "Body/Skeleton2D/Torso/ShoulderR:position", "Body/Skeleton2D/Torso/ShoulderR:rotation_degrees" ]
+filters = ["Body/Polygons/Shotgun/ShotgunFire:frame", "Body/Polygons/Shotgun/ShotgunFire:visible", "Body/Skeleton2D/Torso/ShoulderR/WristR:position", "Body/Skeleton2D/Torso/ShoulderR/WristR:rotation_degrees", "Body/Skeleton2D/Torso/ShoulderR:position", "Body/Skeleton2D/Torso/ShoulderR:rotation_degrees", "Sfx" ]
 fadein_time = 0.04
 fadeout_time = 0.05
 
@@ -1583,6 +1600,18 @@ shape = SubResource( 37 )
 [node name="InvincibilityTimer" type="Timer" parent="."]
 one_shot = true
 
+[node name="Sfx" type="Node2D" parent="."]
+script = ExtResource( 11 )
+
+[node name="ShotgunShot" type="AudioStreamPlayer2D" parent="Sfx"]
+stream = ExtResource( 12 )
+bus = "SoundEffects"
+
+[node name="ShotgunReload" type="AudioStreamPlayer" parent="Sfx"]
+stream = ExtResource( 13 )
+bus = "SoundEffects"
+
 [connection signal="hit_taken" from="Body/Hurtbox" to="." method="_on_Hurtbox_hit_taken"]
+[connection signal="finished" from="Sfx/ShotgunShot" to="Sfx" method="_on_ShotgunShot_finished"]
 
 [editable path="Body/Sword"]
