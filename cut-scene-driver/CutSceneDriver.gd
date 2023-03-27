@@ -4,6 +4,7 @@ class_name CutSceneDriver
 export(int) var textbox_margin = 4
 export(Array, Resource) var scene_sequence
 export(PackedScene) var after_finish_scene
+export(bool) var press_to_proceed = true
 
 onready var background := $Backgound
 onready var overlay := $Camera2D/CanvasLayer/Overlay

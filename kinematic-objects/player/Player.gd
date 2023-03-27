@@ -132,5 +132,5 @@ func _on_Hurtbox_hit_taken(damage: int, object):
 
 
 func die() -> void:
-	get_tree().change_scene("res://world/Level1.tscn")
+	get_tree().change_scene("res://game-over/GameOver.tscn")
 

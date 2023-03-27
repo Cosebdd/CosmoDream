@@ -1,0 +1,14 @@
+[gd_resource type="Resource" load_steps=3 format=2]
+
+[ext_resource path="res://cut-scene-driver/CutSceneData.gd" type="Script" id=1]
+[ext_resource path="res://assets/closing/KillSwitchOff.png" type="Texture" id=2]
+
+[resource]
+script = ExtResource( 1 )
+with_transition_to_next = true
+scene_image = ExtResource( 2 )
+camera_initial_position = Vector2( 30, 30 )
+camera_finish_position = Vector2( 30, 60 )
+image_scale = Vector2( 0.25, 0.25 )
+text = "But this was not the end of the mission though..."
+textbox_height = 20

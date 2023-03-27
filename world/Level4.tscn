@@ -4,7 +4,7 @@
 [ext_resource path="res://kinematic-objects/enemies/spider/VirusSpider.tscn" type="PackedScene" id=2]
 [ext_resource path="res://kinematic-objects/enemies/sphere/SphereRobot.tscn" type="PackedScene" id=3]
 [ext_resource path="res://HUD/ability-cells/AbilityCells.tscn" type="PackedScene" id=4]
-[ext_resource path="res://closing/final_scene/Final_Scene.tscn" type="PackedScene" id=5]
+[ext_resource path="res://game-end/GameEnd.tscn" type="PackedScene" id=5]
 [ext_resource path="res://kinematic-objects/player/Player.tscn" type="PackedScene" id=6]
 [ext_resource path="res://assets/machine/PipesTileset.png" type="Texture" id=7]
 [ext_resource path="res://world/World.gd" type="Script" id=8]
@@ -485,13 +485,13 @@ position = Vector2( 1999, -841 )
 [node name="VirusSpider14" parent="Enemies" instance=ExtResource( 2 )]
 position = Vector2( 3280, -1224 )
 
-[node name="SphereRobot" parent="." instance=ExtResource( 3 )]
+[node name="SphereRobot" parent="Enemies" instance=ExtResource( 3 )]
 position = Vector2( 3279, -1468 )
 
-[node name="SphereRobot2" parent="." instance=ExtResource( 3 )]
+[node name="SphereRobot2" parent="Enemies" instance=ExtResource( 3 )]
 position = Vector2( 2576, -1077 )
 
-[node name="SphereRobot3" parent="." instance=ExtResource( 3 )]
+[node name="SphereRobot3" parent="Enemies" instance=ExtResource( 3 )]
 position = Vector2( 1307, -166 )
 
 [connection signal="body_entered" from="NextLevelArea" to="." method="_on_NextLevelArea_body_entered"]

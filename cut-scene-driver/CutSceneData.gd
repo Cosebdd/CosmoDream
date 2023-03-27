@@ -1,6 +1,7 @@
 extends Resource
 class_name CutSceneData
 
+export(bool) var with_transition_to_next = true
 export(Texture) var scene_image
 export(Vector2) var camera_initial_position = Vector2.ZERO
 export(Vector2) var camera_finish_position = Vector2.ZERO

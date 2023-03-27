@@ -1,0 +1,10 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://cut-scene-driver/CutSceneDriver.tscn" type="PackedScene" id=1]
+[ext_resource path="res://cut-scenes/closing/Scene1.tres" type="Resource" id=2]
+[ext_resource path="res://cut-scenes/closing/Scene2.tres" type="Resource" id=3]
+
+[node name="GameEnd" type="Node"]
+
+[node name="CutSceneDriver" parent="." instance=ExtResource( 1 )]
+scene_sequence = [ ExtResource( 2 ), ExtResource( 3 ) ]
