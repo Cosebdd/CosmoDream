@@ -1,6 +1,6 @@
 extends Control
 
-onready var AbilityCell = preload("res://HUD/ability-cell/AbilityCell.tscn")
+onready var AbilityCell = preload("res://UI/HUD/ability-cell/AbilityCell.tscn")
 onready var container = $CanvasLayer/HBoxContainer
 var _abilities = []
 
