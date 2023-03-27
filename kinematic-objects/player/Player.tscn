@@ -1612,5 +1612,6 @@ stream = ExtResource( 13 )
 bus = "SoundEffects"
 
 [connection signal="hit_taken" from="Body/Hurtbox" to="." method="_on_Hurtbox_hit_taken"]
+[connection signal="finished" from="Sfx/ShotgunShot" to="Sfx" method="_on_ShotgunShot_finished"]
 
 [editable path="Body/Sword"]
