@@ -28,13 +28,11 @@ var _recharge_timer: Timer = null
 var _delay_timer: Timer = null
 var _owner
 var _state = fire
-var max_health: int
-var _health
+var max_health: int = Config.get_ability_max_health()
+var _health = max_health
 
 
 func _ready():
-	max_health = Config.get_ability_max_health()
-	_health = max_health
 	
 	if charge_limit != null and charge_limit > 0 and recharge_time != null and recharge_time > 0.0:
 		_recharge_timer = Timer.new()
@@ -70,6 +68,7 @@ func get_damage(damage: int) -> void:
 func update_health(health: int) -> void:
 	assert(max_health != null, "max_health is null")
 	_health = clamp(health, 0, max_health)
+	print('New health ', _health)
 
 func _execute() -> void:
 	match _state:
