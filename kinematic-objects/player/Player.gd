@@ -29,7 +29,6 @@ var _state = idle
 
 
 func _ready() -> void:
-	print('Test print')
 	size_rect = _get_size_rect()
 	ability_system.set_owner(self)
 	sound_effects.set_owner(self)

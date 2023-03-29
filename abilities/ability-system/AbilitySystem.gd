@@ -12,23 +12,18 @@ var Shooting = preload("res://abilities/list/shooting/Shooting.tscn")
 var Shield = preload("res://abilities/list/shield/Shield.tscn")
 var DubleJump = preload("res://abilities/list/duble-jump/DubleJump.tscn")
 var Strafe = preload("res://abilities/list/strafe/Strafe.tscn")
+var ability_state = WolrdState.get_ability_state()
 
 func _ready() -> void:
 	randomize()
 	Events.connect("user_gets_damage", self, "_on_Player_gets_damage")
-	setup_abilities_from_state()
+	for _i in range(ability_cell_number):
+		ability_list.append(null)
 	
-
-func setup_abilities_from_state():
-	print("Setting up abilities...")
-	ability_list = WolrdState.get_ability_list()
-	for ability_instance in ability_list:
-		if _owner: ability_instance.set_owner(_owner)
-		print('Abilit instance', ability_instance)
-		print('Owner', _owner)
-		add_child(ability_instance)
-	print("Abilities are set")
-		
+	put_ability(Shooting, 0)
+	put_ability(Shield, 1)
+	put_ability(DubleJump, 2)
+	put_ability(Strafe, 3)
 
 
 func _physics_process(_delta) -> void:
@@ -51,9 +46,12 @@ func put_ability(ability, cell: int) -> void:
 	var old_ability: Ability = ability_list[cell]
 	if old_ability is Ability:
 		old_ability.queue_free()
+		
 	
 	var ability_instance = ability.instance()
 	if _owner: ability_instance.set_owner(_owner)
+	var ability_name = ability_instance.get_name()
+	ability_instance.update_health(ability_state[ability_name])
 	ability_list[cell] = ability_instance
 	add_child(ability_instance)
 	_emit_abilities_changes()

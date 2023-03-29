@@ -64,6 +64,8 @@ func is_destroyed() -> bool:
 func get_damage(damage: int) -> void:
 	_health = clamp(_health - damage, 0, max_health)
 
+func update_health(health: int) -> void:
+	_health = clamp(health, 0, max_health)
 
 func _execute() -> void:
 	match _state:
