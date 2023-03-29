@@ -213,7 +213,8 @@ config/icon="res://icon.png"
 [autoload]
 
 Events="*res://global/Events.gd"
-WolrdState="*res://global/WolrdState.gd"
+WorldState="*res://global/WorldState.gd"
+Config="*res://global/Config.gd"
 
 [display]
 

@@ -6,7 +6,7 @@ signal ability_recharge(timeout)
 signal charges_updated(charges)
 
 export(Texture) var picture = preload("res://icon.png")
-export(int) var max_health = 1
+onready var max_health = Config.get_ability_max_health()
 export(bool) var is_internal_ability = false # if true - the ability will be rendered inside of object
 export(int) var level = 1
 export(int) var max_level = 3

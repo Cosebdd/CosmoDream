@@ -33,8 +33,6 @@ func _ready() -> void:
 	ability_system.set_owner(self)
 	sound_effects.set_owner(self)
 	invincivility_timer.wait_time = invincibility_time_after_damage
-	max_health = WolrdState.get_max_health()
-	health = WolrdState.get_player_health()
 	
 	
 
@@ -132,7 +130,7 @@ func _on_Hurtbox_hit_taken(damage: int, object):
 	if not is_invincible:
 		get_damaged(damage, object)
 		Events.emit_signal("user_gets_damage", damage)
-		WolrdState.set_player_health(health)
+		WorldState.set_player_health(health)
 		invincivility_timer.start()
 
 

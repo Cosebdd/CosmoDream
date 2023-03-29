@@ -3,7 +3,8 @@ class_name AbilitySystem
 
 const _ABILITY_ACTION_PREFFIX := "use_ability_"
 
-export(int) var ability_cell_number = 4
+
+onready var ability_cell_number = Config.get_ability_cell_number()
 
 var ability_list = []
 var _owner setget set_owner
@@ -12,7 +13,7 @@ var Shooting = preload("res://abilities/list/shooting/Shooting.tscn")
 var Shield = preload("res://abilities/list/shield/Shield.tscn")
 var DubleJump = preload("res://abilities/list/duble-jump/DubleJump.tscn")
 var Strafe = preload("res://abilities/list/strafe/Strafe.tscn")
-var ability_state = WolrdState.get_ability_state()
+onready var ability_state = WorldState.get_ability_state()
 
 func _ready() -> void:
 	randomize()
