@@ -130,7 +130,6 @@ func _on_Hurtbox_hit_taken(damage: int, object):
 	if not is_invincible:
 		get_damaged(damage, object)
 		Events.emit_signal("user_gets_damage", damage)
-		WorldState.set_player_health(health)
 		invincivility_timer.start()
 
 
