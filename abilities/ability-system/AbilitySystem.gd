@@ -16,13 +16,19 @@ var Strafe = preload("res://abilities/list/strafe/Strafe.tscn")
 func _ready() -> void:
 	randomize()
 	Events.connect("user_gets_damage", self, "_on_Player_gets_damage")
-	for _i in range(ability_cell_number):
-		ability_list.append(null)
+	setup_abilities_from_state()
 	
-	put_ability(Shooting, 0)
-	put_ability(Shield, 1)
-	put_ability(DubleJump, 2)
-	put_ability(Strafe, 3)
+
+func setup_abilities_from_state():
+	print("Setting up abilities...")
+	ability_list = WolrdState.get_ability_list()
+	for ability_instance in ability_list:
+		if _owner: ability_instance.set_owner(_owner)
+		print('Abilit instance', ability_instance)
+		print('Owner', _owner)
+		add_child(ability_instance)
+	print("Abilities are set")
+		
 
 
 func _physics_process(_delta) -> void:
