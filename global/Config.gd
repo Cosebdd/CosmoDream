@@ -2,7 +2,7 @@ extends Node
 
 
 var player_config_data = {
-	"max_health": 3
+	"max_health": 4
 }
 
 var ability_config_data = {

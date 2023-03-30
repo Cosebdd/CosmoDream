@@ -33,6 +33,8 @@ func _ready() -> void:
 	ability_system.set_owner(self)
 	sound_effects.set_owner(self)
 	invincivility_timer.wait_time = invincibility_time_after_damage
+	max_health = Config.get_player_max_health()
+	health = WorldState.get_player_health()
 	
 	
 
