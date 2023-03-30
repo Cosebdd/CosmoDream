@@ -68,7 +68,6 @@ func get_damage(damage: int) -> void:
 func update_health(health: int) -> void:
 	assert(max_health != null, "max_health is null")
 	_health = clamp(health, 0, max_health)
-	print('New health ', _health)
 
 func _execute() -> void:
 	match _state:
