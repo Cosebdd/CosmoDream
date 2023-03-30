@@ -1,11 +1,11 @@
 extends Node
 
 
-var player_config_data = {
+onready var player_config_data = {
 	"max_health": 4
 }
 
-var ability_config_data = {
+onready var ability_config_data = {
 	"ability_cell_number": 4,
 	"ability_max_health": 1
 }
