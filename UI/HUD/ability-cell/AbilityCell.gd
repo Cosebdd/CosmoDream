@@ -15,7 +15,8 @@ func init(ability):
 	picture.texture = _ability.picture
 	
 	hp_box.max_value = float(_ability.max_health)
-	hp_box.value = float(_ability.max_health)
+	hp_box.value = float(_ability._health)
+	if _ability._health <= 0 : _handle_empty_hp()
 	
 	var max_ep_value = float(_ability.charge_limit) if _ability.charge_limit else 0
 	ep_box.max_value = max_ep_value

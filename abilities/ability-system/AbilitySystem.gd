@@ -3,7 +3,8 @@ class_name AbilitySystem
 
 const _ABILITY_ACTION_PREFFIX := "use_ability_"
 
-export(int) var ability_cell_number = 4
+
+onready var ability_cell_number = Config.get_ability_cell_number()
 
 var ability_list = []
 var _owner setget set_owner
@@ -12,6 +13,7 @@ var Shooting = preload("res://abilities/list/shooting/Shooting.tscn")
 var Shield = preload("res://abilities/list/shield/Shield.tscn")
 var DubleJump = preload("res://abilities/list/duble-jump/DubleJump.tscn")
 var Strafe = preload("res://abilities/list/strafe/Strafe.tscn")
+onready var ability_state = WorldState.get_ability_state()
 
 func _ready() -> void:
 	randomize()
@@ -45,9 +47,12 @@ func put_ability(ability, cell: int) -> void:
 	var old_ability: Ability = ability_list[cell]
 	if old_ability is Ability:
 		old_ability.queue_free()
+		
 	
 	var ability_instance = ability.instance()
 	if _owner: ability_instance.set_owner(_owner)
+	var ability_name = ability_instance.get_name()
+	ability_instance.update_health(ability_state[ability_name])
 	ability_list[cell] = ability_instance
 	add_child(ability_instance)
 	_emit_abilities_changes()

@@ -1170,7 +1170,7 @@ animation = "Shoot"
 
 [sub_resource type="AnimationNodeOneShot" id=20]
 filter_enabled = true
-filters = ["Body/Polygons/Shotgun/ShotgunFire:frame", "Body/Polygons/Shotgun/ShotgunFire:visible", "Body/Skeleton2D/Torso/ShoulderR/WristR:position", "Body/Skeleton2D/Torso/ShoulderR/WristR:rotation_degrees", "Body/Skeleton2D/Torso/ShoulderR:position", "Body/Skeleton2D/Torso/ShoulderR:rotation_degrees", "Sfx" ]
+filters = [ "Body/Polygons/Shotgun/ShotgunFire:frame", "Body/Polygons/Shotgun/ShotgunFire:visible", "Body/Skeleton2D/Torso/ShoulderR/WristR:position", "Body/Skeleton2D/Torso/ShoulderR/WristR:rotation_degrees", "Body/Skeleton2D/Torso/ShoulderR:position", "Body/Skeleton2D/Torso/ShoulderR:rotation_degrees", "Sfx" ]
 fadein_time = 0.04
 fadeout_time = 0.05
 
@@ -1211,7 +1211,7 @@ nodes/in_air_state/position = Vector2( 240, 60 )
 nodes/movement/node = SubResource( 12 )
 nodes/movement/position = Vector2( -20, 60 )
 nodes/output/position = Vector2( 1040, 80 )
-node_connections = [ "output", 0, "Shot", "in_air_state", 0, "movement", "in_air_state", 1, "Jump", "movement", 0, "Idle", "movement", 1, "Run", "Shot", 0, "Melee", "Shot", 1, "Shoot", "Melee", 0, "in_air_state", "Melee", 1, "Attack" ]
+node_connections = [ "output", 0, "Shot", "movement", 0, "Idle", "movement", 1, "Run", "in_air_state", 0, "movement", "in_air_state", 1, "Jump", "Shot", 0, "Melee", "Shot", 1, "Shoot", "Melee", 0, "in_air_state", "Melee", 1, "Attack" ]
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 11.5, 29.5 )
@@ -1354,7 +1354,7 @@ visible = false
 show_behind_parent = true
 position = Vector2( 42, -5 )
 frames = SubResource( 36 )
-frame = 2
+frame = 3
 playing = true
 
 [node name="HandR" type="Polygon2D" parent="Body/Polygons"]
@@ -1500,13 +1500,13 @@ bones = [ "Torso", PoolRealArray( 0, 0, 0, 0, 0, 0 ), "Torso/LegL", PoolRealArra
 visible = false
 
 [node name="Torso" type="Bone2D" parent="Body/Skeleton2D"]
-position = Vector2( 1, -24.2129 )
+position = Vector2( 1, -24.8321 )
 rest = Transform2D( 1, 0, 0, 1, 1, -25 )
 default_length = 4.0
 
 [node name="LegL" type="Bone2D" parent="Body/Skeleton2D/Torso"]
-position = Vector2( -4, -0.787074 )
-rotation = 1.63122
+position = Vector2( -4, -0.167867 )
+rotation = 1.58368
 rest = Transform2D( -4.37114e-08, 1, -1, -4.37114e-08, -4, 0 )
 default_length = 13.0
 __meta__ = {
@@ -1516,7 +1516,7 @@ __meta__ = {
 
 [node name="FootL" type="Bone2D" parent="Body/Skeleton2D/Torso/LegL"]
 position = Vector2( 13, -7.15256e-07 )
-rotation = -0.0604251
+rotation = -0.0128875
 rest = Transform2D( 1, 0, 0, 1, 13, -7.15256e-07 )
 default_length = 10.0
 __meta__ = {
@@ -1531,7 +1531,7 @@ default_length = 5.0
 
 [node name="ShoulderR" type="Bone2D" parent="Body/Skeleton2D/Torso"]
 position = Vector2( 8, -17 )
-rotation = -0.0436814
+rotation = -0.00931639
 rest = Transform2D( 1, 0, 0, 1, 8, -17 )
 __meta__ = {
 "_edit_bone_": true,
@@ -1549,7 +1549,7 @@ __meta__ = {
 
 [node name="ShoulderL" type="Bone2D" parent="Body/Skeleton2D/Torso"]
 position = Vector2( -12, -17 )
-rotation = 0.0413868
+rotation = 0.00882699
 rest = Transform2D( 1, 0, 0, 1, -12, -17 )
 __meta__ = {
 "_edit_bone_": true,
@@ -1558,7 +1558,7 @@ __meta__ = {
 
 [node name="WristL" type="Bone2D" parent="Body/Skeleton2D/Torso/ShoulderL"]
 position = Vector2( 0, 18 )
-rotation = 1.52941
+rotation = 1.56197
 rest = Transform2D( -4.37114e-08, 1, -1, -4.37114e-08, 0, 18 )
 default_length = 11.0
 __meta__ = {
@@ -1566,8 +1566,8 @@ __meta__ = {
 }
 
 [node name="LegR" type="Bone2D" parent="Body/Skeleton2D/Torso"]
-position = Vector2( 3, -0.787073 )
-rotation = 1.51037
+position = Vector2( 3, -0.167866 )
+rotation = 1.55791
 rest = Transform2D( -4.37114e-08, 1, -1, -4.37114e-08, 3, 9.53674e-07 )
 default_length = 13.0
 __meta__ = {
@@ -1577,7 +1577,7 @@ __meta__ = {
 
 [node name="FootR" type="Bone2D" parent="Body/Skeleton2D/Torso/LegR"]
 position = Vector2( 13, -7.15256e-07 )
-rotation = 0.0604251
+rotation = 0.0128875
 rest = Transform2D( 1, 0, 0, 1, 13, -7.15256e-07 )
 default_length = 10.0
 __meta__ = {

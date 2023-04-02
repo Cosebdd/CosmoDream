@@ -6,7 +6,6 @@ signal ability_recharge(timeout)
 signal charges_updated(charges)
 
 export(Texture) var picture = preload("res://icon.png")
-export(int) var max_health = 1
 export(bool) var is_internal_ability = false # if true - the ability will be rendered inside of object
 export(int) var level = 1
 export(int) var max_level = 3
@@ -29,10 +28,12 @@ var _recharge_timer: Timer = null
 var _delay_timer: Timer = null
 var _owner
 var _state = fire
+var max_health: int = Config.get_ability_max_health()
 var _health = max_health
 
 
 func _ready():
+	
 	if charge_limit != null and charge_limit > 0 and recharge_time != null and recharge_time > 0.0:
 		_recharge_timer = Timer.new()
 		_recharge_timer.wait_time = recharge_time
@@ -64,6 +65,9 @@ func is_destroyed() -> bool:
 func get_damage(damage: int) -> void:
 	_health = clamp(_health - damage, 0, max_health)
 
+func update_health(health: int) -> void:
+	assert(max_health != null, "max_health is null")
+	_health = clamp(health, 0, max_health)
 
 func _execute() -> void:
 	match _state:
