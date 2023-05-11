@@ -1,4 +1,4 @@
-[gd_scene load_steps=87 format=2]
+[gd_scene load_steps=88 format=2]
 
 [ext_resource path="res://assets/nature/NatureTileMap.png" type="Texture" id=1]
 [ext_resource path="res://assets/nature/Tree0.png" type="Texture" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://world/World.gd" type="Script" id=8]
 [ext_resource path="res://kinematic-objects/enemies/spider/VirusSpider.tscn" type="PackedScene" id=9]
 [ext_resource path="res://kinematic-objects/enemies/sphere/SphereRobot.tscn" type="PackedScene" id=10]
+[ext_resource path="res://assets/sounds/music/Levels123.mp3" type="AudioStream" id=11]
 
 [sub_resource type="ConvexPolygonShape2D" id=4]
 points = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
@@ -987,6 +988,7 @@ extents = Vector2( 303, 502.75 )
 [node name="World" type="Node2D"]
 script = ExtResource( 8 )
 nextScene = ExtResource( 5 )
+music = ExtResource( 11 )
 
 [node name="HUD" parent="." instance=ExtResource( 4 )]
 

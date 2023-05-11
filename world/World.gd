@@ -1,12 +1,18 @@
 extends Node2D
 
 export(PackedScene) var nextScene
+export(AudioStreamMP3) var music
 
 onready var player := $Player
 onready var camera := $Camera2D
 onready var transitionScene: = preload("res://UI/LevelTransition.tscn")
+onready var music_player := AudioStreamPlayer.new()
 
 func _ready() -> void:
+	if music != null:
+		add_child(music_player)
+		music_player.stream = music
+		music_player.playing = true
 	player.connect_camera(camera)
 	add_child(transitionScene.instance())
 

@@ -5,6 +5,7 @@ export(int) var textbox_margin = 4
 export(Array, Resource) var scene_sequence
 export(PackedScene) var after_finish_scene
 export(bool) var press_to_proceed = true
+export(AudioStreamMP3) var music
 
 onready var background := $Backgound
 onready var overlay := $Camera2D/CanvasLayer/Overlay
@@ -14,11 +15,15 @@ onready var text_container := $Camera2D/CanvasLayer/TextContainer
 onready var text := $Camera2D/CanvasLayer/TextContainer/SceneText
 onready var press_any_key := $Camera2D/CanvasLayer/TextContainer/PressAnyKeyCaption
 onready var camera := $Camera2D
+onready var audio := $AudioStreamPlayer
 
 var _current_scene
 
 
 func _ready() -> void:
+	if audio != null:
+		audio.stream = music
+		audio.playing = true
 	_switch_scene()
 
 
