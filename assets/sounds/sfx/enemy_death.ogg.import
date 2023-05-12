@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/enemy_death.ogg-02093681f720d52d1984d17a586bb3c4.oggstr"
+
+[deps]
+
+source_file="res://assets/sounds/sfx/enemy_death.ogg"
+dest_files=[ "res://.import/enemy_death.ogg-02093681f720d52d1984d17a586bb3c4.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

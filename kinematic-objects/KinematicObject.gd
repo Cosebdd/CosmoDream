@@ -1,6 +1,8 @@
 extends KinematicBody2D
 class_name KinematicObject
 
+signal on_damage_taken
+
 export(int) var max_speed = 100
 export(int) var acceleration = 1500
 export(int) var friction = 1500
@@ -52,6 +54,8 @@ func die() -> void:
 
 func get_damaged(damage: int, damage_deeler) -> void:
 	if is_invincible: return
+	
+	emit_signal("on_damage_taken")
 	
 	_hit_transition(damage_deeler)
 	health = clamp(health - damage, 0, max_health)

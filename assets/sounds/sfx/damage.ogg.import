@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/damage.ogg-68610043262708ca4339367c28b18d91.oggstr"
+
+[deps]
+
+source_file="res://assets/sounds/sfx/damage.ogg"
+dest_files=[ "res://.import/damage.ogg-68610043262708ca4339367c28b18d91.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

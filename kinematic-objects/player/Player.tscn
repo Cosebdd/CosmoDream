@@ -1,4 +1,4 @@
-[gd_scene load_steps=46 format=2]
+[gd_scene load_steps=50 format=2]
 
 [ext_resource path="res://sword/Sword.tscn" type="PackedScene" id=1]
 [ext_resource path="res://kinematic-objects/player/Player.gd" type="Script" id=2]
@@ -12,6 +12,10 @@
 [ext_resource path="res://areas/hurtbox/Hurtbox.tscn" type="PackedScene" id=10]
 [ext_resource path="res://kinematic-objects/player/Sfx.gd" type="Script" id=11]
 [ext_resource path="res://assets/sounds/sfx/shotgun_shot.ogg" type="AudioStream" id=12]
+[ext_resource path="res://assets/sounds/sfx/sword.ogg" type="AudioStream" id=13]
+[ext_resource path="res://assets/sounds/sfx/jump.ogg" type="AudioStream" id=14]
+[ext_resource path="res://assets/sounds/sfx/hurt.ogg" type="AudioStream" id=15]
+[ext_resource path="res://assets/sounds/sfx/dash.ogg" type="AudioStream" id=16]
 
 [sub_resource type="Animation" id=8]
 resource_name = "Attack"
@@ -99,6 +103,20 @@ tracks/6/keys = {
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
 "values": [ true, false ]
+}
+tracks/7/type = "method"
+tracks/7/path = NodePath("Sfx")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "play_sword_sound"
+} ]
 }
 
 [sub_resource type="Animation" id=4]
@@ -809,6 +827,18 @@ tracks/19/keys = {
 "update": 0,
 "values": [ 0.0 ]
 }
+tracks/20/type = "value"
+tracks/20/path = NodePath("Sfx/Sword:playing")
+tracks/20/interp = 1
+tracks/20/loop_wrap = true
+tracks/20/imported = false
+tracks/20/enabled = true
+tracks/20/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
 
 [sub_resource type="Animation" id=6]
 resource_name = "Run"
@@ -1157,7 +1187,7 @@ animation = "Jump"
 
 [sub_resource type="AnimationNodeOneShot" id=21]
 filter_enabled = true
-filters = [ "Body/Polygons/Sword/Splash:frame", "Body/Polygons/Sword/Splash:playing", "Body/Polygons/Sword/Splash:visible", "Body/Skeleton2D/Torso/ShoulderL/WristL:position", "Body/Skeleton2D/Torso/ShoulderL/WristL:rotation_degrees", "Body/Skeleton2D/Torso/ShoulderL:position", "Body/Skeleton2D/Torso/ShoulderL:rotation_degrees" ]
+filters = [ "Body/Polygons/Sword/Splash:frame", "Body/Polygons/Sword/Splash:playing", "Body/Polygons/Sword/Splash:visible", "Body/Skeleton2D/Torso/ShoulderL/WristL:position", "Body/Skeleton2D/Torso/ShoulderL/WristL:rotation_degrees", "Body/Skeleton2D/Torso/ShoulderL:position", "Body/Skeleton2D/Torso/ShoulderL:rotation_degrees", "Sfx", "Sfx/SoundPlayer", "Sfx/SoundPlayer:playing", "Sfx/Sword", "Sfx/Sword:playing" ]
 fadein_time = 0.0
 fadeout_time = 0.0
 
@@ -1190,7 +1220,7 @@ input_1/name = "run"
 input_1/auto_advance = false
 
 [sub_resource type="AnimationNodeBlendTree" id=13]
-graph_offset = Vector2( -247.524, 12.1472 )
+graph_offset = Vector2( -269, -13 )
 nodes/Attack/node = SubResource( 17 )
 nodes/Attack/position = Vector2( 340, 280 )
 nodes/Idle/node = SubResource( 10 )
@@ -1352,7 +1382,6 @@ visible = false
 show_behind_parent = true
 position = Vector2( 42, -5 )
 frames = SubResource( 36 )
-frame = 2
 playing = true
 
 [node name="HandR" type="Polygon2D" parent="Body/Polygons"]
@@ -1601,7 +1630,23 @@ script = ExtResource( 11 )
 stream = ExtResource( 12 )
 bus = "SoundEffects"
 
+[node name="Sword" type="AudioStreamPlayer" parent="Sfx"]
+stream = ExtResource( 13 )
+bus = "SoundEffects"
+
+[node name="Jump" type="AudioStreamPlayer" parent="Sfx"]
+stream = ExtResource( 14 )
+bus = "SoundEffects"
+
+[node name="Hurt" type="AudioStreamPlayer" parent="Sfx"]
+stream = ExtResource( 15 )
+bus = "SoundEffects"
+
+[node name="Dash" type="AudioStreamPlayer" parent="Sfx"]
+stream = ExtResource( 16 )
+bus = "SoundEffects"
+
+[connection signal="player_jumped" from="." to="Sfx" method="_on_player_jumped"]
 [connection signal="hit_taken" from="Body/Hurtbox" to="." method="_on_Hurtbox_hit_taken"]
-[connection signal="finished" from="Sfx/ShotgunShot" to="Sfx" method="_on_ShotgunShot_finished"]
 
 [editable path="Body/Sword"]

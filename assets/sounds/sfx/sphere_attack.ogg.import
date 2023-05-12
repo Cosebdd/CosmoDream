@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/sphere_attack.ogg-03e380564a2d11a7ac5b7c78fb7a41dd.oggstr"
+
+[deps]
+
+source_file="res://assets/sounds/sfx/sphere_attack.ogg"
+dest_files=[ "res://.import/sphere_attack.ogg-03e380564a2d11a7ac5b7c78fb7a41dd.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

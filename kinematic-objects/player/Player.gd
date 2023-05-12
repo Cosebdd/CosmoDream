@@ -1,6 +1,8 @@
 extends KinematicObject
 class_name Player
 
+signal player_jumped
+
 onready var animation_player := $AnimationPlayer
 onready var animation_tree := $AnimationTree
 onready var body := $Body
@@ -61,6 +63,7 @@ func _physics_process(delta) -> void:
 		velocity.y = -min_jump_height
 	
 	if Input.is_action_just_pressed("jump") and jumps_count > 0:
+		emit_signal("player_jumped")
 		jump()
 	
 	process(input, delta)
