@@ -1,6 +1,5 @@
 extends Node
 
-
 var ability_cell_number = Config.get_ability_cell_number()
 var ability_max_health = Config.get_ability_max_health()
 var player_max_health = Config.get_player_max_health()
@@ -36,3 +35,14 @@ func get_ability_state():
 
 func get_player_health():
 	return player_state["health"]
+
+func reset_abilities():
+	ability_cell_number = Config.get_ability_cell_number()
+	ability_max_health = Config.get_ability_max_health()
+	player_max_health = Config.get_player_max_health()
+	ability_state = {
+	"ShootingAbility": ability_max_health, 
+	"Shield": ability_max_health, 
+	"DubleJump": ability_max_health, 
+	"StrafeAbility": ability_max_health
+}

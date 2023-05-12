@@ -21,6 +21,7 @@ var _current_scene
 
 
 func _ready() -> void:
+	WorldState.reset_abilities()
 	if audio != null:
 		audio.stream = music
 		audio.playing = true
