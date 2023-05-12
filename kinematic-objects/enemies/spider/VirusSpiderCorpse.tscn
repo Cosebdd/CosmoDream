@@ -1,0 +1,210 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://assets/enemies/SpiderAtlas.png" type="Texture" id=1]
+[ext_resource path="res://assets/enemies/BloodParticle.png" type="Texture" id=2]
+[ext_resource path="res://explosion/Explosion.tscn" type="PackedScene" id=3]
+[ext_resource path="res://assets/sounds/sfx/enemy_death.ogg" type="AudioStream" id=8]
+
+[sub_resource type="CapsuleShape2D" id=5]
+radius = 6.0
+height = 26.0
+
+[sub_resource type="SegmentShape2D" id=6]
+a = Vector2( 20, -17 )
+b = Vector2( 5, 4 )
+
+[sub_resource type="SegmentShape2D" id=7]
+b = Vector2( 6, 25 )
+
+[sub_resource type="SegmentShape2D" id=8]
+a = Vector2( -4, 4 )
+b = Vector2( -18, -17 )
+
+[sub_resource type="SegmentShape2D" id=9]
+a = Vector2( -36, -1 )
+b = Vector2( -42, 25 )
+
+[sub_resource type="ParticlesMaterial" id=11]
+emission_shape = 1
+emission_sphere_radius = 0.01
+flag_disable_z = true
+spread = 166.18
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 48.16
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+linear_accel = -9.9
+scale = 1.46
+color = Color( 0, 0, 0, 1 )
+hue_variation = -1.0
+
+[sub_resource type="Animation" id=12]
+resource_name = "Decay"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 3 ),
+"transitions": PoolRealArray( 1.80251, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Particles2D:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 3 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "queue_free"
+} ]
+}
+
+[node name="VirusSpiderCorpse" type="Node2D"]
+
+[node name="Body" type="Node2D" parent="."]
+
+[node name="Body" type="RigidBody2D" parent="Body"]
+position = Vector2( 0, -27.078 )
+linear_velocity = Vector2( 0, -100 )
+angular_velocity = 10.0
+
+[node name="Body" type="Polygon2D" parent="Body/Body"]
+position = Vector2( -8, -19 )
+texture = ExtResource( 1 )
+polygon = PoolVector2Array( 8, 0, 2, 4, 2, 12, 5, 14, 7, 15, 4, 17, 4, 38, 13, 38, 13, 37, 12, 35, 12, 20, 13, 19, 13, 17, 10, 15, 13, 13, 14, 12, 14, 4, 12, 2, 9, 0 )
+uv = PoolVector2Array( 8, 0, 2, 4, 2, 12, 5, 14, 7, 15, 4, 17, 4, 38, 13, 38, 13, 37, 12, 35, 12, 20, 13, 19, 13, 17, 10, 15, 13, 13, 14, 12, 14, 4, 12, 2, 9, 0 )
+bones = [ "Spine", PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ), "Spine/LegRight", PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ), "Spine/LegRight/FootRight", PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ), "Spine/LegLeft", PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ), "Spine/LegLeft/FootLeft", PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ) ]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Body/Body"]
+shape = SubResource( 5 )
+
+[node name="LeftLeg" type="Node2D" parent="Body"]
+
+[node name="LeftLeg" type="RigidBody2D" parent="Body/LeftLeg"]
+linear_velocity = Vector2( -100, 0 )
+
+[node name="LegLeft" type="Polygon2D" parent="Body/LeftLeg/LeftLeg"]
+position = Vector2( -2, 3 )
+rotation = 0.606433
+scale = Vector2( 1, -1 )
+texture = ExtResource( 1 )
+polygon = PoolVector2Array( 0, 10, 1, 10, 1, 36, 0, 36 )
+uv = PoolVector2Array( 0, 10, 1, 10, 1, 36, 0, 36 )
+bones = [ "Spine", PoolRealArray( 0, 0, 0, 0 ), "Spine/LegRight", PoolRealArray( 0, 0, 0, 0 ), "Spine/LegRight/FootRight", PoolRealArray( 0, 0, 0, 0 ), "Spine/LegLeft", PoolRealArray( 1, 1, 1, 1 ), "Spine/LegLeft/FootLeft", PoolRealArray( 0, 0, 0, 0 ) ]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Body/LeftLeg/LeftLeg"]
+position = Vector2( -1, -9 )
+shape = SubResource( 6 )
+
+[node name="LeftFoot" type="RigidBody2D" parent="Body/LeftLeg"]
+
+[node name="FootLeft" type="Polygon2D" parent="Body/LeftLeg/LeftFoot"]
+position = Vector2( 17, -35 )
+rotation = 2.92347
+scale = Vector2( 1, -1 )
+texture = ExtResource( 1 )
+polygon = PoolVector2Array( 0, 10, 1, 10, 1, 36, 0, 36 )
+uv = PoolVector2Array( 0, 10, 1, 10, 1, 36, 0, 36 )
+bones = [ "Spine", PoolRealArray( 0, 0, 0, 0 ), "Spine/LegRight", PoolRealArray( 0, 0, 0, 0 ), "Spine/LegRight/FootRight", PoolRealArray( 0, 0, 0, 0 ), "Spine/LegLeft", PoolRealArray( 0, 0, 0, 0 ), "Spine/LegLeft/FootLeft", PoolRealArray( 1, 1, 1, 1 ) ]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Body/LeftLeg/LeftFoot"]
+position = Vector2( 18, -25 )
+shape = SubResource( 7 )
+
+[node name="PinJoint2D" type="PinJoint2D" parent="Body/LeftLeg"]
+position = Vector2( 18, -25 )
+node_a = NodePath("../LeftLeg")
+node_b = NodePath("../LeftFoot")
+
+[node name="RightLeg" type="Node2D" parent="Body"]
+
+[node name="RightLeg" type="RigidBody2D" parent="Body/RightLeg"]
+linear_velocity = Vector2( 100, 0 )
+
+[node name="LegRight" type="Polygon2D" parent="Body/RightLeg/RightLeg"]
+position = Vector2( 0, 4 )
+rotation = -0.562627
+scale = Vector2( 1, -1 )
+texture = ExtResource( 1 )
+polygon = PoolVector2Array( 0, 10, 1, 10, 0.999992, 21.0005, 1, 36, 0, 36 )
+uv = PoolVector2Array( 0, 10, 1, 10, 0.999992, 21.0005, 1, 36, 0, 36 )
+bones = [ "Spine", PoolRealArray( 0, 0, 0, 0, 0 ), "Spine/LegRight", PoolRealArray( 1, 1, 1, 1, 1 ), "Spine/LegRight/FootRight", PoolRealArray( 0, 0, 0, 0, 0 ), "Spine/LegLeft", PoolRealArray( 0, 0, 0, 0, 0 ), "Spine/LegLeft/FootLeft", PoolRealArray( 0, 0, 0, 0, 0 ) ]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Body/RightLeg/RightLeg"]
+position = Vector2( -1, -9 )
+shape = SubResource( 8 )
+
+[node name="RigthFoot" type="RigidBody2D" parent="Body/RightLeg"]
+
+[node name="FootRight" type="Polygon2D" parent="Body/RightLeg/RigthFoot"]
+position = Vector2( -16, -35 )
+rotation = -2.91379
+scale = Vector2( 1, -1 )
+texture = ExtResource( 1 )
+polygon = PoolVector2Array( 0, 10, 1, 10, 1, 36, 0, 36 )
+uv = PoolVector2Array( 0, 10, 1, 10, 1, 36, 0, 36 )
+bones = [ "Spine", PoolRealArray( 0, 0, 0, 0 ), "Spine/LegRight", PoolRealArray( 0, 0, 0, 0 ), "Spine/LegRight/FootRight", PoolRealArray( 1, 1, 1, 1 ), "Spine/LegLeft", PoolRealArray( 0, 0, 0, 0 ), "Spine/LegLeft/FootLeft", PoolRealArray( 0, 0, 0, 0 ) ]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Body/RightLeg/RigthFoot"]
+position = Vector2( 18, -25 )
+shape = SubResource( 9 )
+
+[node name="PinJoint2D" type="PinJoint2D" parent="Body/RightLeg"]
+position = Vector2( -18, -25 )
+node_a = NodePath("../RightLeg")
+node_b = NodePath("../RigthFoot")
+
+[node name="Particles2D" type="Particles2D" parent="."]
+position = Vector2( 0, -27 )
+emitting = false
+amount = 50
+lifetime = 0.7
+one_shot = true
+speed_scale = 2.76
+explosiveness = 0.3
+process_material = SubResource( 11 )
+texture = ExtResource( 2 )
+
+[node name="DeathSoundPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 8 )
+autoplay = true
+
+[node name="Explosion" parent="." instance=ExtResource( 3 )]
+position = Vector2( 0, -17 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "Decay"
+anims/Decay = SubResource( 12 )

@@ -15,6 +15,7 @@ export(int) var min_jump_height = 30
 export(int) var jump_acceleration_point = 10
 export(int) var max_jumps = 1
 export(bool) var is_invincible = false
+export(PackedScene) var instantiate_on_death;
 
 var velocity := Vector2.ZERO
 onready var jumps_count = max_jumps
@@ -49,6 +50,11 @@ func handle_damage(damage: int) -> void:
 
 
 func die() -> void:
+	if instantiate_on_death != null:
+		var instance = instantiate_on_death.instance()
+		instantiate_on_death = null
+		instance.position = position
+		get_parent().add_child(instance)
 	queue_free()
 
 
