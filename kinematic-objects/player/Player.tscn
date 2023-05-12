@@ -11,7 +11,7 @@
 [ext_resource path="res://assets/player/ShotgunFire.png" type="Texture" id=9]
 [ext_resource path="res://areas/hurtbox/Hurtbox.tscn" type="PackedScene" id=10]
 [ext_resource path="res://kinematic-objects/player/Sfx.gd" type="Script" id=11]
-[ext_resource path="res://assets/sounds/sfx/shotgun_shot.wav" type="AudioStream" id=12]
+[ext_resource path="res://assets/sounds/sfx/shotgun_shot.ogg" type="AudioStream" id=12]
 
 [sub_resource type="Animation" id=8]
 resource_name = "Attack"
