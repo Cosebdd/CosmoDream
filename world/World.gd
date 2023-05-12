@@ -26,5 +26,6 @@ func _on_NextLevelArea_body_entered(body):
 		add_child(final_transition)
 
 func _on_player_death():
+	get_tree().paused = true
 	var death_transition = deathTransitionScene.instance()
 	add_child(death_transition)

@@ -12,4 +12,5 @@ func _ready():
 
 func _on_AnimationPlayer_animation_finished(anim_name):
 	if anim_name == "Finish" and next_scene != null:
+		get_tree().paused = false
 		get_tree().change_scene_to(next_scene)
