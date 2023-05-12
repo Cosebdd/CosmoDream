@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://assets/enemies/SphereRobotAtlas.png" type="Texture" id=1]
 [ext_resource path="res://kinematic-objects/enemies/sphere/SphereRobot.gd" type="Script" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://areas/hurtbox/Hurtbox.tscn" type="PackedScene" id=6]
 [ext_resource path="res://laser-beem/LaserBeem.tscn" type="PackedScene" id=7]
 [ext_resource path="res://assets/sounds/sfx/damage.ogg" type="AudioStream" id=8]
+[ext_resource path="res://kinematic-objects/enemies/sphere/SphereRobotCorpse.tscn" type="PackedScene" id=9]
 [ext_resource path="res://assets/sounds/sfx/sphere_attack.ogg" type="AudioStream" id=10]
 [ext_resource path="res://kinematic-objects/enemies/sphere/Sfx.gd" type="Script" id=11]
 
@@ -286,6 +287,7 @@ tracks/3/keys = {
 [node name="SphereRobot" type="KinematicBody2D"]
 position = Vector2( 0, -15 )
 script = ExtResource( 2 )
+instantiate_on_death = ExtResource( 9 )
 patrol_delay = 4.0
 attack_delay = 4.0
 
