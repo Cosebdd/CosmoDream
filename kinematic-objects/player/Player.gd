@@ -2,6 +2,7 @@ extends KinematicObject
 class_name Player
 
 signal player_jumped
+signal on_player_death
 
 onready var animation_player := $AnimationPlayer
 onready var animation_tree := $AnimationTree
@@ -139,5 +140,4 @@ func _on_Hurtbox_hit_taken(damage: int, object):
 
 
 func die() -> void:
-	get_tree().change_scene("res://game-over/GameOver.tscn")
-
+	emit_signal("on_player_death")
