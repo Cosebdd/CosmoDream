@@ -14,7 +14,8 @@ func _process(_delta) -> void:
 		_owner.size_rect.position.x + _owner.size_rect.size.x / 2,
 		_owner.size_rect.position.y + _owner.size_rect.size.y / 2
 	)
-	shield_sound.playing = active
+	if shield_sound.playing != active: #assigning true to playing will always reset the sound, this condition lets it play uninterrupted
+		shield_sound.playing = active
 	sprite.visible = active
 	collision.disabled = !active
 	_owner.set_invincibility(active)

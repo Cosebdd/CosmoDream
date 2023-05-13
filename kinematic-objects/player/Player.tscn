@@ -1220,7 +1220,7 @@ input_1/name = "run"
 input_1/auto_advance = false
 
 [sub_resource type="AnimationNodeBlendTree" id=13]
-graph_offset = Vector2( -269, -13 )
+graph_offset = Vector2( -403, -44 )
 nodes/Attack/node = SubResource( 17 )
 nodes/Attack/position = Vector2( 340, 280 )
 nodes/Idle/node = SubResource( 10 )
@@ -1240,7 +1240,7 @@ nodes/in_air_state/position = Vector2( 240, 60 )
 nodes/movement/node = SubResource( 12 )
 nodes/movement/position = Vector2( -20, 60 )
 nodes/output/position = Vector2( 1040, 80 )
-node_connections = [ "movement", 0, "Idle", "movement", 1, "Run", "in_air_state", 0, "movement", "in_air_state", 1, "Jump", "Melee", 0, "in_air_state", "Melee", 1, "Attack", "Shot", 0, "Melee", "Shot", 1, "Shoot", "output", 0, "Shot" ]
+node_connections = [ "output", 0, "Shot", "movement", 0, "Idle", "movement", 1, "Run", "in_air_state", 0, "movement", "in_air_state", 1, "Jump", "Melee", 0, "in_air_state", "Melee", 1, "Attack", "Shot", 0, "Melee", "Shot", 1, "Shoot" ]
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 11.5, 29.5 )
@@ -1382,6 +1382,7 @@ visible = false
 show_behind_parent = true
 position = Vector2( 42, -5 )
 frames = SubResource( 36 )
+frame = 2
 playing = true
 
 [node name="HandR" type="Polygon2D" parent="Body/Polygons"]
@@ -1632,10 +1633,12 @@ bus = "SoundEffects"
 
 [node name="Sword" type="AudioStreamPlayer" parent="Sfx"]
 stream = ExtResource( 13 )
+volume_db = -5.0
 bus = "SoundEffects"
 
 [node name="Jump" type="AudioStreamPlayer" parent="Sfx"]
 stream = ExtResource( 14 )
+volume_db = -3.0
 bus = "SoundEffects"
 
 [node name="Hurt" type="AudioStreamPlayer" parent="Sfx"]
