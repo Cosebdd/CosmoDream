@@ -67,7 +67,7 @@ func get_damaged(damage: int, damage_deeler) -> void:
 	health = clamp(health - damage, 0, max_health)
 	
 	if health <= 0:
-		die()
+		call_deferred("die")
 
 
 func set_invincibility(_invincibility: bool) -> void:
