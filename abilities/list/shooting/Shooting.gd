@@ -9,23 +9,31 @@ export(float) var x_spawn_offset = 0.0
 
 var Bullet = preload("res://abilities/list/shooting/bullet/Bullet.tscn")
 
+onready var reload_sound: AudioStreamPlayer = $ReloadSound
+
+var _reload_timer: Timer = null
+
 signal shot_started;
 
 func _ready():
 	randomize()
 	var player = get_tree().root.find_node("Player", true, false)
 	connect("shot_started", player, "_on_Shot_Started")
+	_reload_timer = Timer.new()
+	_reload_timer.wait_time = recharge_time - reload_sound.stream.get_length()
+	_reload_timer.one_shot = true
+	_reload_timer.connect("timeout", self, "_play_reload_sound")
+	add_child(_reload_timer)
 
 func _fire_implementation():
 	_shot()
-
+	_reload_timer.start()
 
 func _shot() -> void:
 	emit_signal("shot_started")
 	for _i in range(fragment_number):
 		var bullet = _generate_fragment()
 		get_tree().root.get_child(0).add_child(bullet)
-
 
 func _generate_fragment() -> Bullet:
 	var angle_sign = randi() % 2
@@ -51,3 +59,7 @@ func _generate_fragment() -> Bullet:
 	bullet.global_position = global_position + owner_center_position
 	
 	return bullet
+
+func _play_reload_sound():
+	if not is_destroyed():
+		reload_sound.play()
