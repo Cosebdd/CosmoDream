@@ -97,6 +97,9 @@ func _fire_implementation() -> void:
 	print("Implement _fire_implementation method for your Ability")
 
 func _fire() -> void:
+	if _charges != null and _charges > 0 and fire_delay != null:
+		_fire_implementation()
+
 	if _charges != null:
 		_charges = clamp(_charges - 1, 0, charge_limit)
 		emit_signal("charges_updated", _charges)
@@ -107,8 +110,7 @@ func _fire() -> void:
 	
 	if fire_delay != null:
 		_state = delay
-	
-	_fire_implementation()
+
 
 
 func upgrade(levels: int) -> void:
@@ -127,7 +129,7 @@ func activate() -> void:
 
 func deactivate() -> void:
 	active = false
-	if _recharge_timer != null: _recharge_timer.start()
+	if _recharge_timer != null and _state != full_recharge: _recharge_timer.start()
 
 
 func _handle_recharge_timeout() -> void:
