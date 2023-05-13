@@ -41,8 +41,11 @@ func reset_abilities():
 	ability_max_health = Config.get_ability_max_health()
 	player_max_health = Config.get_player_max_health()
 	ability_state = {
-	"ShootingAbility": ability_max_health, 
-	"Shield": ability_max_health, 
-	"DubleJump": ability_max_health, 
-	"StrafeAbility": ability_max_health
-}
+		"ShootingAbility": ability_max_health, 
+		"Shield": ability_max_health, 
+		"DubleJump": ability_max_health, 
+		"StrafeAbility": ability_max_health
+	}
+	player_state = {
+		"health": player_max_health
+	}
