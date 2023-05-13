@@ -17,7 +17,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Color( 1, 1, 1, 1 ) ]
+"values": [ Color( 1, 1, 1, 0 ) ]
 }
 
 [sub_resource type="Animation" id=3]
@@ -75,6 +75,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 
 [node name="Label" type="Label" parent="CenterContainer"]
+modulate = Color( 1, 1, 1, 0 )
 margin_left = 115.0
 margin_top = 85.0
 margin_right = 205.0
