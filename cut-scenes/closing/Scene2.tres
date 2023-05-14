@@ -10,5 +10,5 @@ scene_image = ExtResource( 2 )
 camera_initial_position = Vector2( 30, 30 )
 camera_finish_position = Vector2( 30, 60 )
 image_scale = Vector2( 0.25, 0.25 )
-text = "But this was not the end of the mission though..."
+text = "'Morpheus' was saved, and the surviving crew members continued the mission."
 textbox_height = 20

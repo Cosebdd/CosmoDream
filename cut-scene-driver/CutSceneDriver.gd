@@ -1,6 +1,8 @@
 extends Control
 class_name CutSceneDriver
 
+signal cut_scene_over
+
 export(int) var textbox_margin = 4
 export(Array, Resource) var scene_sequence
 export(PackedScene) var after_finish_scene
@@ -74,6 +76,7 @@ func _finish_cut_scene() -> void:
 
 func _switch_scene() -> void:
 	if scene_sequence.size() == 0:
+		emit_signal("cut_scene_over")
 		if after_finish_scene:
 			get_tree().change_scene_to(after_finish_scene)
 		return

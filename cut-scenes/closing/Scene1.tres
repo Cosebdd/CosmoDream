@@ -10,5 +10,5 @@ scene_image = ExtResource( 2 )
 camera_initial_position = Vector2( 30, 0 )
 camera_finish_position = Vector2( 30, 30 )
 image_scale = Vector2( 0.25, 0.25 )
-text = "So the Kill Switch has been turned on and the \"Morpheus\" was saved!"
+text = "So the crew reached the kill switch."
 textbox_height = 20
