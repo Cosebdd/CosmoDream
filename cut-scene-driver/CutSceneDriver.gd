@@ -31,7 +31,7 @@ func _ready() -> void:
 
 
 func _input(event) -> void:
-	if event.is_pressed():
+	if event.is_pressed() and event.button_index != BUTTON_WHEEL_UP and event.button_index != BUTTON_WHEEL_DOWN:
 		if animation_player.current_animation != "finish" and animation_player.is_playing():
 			_finish_transition()
 			return
