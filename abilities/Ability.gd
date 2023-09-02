@@ -53,7 +53,7 @@ func _process(_delta):
 	var is_delay_timer_run = _delay_timer && !_delay_timer.is_stopped()
 	var is_recharge_rimer_run = _recharge_timer && !_recharge_timer.is_stopped()
 	
-	if not active or is_delay_timer_run or is_recharge_rimer_run or is_destroyed(): return
+	if (not active and _state != full_recharge) or is_delay_timer_run or is_recharge_rimer_run or is_destroyed(): return
 	
 	_execute()
 
