@@ -86,6 +86,8 @@ tracks/2/keys = {
 
 [node name="Body" type="RigidBody2D" parent="Body"]
 position = Vector2( 0, -27.078 )
+collision_layer = 16
+collision_mask = 19
 linear_velocity = Vector2( 0, -100 )
 angular_velocity = 10.0
 
@@ -102,6 +104,8 @@ shape = SubResource( 5 )
 [node name="LeftLeg" type="Node2D" parent="Body"]
 
 [node name="LeftLeg" type="RigidBody2D" parent="Body/LeftLeg"]
+collision_layer = 16
+collision_mask = 19
 linear_velocity = Vector2( -100, 0 )
 
 [node name="LegLeft" type="Polygon2D" parent="Body/LeftLeg/LeftLeg"]
@@ -121,6 +125,8 @@ position = Vector2( -1, -9 )
 shape = SubResource( 6 )
 
 [node name="LeftFoot" type="RigidBody2D" parent="Body/LeftLeg"]
+collision_layer = 16
+collision_mask = 19
 
 [node name="FootLeft" type="Polygon2D" parent="Body/LeftLeg/LeftFoot"]
 position = Vector2( 17, -35 )
@@ -146,6 +152,8 @@ node_b = NodePath("../LeftFoot")
 [node name="RightLeg" type="Node2D" parent="Body"]
 
 [node name="RightLeg" type="RigidBody2D" parent="Body/RightLeg"]
+collision_layer = 16
+collision_mask = 19
 linear_velocity = Vector2( 100, 0 )
 
 [node name="LegRight" type="Polygon2D" parent="Body/RightLeg/RightLeg"]
@@ -165,6 +173,8 @@ position = Vector2( -1, -9 )
 shape = SubResource( 8 )
 
 [node name="RigthFoot" type="RigidBody2D" parent="Body/RightLeg"]
+collision_layer = 16
+collision_mask = 19
 
 [node name="FootRight" type="Polygon2D" parent="Body/RightLeg/RigthFoot"]
 position = Vector2( -16, -35 )

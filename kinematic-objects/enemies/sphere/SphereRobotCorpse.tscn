@@ -72,6 +72,8 @@ position = Vector2( 0, -15 )
 [node name="AnimatedParts" type="Node2D" parent="Body"]
 
 [node name="TopLeft" type="RigidBody2D" parent="Body/AnimatedParts"]
+collision_layer = 16
+collision_mask = 19
 linear_velocity = Vector2( -50, -50 )
 
 [node name="OuterSphere" type="Polygon2D" parent="Body/AnimatedParts/TopLeft"]
@@ -86,6 +88,8 @@ uv = PoolVector2Array( 11, 12, 11, 0, 10, 0, 8, 1, 6, 2, 2, 6, 1, 8, 0, 11, 0, 1
 polygon = PoolVector2Array( -16, -6, -5, -6, -5, -18, -12, -13 )
 
 [node name="TopRight" type="RigidBody2D" parent="Body/AnimatedParts"]
+collision_layer = 16
+collision_mask = 19
 linear_velocity = Vector2( 50, -50 )
 
 [node name="OuterSphere" type="Polygon2D" parent="Body/AnimatedParts/TopRight"]
@@ -100,6 +104,8 @@ uv = PoolVector2Array( 21, 0, 21, 12, 32, 12, 32, 11, 31, 8, 29, 5, 26, 2, 24, 1
 polygon = PoolVector2Array( 5, -18, 5, -6, 16, -6, 12, -14 )
 
 [node name="BottomLeft" type="RigidBody2D" parent="Body/AnimatedParts"]
+collision_layer = 16
+collision_mask = 19
 linear_velocity = Vector2( -50, 50 )
 
 [node name="OuterSphere" type="Polygon2D" parent="Body/AnimatedParts/BottomLeft"]
@@ -114,6 +120,8 @@ uv = PoolVector2Array( 11, 21, 0, 21, 0, 22, 1, 24, 2, 26, 5, 30, 6, 31, 8, 32, 
 polygon = PoolVector2Array( -16, 3, -5, 3, -5, 15, -12, 10 )
 
 [node name="BottomRight" type="RigidBody2D" parent="Body/AnimatedParts"]
+collision_layer = 16
+collision_mask = 19
 linear_velocity = Vector2( 50, 50 )
 
 [node name="OuterSphere" type="Polygon2D" parent="Body/AnimatedParts/BottomRight"]
@@ -127,6 +135,8 @@ uv = PoolVector2Array( 21, 21, 21, 33, 22, 33, 24, 32, 27, 30, 30, 26, 32, 22, 3
 polygon = PoolVector2Array( 5, 3, 16, 3, 11, 12, 5, 15 )
 
 [node name="InnerGun" type="RigidBody2D" parent="Body/AnimatedParts"]
+collision_layer = 16
+collision_mask = 19
 linear_velocity = Vector2( 0, -100 )
 angular_velocity = 25.0
 

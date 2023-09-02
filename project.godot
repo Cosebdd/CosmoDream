@@ -341,6 +341,7 @@ test-heal={
 2d_physics/layer_2="player"
 2d_physics/layer_3="hit_box"
 2d_physics/layer_4="hurt_box"
+2d_physics/layer_5="corpse"
 
 [physics]
 
